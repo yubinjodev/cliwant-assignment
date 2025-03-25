@@ -1,10 +1,12 @@
 'use client'
+
 import { theme } from '@/styles/theme'
 import { ThemeProvider } from '@emotion/react'
+import { Box, Container, Stack } from '@mui/material'
+import { grey } from '@mui/material/colors'
 import { ReactNode } from 'react'
-import Header from './Header'
-import { Container, Stack } from '@mui/material'
-import Sidebar from './Sidebar'
+import Header from './nav-header'
+import Sidebar from './menu-bar'
 
 export default function LayoutClientWrapper({ children }: { children: ReactNode }) {
   return (
@@ -13,9 +15,11 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
         <Header />
         <Stack direction="row" spacing={0} sx={{ height: '100%', overflow: 'hidden' }}>
           <Sidebar />
-          <Container component="main" maxWidth="lg">
-            {children}
-          </Container>
+          <Box sx={{ background: grey[100], height: '100%', width: '100%' }}>
+            <Container component="main" maxWidth="lg" sx={{ my: 6 }}>
+              {children}
+            </Container>
+          </Box>
         </Stack>
       </Stack>
     </ThemeProvider>

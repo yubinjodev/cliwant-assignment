@@ -1,3 +1,4 @@
+// todo need to observe component behavior and plan logic
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import BadgeIcon from '@mui/icons-material/Badge'
@@ -16,12 +17,12 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import { Collapse, List, ListItemButton, ListItemText, Stack } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { useState } from 'react'
-import SupportNotice from './SupportNotice'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import SupportNotice from './support-notice'
 
-export default function Sidebar() {
+export default function Menubar() {
   const pathname = usePathname()
 
   const [open, setOpen] = useState(false)
