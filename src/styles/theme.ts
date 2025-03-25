@@ -1,18 +1,18 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 let theme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
     primary: {
-      main: "#3A86FF",
+      main: '#686FE8',
     },
     secondary: {
-      main: "#8338ec",
+      main: '#001376',
     },
   },
   spacing: 8,
   typography: {
-    fontFamily: "Montserrat, sans-serif",
+    fontFamily: 'Montserrat, sans-serif',
     fontSize: 16,
     h1: {
       fontWeight: 700,
@@ -27,7 +27,7 @@ let theme = createTheme({
       fontWeight: 700,
     },
   },
-});
+})
 
-theme = responsiveFontSizes(theme);
-export { theme };
+theme = responsiveFontSizes(theme)
+export { theme }
