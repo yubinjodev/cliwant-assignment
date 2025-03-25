@@ -1,25 +1,29 @@
-import LocalAtmIcon from '@mui/icons-material/LocalAtm'
-import DescriptionIcon from '@mui/icons-material/Description'
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import BadgeIcon from '@mui/icons-material/Badge'
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
-import PersonIcon from '@mui/icons-material/Person'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import DashboardIcon from '@mui/icons-material/Dashboard'
+import DescriptionIcon from '@mui/icons-material/Description'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import LocalAtmIcon from '@mui/icons-material/LocalAtm'
 import MonitorIcon from '@mui/icons-material/Monitor'
+import PersonIcon from '@mui/icons-material/Person'
 import SearchIcon from '@mui/icons-material/Search'
 import SettingsIcon from '@mui/icons-material/Settings'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
-import { Collapse, List, ListItem, ListItemButton, ListItemText, Stack } from '@mui/material'
+import { Collapse, List, ListItemButton, ListItemText, Stack } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import { useState } from 'react'
 import SupportNotice from './SupportNotice'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Sidebar() {
+  const pathname = usePathname()
+
   const [open, setOpen] = useState(false)
 
   const handleClick = () => {
@@ -43,16 +47,21 @@ export default function Sidebar() {
       }}
     >
       <List>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="대시보드" />
-          </ListItemButton>
-        </ListItem>
+        <ListItemButton>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="대시보드" />
+        </ListItemButton>
 
-        <ListItemButton onClick={handleClick}>
+        <ListItemButton
+          onClick={handleClick}
+          sx={{
+            backgroundColor: pathname.startsWith('/bids') ? 'secondary.main' : 'unset',
+            color: pathname.startsWith('/bids') ? '#fff' : 'unset',
+            borderRadius: 2,
+          }}
+        >
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
@@ -61,23 +70,41 @@ export default function Sidebar() {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <FormatListBulletedIcon />
-              </ListItemIcon>
-              <ListItemText primary="국내입찰" />
-            </ListItemButton>
+            <Link href="/bids/request-for-proposal">
+              <ListItemButton
+                sx={{
+                  ml: 4,
+                  backgroundColor: pathname === '/bids/request-for-proposal' ? 'secondary.main' : 'unset',
+                  color: pathname === '/bids/request-for-proposal' ? '#fff' : 'unset',
+                  borderRadius: 2,
+                }}
+              >
+                <ListItemIcon>
+                  <FormatListBulletedIcon />
+                </ListItemIcon>
+                <ListItemText primary="국내입찰" />
+              </ListItemButton>
+            </Link>
           </List>
         </Collapse>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <BookmarkIcon />
-              </ListItemIcon>
-              <ListItemText primary="관심공고" />
-            </ListItemButton>
+            <Link href="/bids/favorites">
+              <ListItemButton
+                sx={{
+                  ml: 4,
+                  backgroundColor: pathname === '/bids/favorites' ? 'secondary.main' : 'unset',
+                  color: pathname === '/bids/favorites' ? '#fff' : 'unset',
+                  borderRadius: 2,
+                }}
+              >
+                <ListItemIcon>
+                  <BookmarkIcon />
+                </ListItemIcon>
+                <ListItemText primary="관심공고" />
+              </ListItemButton>
+            </Link>
           </List>
         </Collapse>
 
@@ -91,7 +118,7 @@ export default function Sidebar() {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <PersonIcon />
               </ListItemIcon>
@@ -102,7 +129,7 @@ export default function Sidebar() {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <AccountBalanceIcon />
               </ListItemIcon>
@@ -112,7 +139,7 @@ export default function Sidebar() {
         </Collapse>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <ApartmentIcon />
               </ListItemIcon>
@@ -123,7 +150,7 @@ export default function Sidebar() {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <BadgeIcon />
               </ListItemIcon>
@@ -133,7 +160,7 @@ export default function Sidebar() {
         </Collapse>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <DescriptionIcon />
               </ListItemIcon>
@@ -144,7 +171,7 @@ export default function Sidebar() {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ ml: 4 }}>
               <ListItemIcon>
                 <LocalAtmIcon />
               </ListItemIcon>
@@ -153,26 +180,22 @@ export default function Sidebar() {
           </List>
         </Collapse>
 
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <MonitorIcon />
-            </ListItemIcon>
-            <ListItemText primary="이력관리" />
-          </ListItemButton>
-        </ListItem>
+        <ListItemButton>
+          <ListItemIcon>
+            <MonitorIcon />
+          </ListItemIcon>
+          <ListItemText primary="이력관리" />
+        </ListItemButton>
       </List>
 
       <Stack>
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SettingsIcon />
-              </ListItemIcon>
-              <ListItemText primary="설정" />
-            </ListItemButton>
-          </ListItem>
+          <ListItemButton>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="설정" />
+          </ListItemButton>
         </List>
         <SupportNotice />
       </Stack>
