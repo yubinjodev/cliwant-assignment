@@ -75,8 +75,8 @@ export default function Menubar() {
               <ListItemButton
                 sx={{
                   ml: 4,
-                  backgroundColor: pathname === '/rfp/listing' ? 'secondary.main' : 'unset',
-                  color: pathname === '/rfp/listing' ? '#fff' : 'unset',
+                  backgroundColor: pathname.startsWith('/rfp/listing') ? 'secondary.main' : 'unset',
+                  color: pathname.startsWith('/rfp/listing') ? '#fff' : 'unset',
                   borderRadius: 2,
                 }}
               >

@@ -15,7 +15,7 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
         <Header />
         <Stack direction="row" spacing={0} sx={{ height: '100%', overflow: 'hidden' }}>
           <Sidebar />
-          <Box sx={{ background: grey[100], height: '100%', width: '100%' }}>
+          <Box sx={{ background: grey[100], height: '100%', width: '100%', overflowY: 'auto' }}>
             <Container component="main" maxWidth="lg" sx={{ my: 6 }}>
               {children}
             </Container>

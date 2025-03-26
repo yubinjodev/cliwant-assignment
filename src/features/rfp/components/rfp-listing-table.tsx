@@ -11,8 +11,15 @@ import {
   TableRow,
 } from '@mui/material'
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
+import { useRouter } from 'next/navigation'
 
 export default function RfpListingTable() {
+  const router = useRouter()
+
+  const handleClickListing = () => {
+    router.push('/rfp/listing/12')
+  }
+
   return (
     <TableContainer component={Paper} sx={{ whiteSpace: 'nowrap' }}>
       <Table stickyHeader>
@@ -36,7 +43,7 @@ export default function RfpListingTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow hover onClick={handleClickListing} sx={{ cursor: 'pointer' }}>
             <TableCell align="center">일반</TableCell>
             <TableCell>[서울]2025년 도시제조업 작업환경경개선 지원사업 공고</TableCell>
             <TableCell align="center">공고문 참고</TableCell>
