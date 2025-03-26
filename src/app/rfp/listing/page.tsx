@@ -1,3 +1,5 @@
+import RfpListing from '@/features/rfp/components/rfp-listing'
+
 export default function Home() {
-  return <div>hi</div>;
+  return <RfpListing />
 }
