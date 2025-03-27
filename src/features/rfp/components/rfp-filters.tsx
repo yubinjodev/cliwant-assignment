@@ -1,5 +1,17 @@
 import SearchIcon from '@mui/icons-material/Search'
-import { Box, Button, Chip, MenuItem, Paper, Select, Stack } from '@mui/material'
+import {
+  Box,
+  Button,
+  Checkbox,
+  Chip,
+  FormControlLabel,
+  MenuItem,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import RfpDateFilter from './rfp-date-filter'
 import RfpFilterCondition from './rfp-filter-condition'
@@ -7,7 +19,14 @@ import RfpFilterExcludeKeyword from './rfp-filter-exclude-keyword'
 import RfpFilterKeywordSearch from './rfp-filter-keyword-search'
 
 export default function RfpFilters() {
-  const { listingCategory, keywords, handleChangeListingCategory } = useRfpListingFilterStore()
+  const {
+    listingCategory,
+    keywords,
+    projectBudget,
+    handleChangeListingCategory,
+    handleChangeProjectBudgetAmount,
+    handleChangeProjectIsAmountLimited,
+  } = useRfpListingFilterStore()
 
   const handleClickSaveCurrentCondition = () => {
     console.log('')
@@ -49,6 +68,25 @@ export default function RfpFilters() {
         ))}
 
         <RfpFilterExcludeKeyword />
+
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Typography>사업 금액</Typography>
+          <TextField
+            placeholder="0"
+            value={projectBudget.startBudgetAmount}
+            onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
+          />
+          <Typography>~</Typography>
+          <TextField
+            placeholder="0"
+            value={projectBudget.endBudgetAmount}
+            onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}
+          />
+          <FormControlLabel
+            control={<Checkbox onChange={(e) => handleChangeProjectIsAmountLimited(e.target.checked)} />}
+            label="금액 제한 없음"
+          />
+        </Stack>
 
         <RfpDateFilter />
         <RfpFilterCondition />

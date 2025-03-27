@@ -31,8 +31,8 @@ export type RfpListingFilterStore = {
   }
 
   projectBudget: {
-    startBudgetAmount: number
-    endBudgetAmount: number
+    startBudgetAmount: string
+    endBudgetAmount: string
     isAmountLimited: boolean
   }
 
@@ -67,11 +67,11 @@ export type RfpListingFilterStoreActions = {
   handleChangeAddExcludeKeyword: (key: 'title' | 'body', value: string) => void
   handleChangeRemoveExcludeKeyword: (key: 'title' | 'body', idx: number) => void
 
-  handleChangeProjectBudgetAmount: (key: 'startBudgetAmount' | 'endBudgetAmount', amount: number) => void
+  handleChangeProjectBudgetAmount: (key: 'startBudgetAmount' | 'endBudgetAmount', amount: string) => void
   handleChangeProjectIsAmountLimited: (isAmountLimited: boolean) => void
 
   handleChangeDateCategory: (category: 'day' | 'week' | 'month' | 'year' | 'all' | 'custom') => void
-  handleChangeDate: (dates: Date[]) => void
+  handleChangeDate: (key: 'start' | 'end', date: Date | null) => void
   handleChangeIsExpiredListingIncluded: (value: boolean) => void
 
   handleChangeBusinessCategory: (category: string) => void

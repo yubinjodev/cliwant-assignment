@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { RfpListingFilterStore, RfpListingFilterStoreActions } from '../types/rfp-listing'
+import moment from 'moment'
 
 export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListingFilterStoreActions>((set) => ({
   listingCategory: 'public' as 'public' | 'private',
@@ -113,8 +114,8 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
   },
 
   projectBudget: {
-    startBudgetAmount: 0,
-    endBudgetAmount: 0,
+    startBudgetAmount: '',
+    endBudgetAmount: '',
     isAmountLimited: false,
   },
   handleChangeProjectBudgetAmount: (key, amount) =>
@@ -133,24 +134,42 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
     })),
 
   date: {
-    category: 'day',
-    startDate: null,
-    endDate: null,
+    category: 'week',
+    startDate: new Date(moment().subtract(1, 'week').format()),
+    endDate: new Date(),
     isExpiredListingIncluded: false,
   },
-  handleChangeDateCategory: (category) =>
+  handleChangeDateCategory: (category) => {
+    const calculateStartDate = () => {
+      switch (category) {
+        case 'day':
+          return new Date(moment().subtract(1, 'day').format())
+        case 'week':
+          return new Date(moment().subtract(1, 'week').format())
+        case 'month':
+          return new Date(moment().subtract(1, 'month').format())
+        case 'year':
+          return new Date(moment().subtract(1, 'year').format())
+        case 'all':
+          return new Date('2020-01-01')
+        default:
+          return new Date()
+      }
+    }
+
     set((state) => ({
       date: {
         ...state.date,
         category,
+        startDate: category === 'custom' ? state.date.startDate : calculateStartDate(),
       },
-    })),
-  handleChangeDate: (dates) =>
+    }))
+  },
+  handleChangeDate: (key, date) =>
     set((state) => ({
       date: {
         ...state.date,
-        startDate: dates[0],
-        endDate: dates[1],
+        [`${key}Date`]: date,
       },
     })),
   handleChangeIsExpiredListingIncluded: (value) =>

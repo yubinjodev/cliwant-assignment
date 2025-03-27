@@ -2,7 +2,6 @@ import LayoutClientWrapper from '@/components/layout/layout-client-wrapper'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import '../styles/global.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

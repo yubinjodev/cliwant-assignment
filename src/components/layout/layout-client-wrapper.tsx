@@ -7,6 +7,8 @@ import { grey } from '@mui/material/colors'
 import { ReactNode } from 'react'
 import Sidebar from './menu-bar'
 import Header from './nav-header'
+import '../../styles/global.css'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function LayoutClientWrapper({ children }: { children: ReactNode }) {
   return (
