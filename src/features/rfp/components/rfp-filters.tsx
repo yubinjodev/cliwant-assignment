@@ -17,6 +17,7 @@ import RfpDateFilter from './rfp-date-filter'
 import RfpFilterCondition from './rfp-filter-condition'
 import RfpFilterExcludeKeyword from './rfp-filter-exclude-keyword'
 import RfpFilterKeywordSearch from './rfp-filter-keyword-search'
+import RfpListingFilterDropdown from './rfp-listing-filter-dropdown'
 
 export default function RfpFilters() {
   const {
@@ -47,8 +48,8 @@ export default function RfpFilters() {
             onClick={() => handleChangeListingCategory('private')}
           />
 
-          <Select>
-            <MenuItem value="all">전체</MenuItem>
+          <Select value="0">
+            <MenuItem value="0">그룹을 선택하세요</MenuItem>
           </Select>
           <Button variant="contained" onClick={handleClickSaveCurrentCondition}>
             현재 조건 저장
@@ -89,6 +90,9 @@ export default function RfpFilters() {
         </Stack>
 
         <RfpDateFilter />
+
+        <RfpListingFilterDropdown />
+
         <RfpFilterCondition />
         <Box>
           <Button variant="contained" color="secondary" startIcon={<SearchIcon />}>

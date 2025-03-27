@@ -188,7 +188,8 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
   handleChangeSorting: (sorting) => set({ sorting }),
 
   condition: null,
-  handleChangeCondition: (condition) => set({ condition }),
+  handleChangeCondition: (condition) =>
+    set((state) => (state.condition === condition ? { condition: null } : { condition })),
 
   isAdvancedSearchOpen: false,
   handleChangeIsAdvancedSearchOpen: (isOpen) => set({ isAdvancedSearchOpen: isOpen }),

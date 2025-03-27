@@ -1,4 +1,3 @@
-import { RfpListingFilterStore } from './rfp-listing.d'
 export type RfpSearchTabsCategories = 'simple' | 'ai' | 'advanced'
 
 export type RfpFilterKeywordSearchType = {

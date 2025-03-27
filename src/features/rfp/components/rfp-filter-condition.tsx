@@ -1,14 +1,20 @@
 import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
+import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
+import { RFP_LISTING_FILTER_CONDITION_CATEGORY } from '../utils/constants/rfp-listing-filter-condition-category'
 
 export default function RfpFilterCondition() {
+  const { condition, handleChangeCondition } = useRfpListingFilterStore()
+
   return (
     <Stack direction="row" spacing={2} alignItems="center">
       <Typography>조건</Typography>
-      <FormControlLabel control={<Checkbox />} label="업종조건 충족" />
-      <FormControlLabel control={<Checkbox />} label="물품조건 충족" />
-      <FormControlLabel control={<Checkbox />} label="공동수급 허용" />
-      <FormControlLabel control={<Checkbox />} label="실적제한 없음" />
-      <FormControlLabel control={<Checkbox />} label="인적제한 없음" />
+      {RFP_LISTING_FILTER_CONDITION_CATEGORY.map((item) => (
+        <FormControlLabel
+          control={<Checkbox checked={item.label === condition} onChange={() => handleChangeCondition(item.label)} />}
+          label={item.label}
+          key={item.value}
+        />
+      ))}
     </Stack>
   )
 }
