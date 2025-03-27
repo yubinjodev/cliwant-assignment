@@ -25,6 +25,7 @@ export default function RfpListingTable() {
       <Table stickyHeader>
         <TableHead>
           <TableRow>
+            {/* todo create array  */}
             <TableCell align="center">상태</TableCell>
             <TableCell>공고명</TableCell>
             <TableCell align="center">금액(원)</TableCell>

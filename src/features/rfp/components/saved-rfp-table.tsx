@@ -25,6 +25,7 @@ export default function SavedRfpTable() {
       <Table stickyHeader>
         <TableHead>
           <TableRow>
+            {/* todo create array */}
             <TableCell align="center">공고 단계</TableCell>
             <TableCell align="center">구분</TableCell>
             <TableCell>공고명</TableCell>

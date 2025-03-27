@@ -26,5 +26,8 @@ export type MenuBarItem = SingletonMenu | DropdownMenu
 
 export type MenuBarStore = {
   menuBarItems: MenuBarItem[]
+}
+
+export type MenuBarStoreActions = {
   toggleDropdownMenu: (title: string) => void
 }

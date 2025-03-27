@@ -22,6 +22,7 @@ export default function RfpListingDetails() {
 
       <RfpDetailsViewTabs />
 
+      {/* todo separate component */}
       <RfpDetailsSection icon={<InfoIcon />} title="프로젝트 정보">
         hello
       </RfpDetailsSection>
