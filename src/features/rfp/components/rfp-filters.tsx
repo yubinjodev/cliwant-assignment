@@ -1,6 +1,7 @@
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import SearchIcon from '@mui/icons-material/Search'
 import {
-  Box,
   Button,
   Checkbox,
   Chip,
@@ -24,6 +25,8 @@ export default function RfpFilters() {
     listingCategory,
     keywords,
     projectBudget,
+    isAdvancedSearchOpen,
+    handleChangeIsAdvancedSearchOpen,
     handleChangeListingCategory,
     handleChangeProjectBudgetAmount,
     handleChangeProjectIsAmountLimited,
@@ -57,48 +60,61 @@ export default function RfpFilters() {
           <Button>설정</Button>
         </Stack>
 
-        {keywords.map((keyword, idx) => (
-          <RfpFilterKeywordSearch
-            key={idx}
-            idx={idx}
-            category={keyword.category}
-            condition={keyword.condition}
-            keywordInput={keyword.keywordInput}
-            selectedKeywords={keyword.selectedKeywords}
-          />
-        ))}
+        {keywords
+          .filter((item, idx) => (isAdvancedSearchOpen ? true : idx < 3))
+          .map((keyword, idx) => (
+            <RfpFilterKeywordSearch
+              key={idx}
+              idx={idx}
+              category={keyword.category}
+              condition={keyword.condition}
+              keywordInput={keyword.keywordInput}
+              selectedKeywords={keyword.selectedKeywords}
+            />
+          ))}
 
-        <RfpFilterExcludeKeyword />
+        {isAdvancedSearchOpen ? (
+          <>
+            <RfpFilterExcludeKeyword />
 
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Typography>사업 금액</Typography>
-          <TextField
-            placeholder="0"
-            value={projectBudget.startBudgetAmount}
-            onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
-          />
-          <Typography>~</Typography>
-          <TextField
-            placeholder="0"
-            value={projectBudget.endBudgetAmount}
-            onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox onChange={(e) => handleChangeProjectIsAmountLimited(e.target.checked)} />}
-            label="금액 제한 없음"
-          />
-        </Stack>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Typography>사업 금액</Typography>
+              <TextField
+                placeholder="0"
+                value={projectBudget.startBudgetAmount}
+                onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
+              />
+              <Typography>~</Typography>
+              <TextField
+                placeholder="0"
+                value={projectBudget.endBudgetAmount}
+                onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}
+              />
+              <FormControlLabel
+                control={<Checkbox onChange={(e) => handleChangeProjectIsAmountLimited(e.target.checked)} />}
+                label="금액 제한 없음"
+              />
+            </Stack>
 
-        <RfpDateFilter />
+            <RfpDateFilter />
 
-        <RfpListingFilterDropdown />
+            <RfpListingFilterDropdown />
 
-        <RfpFilterCondition />
-        <Box>
+            <RfpFilterCondition />
+          </>
+        ) : null}
+        <Stack direction="row" justifyContent="space-between">
+          <div />
+          <Button
+            onClick={() => handleChangeIsAdvancedSearchOpen(!isAdvancedSearchOpen)}
+            endIcon={isAdvancedSearchOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          >
+            상세 필터 {isAdvancedSearchOpen ? '접기' : '열기'}
+          </Button>
           <Button variant="contained" color="secondary" startIcon={<SearchIcon />}>
             검색하기
           </Button>
-        </Box>
+        </Stack>
       </Stack>
     </Paper>
   )
