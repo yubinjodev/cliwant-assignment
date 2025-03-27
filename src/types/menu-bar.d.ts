@@ -13,7 +13,7 @@ export type DropdownMenu = {
   icon: ReactElement
   isOpen: boolean
   submenus: Submenu[]
-  href: string
+  identifier: string
 }
 
 export type Submenu = {

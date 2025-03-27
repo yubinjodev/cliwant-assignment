@@ -21,7 +21,7 @@ export const MENU_BAR_ITEMS: MenuBarItem[] = [
   },
   {
     category: 'dropdown',
-    href: '/rfp/listing',
+    identifier: 'rfp',
     title: '입찰겁색',
     icon: <SearchIcon />,
     isOpen: false,
@@ -40,7 +40,7 @@ export const MENU_BAR_ITEMS: MenuBarItem[] = [
   },
   {
     category: 'dropdown',
-    href: '/industry-analysis',
+    identifier: 'industry-analysis',
     title: '산업분석',
     icon: <SignalCellularAltIcon />,
     isOpen: false,

@@ -14,14 +14,3 @@ export default function RfpDetailsSection(props: RfpDetailsSectionProps) {
     </Box>
   )
 }
-
-/**
- * todo
- *
- * * basic layout
- * state management (sidebar, rfp listing filter, saved rfp filter)
- * styling
- * refactoring
- *
- * (optional) additional optimization
- */

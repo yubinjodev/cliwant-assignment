@@ -25,3 +25,14 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
     </ThemeProvider>
   )
 }
+
+/**
+ * todo
+ *
+ * * basic layout
+ * ! state management (sidebar, rfp listing filter, saved rfp filter)
+ * styling
+ * refactoring
+ *
+ * (optional) additional optimization
+ */

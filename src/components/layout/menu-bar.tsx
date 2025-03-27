@@ -1,8 +1,3 @@
-/**
- *  menu is open when submenu is active
- * menu is active when submenu is active
- */
-
 import { useMenuBarStore } from '@/stores/menu-bar-store'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
@@ -13,10 +8,21 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import SupportNotice from './support-notice'
+import { useEffect } from 'react'
 
 export default function Menubar() {
   const pathname = usePathname()
   const { menuBarItems, toggleDropdownMenu } = useMenuBarStore()
+
+  useEffect(() => {
+    menuBarItems.forEach((menu) => {
+      if (menu.category === 'singleton') return
+
+      if (menu.identifier === pathname.split('/')[1] && !menu.isOpen) {
+        toggleDropdownMenu(menu.title)
+      }
+    })
+  }, [pathname])
 
   return (
     <Stack
@@ -37,17 +43,19 @@ export default function Menubar() {
       <List>
         {menuBarItems.map((menu) =>
           menu.category === 'singleton' ? (
-            <ListItemButton key={menu.href}>
-              <ListItemIcon>{menu.icon}</ListItemIcon>
-              <ListItemText primary={menu.title} />
-            </ListItemButton>
+            <Link href={menu.href} key={menu.href}>
+              <ListItemButton>
+                <ListItemIcon>{menu.icon}</ListItemIcon>
+                <ListItemText primary={menu.title} />
+              </ListItemButton>
+            </Link>
           ) : (
-            <div key={menu.href}>
+            <div key={menu.identifier}>
               <ListItemButton
                 onClick={() => toggleDropdownMenu(menu.title)}
                 sx={{
                   borderRadius: 2,
-                  ...(pathname.startsWith(menu.href) && {
+                  ...(pathname.split('/')[1] === menu.identifier && {
                     backgroundColor: 'secondary.main',
                     color: '#fff',
                   }),
