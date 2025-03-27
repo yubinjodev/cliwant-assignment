@@ -180,11 +180,11 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
       },
     })),
 
-  businessCategory: 'all',
+  businessCategory: 'service',
   handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
   corporateRestriction: 'all',
   handleChangeCorporateRestriction: (restriction) => set({ corporateRestriction: restriction }),
-  sorting: 'relevant',
+  sorting: 'ends-at-asc',
   handleChangeSorting: (sorting) => set({ sorting }),
 
   condition: null,
