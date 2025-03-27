@@ -63,11 +63,9 @@ export type RfpListingFilterStoreActions = {
   handleChangeAddKeyword: (itemIndex: number, keyword: string) => void
   handleChangeRemoveKeyword: (itemIndex: number, keywordIndex: number) => void
 
-  handleChangeExcludeKeyword: (
-    key: keyof ExcludeKeywordFilter,
-    value: string | string[],
-    field: 'title' | 'body',
-  ) => void
+  handleChangeExcludeKeywordInput: (key: 'title' | 'body', value: string) => void
+  handleChangeAddExcludeKeyword: (key: 'title' | 'body', value: string) => void
+  handleChangeRemoveExcludeKeyword: (key: 'title' | 'body', idx: number) => void
 
   handleChangeProjectBudgetAmount: (key: 'startBudgetAmount' | 'endBudgetAmount', amount: number) => void
   handleChangeProjectIsAmountLimited: (isAmountLimited: boolean) => void

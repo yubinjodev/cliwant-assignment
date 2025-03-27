@@ -82,13 +82,35 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
     input: '',
     selectedKeywords: [],
   },
-  handleChangeExcludeKeyword: (key, value, field) =>
+  handleChangeExcludeKeywordInput: (key, value) => {
     set((state) => ({
-      [field === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody']: {
-        ...state[field === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'],
-        [key]: value,
+      [key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody']: {
+        ...state[key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'],
+        input: value,
       },
-    })),
+    }))
+  },
+  handleChangeAddExcludeKeyword: (key, value) => {
+    set((state) => ({
+      [key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody']: {
+        ...state[key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'],
+        selectedKeywords: [
+          ...state[key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'].selectedKeywords,
+          value,
+        ],
+      },
+    }))
+  },
+  handleChangeRemoveExcludeKeyword: (key, idx) => {
+    set((state) => ({
+      [key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody']: {
+        ...state[key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'],
+        selectedKeywords: state[key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody'].selectedKeywords.filter(
+          (_, itemIdx) => idx !== itemIdx,
+        ),
+      },
+    }))
+  },
 
   projectBudget: {
     startBudgetAmount: 0,

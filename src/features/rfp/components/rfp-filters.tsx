@@ -3,6 +3,7 @@ import { Box, Button, Chip, MenuItem, Paper, Select, Stack } from '@mui/material
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import RfpDateFilter from './rfp-date-filter'
 import RfpFilterCondition from './rfp-filter-condition'
+import RfpFilterExcludeKeyword from './rfp-filter-exclude-keyword'
 import RfpFilterKeywordSearch from './rfp-filter-keyword-search'
 
 export default function RfpFilters() {
@@ -46,6 +47,8 @@ export default function RfpFilters() {
             selectedKeywords={keyword.selectedKeywords}
           />
         ))}
+
+        <RfpFilterExcludeKeyword />
 
         <RfpDateFilter />
         <RfpFilterCondition />

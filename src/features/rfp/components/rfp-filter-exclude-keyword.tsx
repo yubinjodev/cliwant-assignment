@@ -1,0 +1,64 @@
+import AddIcon from '@mui/icons-material/Add'
+import { Button, Chip, Stack, TextField, Typography } from '@mui/material'
+import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
+
+export default function RfpFilterExcludeKeyword() {
+  const {
+    excludeKeywordTitle,
+    excludeKeywordBody,
+    handleChangeExcludeKeywordInput,
+    handleChangeAddExcludeKeyword,
+    handleChangeRemoveExcludeKeyword,
+  } = useRfpListingFilterStore()
+
+  const handleClickAddNewKeyword = (key: 'title' | 'body') => {
+    if (key === 'title') {
+      handleChangeAddExcludeKeyword(key, excludeKeywordTitle.input)
+    } else {
+      handleChangeAddExcludeKeyword(key, excludeKeywordBody.input)
+    }
+    handleChangeExcludeKeywordInput(key, '')
+  }
+
+  return (
+    <>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Typography>제목 제외 키워드</Typography>
+        <TextField
+          placeholder="제목에서 제외할 키워드 입력"
+          value={excludeKeywordTitle.input}
+          onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
+        />
+        <Button variant="contained" onClick={() => handleClickAddNewKeyword('title')}>
+          <AddIcon />
+        </Button>
+        {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
+          <Chip
+            key={`selectedKeywordsTitle${keywordIdx}`}
+            label={keyword}
+            onDelete={() => handleChangeRemoveExcludeKeyword('title', keywordIdx)}
+          />
+        ))}
+      </Stack>
+
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Typography>본문 제외 키워드</Typography>
+        <TextField
+          placeholder="본문에서 제외할 키워드 입력"
+          value={excludeKeywordBody.input}
+          onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
+        />
+        <Button variant="contained" onClick={() => handleClickAddNewKeyword('body')}>
+          <AddIcon />
+        </Button>
+        {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (
+          <Chip
+            key={`selectedKeywordsBody${keywordIdx}`}
+            label={keyword}
+            onDelete={() => handleChangeRemoveExcludeKeyword('body', keywordIdx)}
+          />
+        ))}
+      </Stack>
+    </>
+  )
+}
