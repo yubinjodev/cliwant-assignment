@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from '@mui/material'
 import Link from 'next/link'
-import { Url } from '../../utils/types/index'
+import { Url } from '../../types/index'
 
 type LinkButtonProps = ButtonProps & {
   href: Url
