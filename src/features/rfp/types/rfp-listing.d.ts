@@ -16,7 +16,7 @@ export type RfpDateFilterType = {
 export type RfpListingFilterStore = {
   listingCategory: 'public' | 'private'
   selectedSavedOption: number | null
-  isReceiveSuggestions: boolean
+  isReceiveSuggestionsOn: boolean
 
   keywords: RfpFilterKeywordSearchProps[]
 

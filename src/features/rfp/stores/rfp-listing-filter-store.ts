@@ -7,8 +7,8 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
   handleChangeListingCategory: (category) => set({ listingCategory: category }),
   selectedSavedOption: null,
   handleChangeSelectedSavedOption: (option) => set({ selectedSavedOption: option }),
-  isReceiveSuggestions: false,
-  handleChangeIsReceiveSuggestions: (value) => set({ isReceiveSuggestions: value }),
+  isReceiveSuggestionsOn: false,
+  handleChangeIsReceiveSuggestions: (value) => set({ isReceiveSuggestionsOn: value }),
 
   keywords: [
     {
