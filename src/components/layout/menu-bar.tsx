@@ -5,10 +5,10 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import { Collapse, List, ListItemButton, ListItemText, Stack } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import SupportNotice from './support-notice'
 import { useEffect } from 'react'
+import LinkListItemButton from '../button/link-list-item-button'
+import SupportNotice from './support-notice'
 
 export default function Menubar() {
   const pathname = usePathname()
@@ -32,7 +32,7 @@ export default function Menubar() {
         height: '100%',
         px: 3,
         py: 2,
-        width: 320,
+        width: 280,
         borderRight: `1px solid ${grey[200]}`,
         overflowY: 'auto',
         '& .MuiSvgIcon-root': {
@@ -43,12 +43,10 @@ export default function Menubar() {
       <List>
         {menuBarItems.map((menu) =>
           menu.category === 'singleton' ? (
-            <Link href={menu.href} key={menu.href}>
-              <ListItemButton>
-                <ListItemIcon>{menu.icon}</ListItemIcon>
-                <ListItemText primary={menu.title} />
-              </ListItemButton>
-            </Link>
+            <LinkListItemButton href={menu.href} key={menu.href}>
+              <ListItemIcon>{menu.icon}</ListItemIcon>
+              <ListItemText primary={menu.title} />
+            </LinkListItemButton>
           ) : (
             <div key={menu.identifier}>
               <ListItemButton
@@ -58,6 +56,9 @@ export default function Menubar() {
                   ...(pathname.split('/')[1] === menu.identifier && {
                     backgroundColor: 'secondary.main',
                     color: '#fff',
+                    '& .MuiSvgIcon-root': {
+                      color: '#fff',
+                    },
                   }),
                 }}
               >
@@ -69,21 +70,23 @@ export default function Menubar() {
               {menu.submenus.map((submenu) => (
                 <Collapse in={menu.isOpen} timeout="auto" unmountOnExit key={submenu.title}>
                   <List component="div" disablePadding>
-                    <Link href={submenu.href}>
-                      <ListItemButton
-                        sx={{
-                          ml: 4,
-                          borderRadius: 2,
-                          ...(pathname === submenu.href && {
-                            backgroundColor: 'secondary.main',
+                    <LinkListItemButton
+                      href={submenu.href}
+                      sx={{
+                        ml: 4,
+                        borderRadius: 2,
+                        ...(pathname === submenu.href && {
+                          backgroundColor: 'secondary.main',
+                          color: '#fff',
+                          '& .MuiSvgIcon-root': {
                             color: '#fff',
-                          }),
-                        }}
-                      >
-                        <ListItemIcon>{submenu.icon}</ListItemIcon>
-                        <ListItemText primary={submenu.title} />
-                      </ListItemButton>
-                    </Link>
+                          },
+                        }),
+                      }}
+                    >
+                      <ListItemIcon>{submenu.icon}</ListItemIcon>
+                      <ListItemText primary={submenu.title} />
+                    </LinkListItemButton>
                   </List>
                 </Collapse>
               ))}
