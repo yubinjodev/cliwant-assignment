@@ -1,5 +1,15 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { Button, Checkbox, FormControlLabel, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  MenuItem,
+  Paper,
+  Select,
+  Stack,
+  TextField,
+} from '@mui/material'
 import { useSavedRfpFilterStore } from '../stores/saved-rfp-filter-store'
 import { SAVED_RFP_FILTER_AMOUNT_CATEGORY } from '../utils/constants/saved-rfp-filter-amount-category'
 import { SAVED_RFP_FILTER_BUSINESS_CATEGORY } from '../utils/constants/saved-rfp-filter-business-category'
@@ -26,6 +36,7 @@ export default function SavedRfpFilter() {
     handleChangeAdmin,
     handleChangeIsTagFilterOpen,
     handleChangeIsMemoDisplayed,
+    reset,
   } = useSavedRfpFilterStore()
 
   return (
@@ -102,7 +113,7 @@ export default function SavedRfpFilter() {
           label="메모 표시"
         />
       </Stack>
-      <IconButton>
+      <IconButton onClick={reset}>
         <RefreshIcon />
       </IconButton>
     </Stack>

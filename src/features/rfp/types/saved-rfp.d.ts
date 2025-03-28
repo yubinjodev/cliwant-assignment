@@ -19,5 +19,6 @@ export type SavedRfpFilterStoreActions = {
   handleChangeProposalStatus: (status: string) => void
   handleChangeAdmin: (admin: string) => void
   handleChangeIsTagFilterOpen: (isOpen: boolean) => void
-  handleChangeIsMemoDisplayed: () => void
+  handleChangeIsMemoDisplayed: VoidFunction
+  reset: VoidFunction
 }

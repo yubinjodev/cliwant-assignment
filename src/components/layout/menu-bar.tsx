@@ -76,7 +76,7 @@ export default function Menubar() {
                       sx={{
                         ml: 4,
                         borderRadius: 2,
-                        ...(pathname === submenu.href && {
+                        ...(pathname.startsWith(submenu.href) && {
                           backgroundColor: 'secondary.main',
                           color: '#fff',
                           '&:hover': { backgroundColor: 'secondary.main' },

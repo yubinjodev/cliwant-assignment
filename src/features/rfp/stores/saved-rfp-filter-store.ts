@@ -1,31 +1,28 @@
 import { create } from 'zustand'
 import { SavedRfpFilterStore, SavedRfpFilterStoreActions } from '../types/saved-rfp'
 
-export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilterStoreActions>((set) => ({
+const initialState: SavedRfpFilterStore = {
   listingCategory: 'none',
-  handleChangeListingCategory: (category) => set({ listingCategory: category }),
-
   listingSearchInput: '',
-  handleChangeListingSearchInput: (value) => set({ listingSearchInput: value }),
-
   agencySearchInput: '',
-  handleChangeAgencySearchInput: (value) => set({ agencySearchInput: value }),
-
   businessCategory: 'none',
-  handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
-
   amountRange: 'none',
-  handleChangeAmountRange: (range) => set({ amountRange: range }),
-
   proposalStatus: 'none',
-  handleChangeProposalStatus: (status) => set({ proposalStatus: status }),
-
   admin: 'none',
-  handleChangeAdmin: (admin) => set({ admin }),
-
   isTagFilterOpen: false,
-  handleChangeIsTagFilterOpen: (isOpen) => set({ isTagFilterOpen: isOpen }),
-
   isMemoDisplayed: false,
+}
+
+export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilterStoreActions>((set) => ({
+  ...initialState,
+  handleChangeListingCategory: (category) => set({ listingCategory: category }),
+  handleChangeListingSearchInput: (value) => set({ listingSearchInput: value }),
+  handleChangeAgencySearchInput: (value) => set({ agencySearchInput: value }),
+  handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
+  handleChangeAmountRange: (range) => set({ amountRange: range }),
+  handleChangeProposalStatus: (status) => set({ proposalStatus: status }),
+  handleChangeAdmin: (admin) => set({ admin }),
+  handleChangeIsTagFilterOpen: (isOpen) => set({ isTagFilterOpen: isOpen }),
   handleChangeIsMemoDisplayed: () => set((state) => ({ isMemoDisplayed: !state.isMemoDisplayed })),
+  reset: () => set(initialState),
 }))

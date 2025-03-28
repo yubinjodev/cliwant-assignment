@@ -1,6 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -10,6 +9,7 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material'
+import { grey } from '@mui/material/colors'
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
 import { useRouter } from 'next/navigation'
 
@@ -21,7 +21,7 @@ export default function SavedRfpTable() {
   }
 
   return (
-    <TableContainer component={Paper} sx={{ whiteSpace: 'nowrap' }}>
+    <TableContainer sx={{ whiteSpace: 'nowrap' }}>
       <Table stickyHeader>
         <TableHead>
           <TableRow>
@@ -46,7 +46,7 @@ export default function SavedRfpTable() {
             <TableCell align="center">2025-04-30</TableCell>
             <TableCell align="center">공고서 참조</TableCell>
             <TableCell align="center">
-              <DeleteIcon />
+              <DeleteIcon sx={{ color: grey[500] }} />
             </TableCell>
           </TableRow>
         </TableBody>

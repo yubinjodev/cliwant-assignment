@@ -1,6 +1,6 @@
 'use client'
 
-import { Stack, Tab, Tabs } from '@mui/material'
+import { Paper, Stack, Tab, Tabs } from '@mui/material'
 import SavedRfpFilter from './saved-rfp-filter'
 import SavedRfpTable from './saved-rfp-table'
 
@@ -11,7 +11,7 @@ export default function SavedRfp() {
         <Tab value="none" label="관심 공고" />
       </Tabs>
 
-      <Stack sx={{ background: '#fff' }}>
+      <Stack sx={{ background: '#fff' }} component={Paper}>
         <SavedRfpFilter />
         <SavedRfpTable />
       </Stack>
