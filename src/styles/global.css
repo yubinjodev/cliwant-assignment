@@ -7,3 +7,11 @@
 body {
   margin: 0;
 }
+
+.date-picker-style {
+  padding: 10px;
+}
+
+.react-datepicker-popper {
+  z-index: 3 !important;
+}

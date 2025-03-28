@@ -7,8 +7,8 @@ import SavedRfpTable from './saved-rfp-table'
 export default function SavedRfp() {
   return (
     <Stack spacing={2}>
-      <Tabs value={0}>
-        <Tab value={0} label="관심 공고" />
+      <Tabs value="none">
+        <Tab value="none" label="관심 공고" />
       </Tabs>
 
       <Stack sx={{ background: '#fff' }}>

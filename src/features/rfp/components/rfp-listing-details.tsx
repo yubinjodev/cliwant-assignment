@@ -148,6 +148,7 @@ export default function RfpListingDetails() {
           title="업종제한"
           action={
             <Select
+              size="small"
               value={industryRestrictionsFilter}
               onChange={(e) => handleChangeFilter('industryRestrictionsFilter', e.target.value)}
             >
@@ -173,6 +174,7 @@ export default function RfpListingDetails() {
           title="직접생산 분석 [제한 기준: 제조물품]"
           action={
             <Select
+              size="small"
               value={productionAnalysisFilter}
               onChange={(e) => handleChangeFilter('productionAnalysisFilter', e.target.value)}
             >

@@ -10,7 +10,7 @@ export default function RfpDateFilter() {
     <Stack direction="row" spacing={2}>
       <Typography>공고일</Typography>
 
-      <Stack>
+      <Stack spacing={2}>
         <Stack direction="row" spacing={2} alignItems="center">
           <label htmlFor="rfpDateFilterStart">
             <DatePicker
@@ -22,6 +22,7 @@ export default function RfpDateFilter() {
               shouldCloseOnSelect
               showIcon={false}
               disabled={date.category !== 'custom'}
+              className="date-picker-style"
             />
           </label>
           <Typography>~</Typography>
@@ -35,6 +36,7 @@ export default function RfpDateFilter() {
               shouldCloseOnSelect
               showIcon={false}
               disabled={date.category !== 'custom'}
+              className="date-picker-style"
             />
           </label>
           <FormControlLabel

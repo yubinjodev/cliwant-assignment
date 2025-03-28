@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add'
-import { Button, Chip, Stack, TextField, Typography } from '@mui/material'
+import { Chip, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
 export default function RfpFilterExcludeKeyword() {
@@ -22,16 +22,17 @@ export default function RfpFilterExcludeKeyword() {
 
   return (
     <>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={1} alignItems="center">
         <Typography>제목 제외 키워드</Typography>
         <TextField
+          size="small"
           placeholder="제목에서 제외할 키워드 입력"
           value={excludeKeywordTitle.input}
           onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
         />
-        <Button variant="contained" onClick={() => handleClickAddNewKeyword('title')}>
+        <IconButton onClick={() => handleClickAddNewKeyword('title')}>
           <AddIcon />
-        </Button>
+        </IconButton>
         {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
           <Chip
             key={`selectedKeywordsTitle${keywordIdx}`}
@@ -41,16 +42,17 @@ export default function RfpFilterExcludeKeyword() {
         ))}
       </Stack>
 
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={1} alignItems="center">
         <Typography>본문 제외 키워드</Typography>
         <TextField
+          size="small"
           placeholder="본문에서 제외할 키워드 입력"
           value={excludeKeywordBody.input}
           onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
         />
-        <Button variant="contained" onClick={() => handleClickAddNewKeyword('body')}>
+        <IconButton onClick={() => handleClickAddNewKeyword('body')}>
           <AddIcon />
-        </Button>
+        </IconButton>
         {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (
           <Chip
             key={`selectedKeywordsBody${keywordIdx}`}

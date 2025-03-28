@@ -1,11 +1,14 @@
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import PushPinIcon from '@mui/icons-material/PushPin'
+import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import {
   Button,
   Checkbox,
   Chip,
   FormControlLabel,
+  IconButton,
   MenuItem,
   Paper,
   Select,
@@ -13,6 +16,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import RfpDateFilter from './rfp-date-filter'
 import RfpFilterCondition from './rfp-filter-condition'
@@ -32,8 +36,14 @@ export default function RfpFilters() {
     handleChangeProjectIsAmountLimited,
   } = useRfpListingFilterStore()
 
+  const [isCurrentGroupSaved, setIsCurrentGroupSaved] = useState(false)
+
   const handleClickSaveCurrentCondition = () => {
     console.log('')
+  }
+
+  const handleClickPushPin = () => {
+    setIsCurrentGroupSaved((prev) => !prev)
   }
 
   return (
@@ -43,15 +53,21 @@ export default function RfpFilters() {
           <Chip
             label="공유"
             variant={listingCategory === 'public' ? 'filled' : 'outlined'}
+            color={listingCategory === 'public' ? 'primary' : undefined}
             onClick={() => handleChangeListingCategory('public')}
           />
           <Chip
             label="개인"
             variant={listingCategory === 'private' ? 'filled' : 'outlined'}
+            color={listingCategory === 'private' ? 'primary' : undefined}
             onClick={() => handleChangeListingCategory('private')}
           />
 
-          <Select value="0">
+          <IconButton onClick={handleClickPushPin}>
+            {isCurrentGroupSaved ? <PushPinIcon /> : <PushPinOutlinedIcon />}
+          </IconButton>
+
+          <Select value="0" size="small">
             <MenuItem value="0">그룹을 선택하세요</MenuItem>
           </Select>
           <Button variant="contained" onClick={handleClickSaveCurrentCondition}>
@@ -80,12 +96,14 @@ export default function RfpFilters() {
             <Stack direction="row" spacing={2} alignItems="center">
               <Typography>사업 금액</Typography>
               <TextField
+                size="small"
                 placeholder="0"
                 value={projectBudget.startBudgetAmount}
                 onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
               />
               <Typography>~</Typography>
               <TextField
+                size="small"
                 placeholder="0"
                 value={projectBudget.endBudgetAmount}
                 onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}

@@ -18,7 +18,7 @@ export default function RfpListingFilterDropdown() {
     <Stack direction="row" spacing={4}>
       <Stack direction="row" spacing={2} alignItems="center">
         <Typography>사업 구분</Typography>
-        <Select value={businessCategory} onChange={(e) => handleChangeBusinessCategory(e.target.value)}>
+        <Select size="small" value={businessCategory} onChange={(e) => handleChangeBusinessCategory(e.target.value)}>
           {RFP_LISTING_FILTER_BUSINESS_CATEGORY.map(({ label, value }) => (
             <MenuItem key={label} value={value}>
               {label}
@@ -30,9 +30,10 @@ export default function RfpListingFilterDropdown() {
       <Stack direction="row" spacing={2} alignItems="center">
         <Typography>기업 제한</Typography>
         <Select
+          size="small"
           value={corporateRestriction}
           onChange={(e) => handleChangeCorporateRestriction(e.target.value)}
-          sx={{ width: 200 }}
+          sx={{ width: 160 }}
         >
           {RFP_LISTING_FILTER_CORPORATE_RESTRICTIONS_CATEGORY.map(({ label, value }) => (
             <MenuItem key={label} value={value}>
@@ -44,7 +45,7 @@ export default function RfpListingFilterDropdown() {
 
       <Stack direction="row" spacing={2} alignItems="center">
         <Typography>정렬 기준</Typography>
-        <Select value={sorting} onChange={(e) => handleChangeSorting(e.target.value)} sx={{ width: 200 }}>
+        <Select size="small" value={sorting} onChange={(e) => handleChangeSorting(e.target.value)} sx={{ width: 160 }}>
           {RFP_LISTING_FILTER_SORTING_CATEGORY.map(({ label, value }) => (
             <MenuItem key={label} value={value}>
               {label}
