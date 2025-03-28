@@ -56,6 +56,7 @@ export default function Menubar() {
                   ...(pathname.split('/')[1] === menu.identifier && {
                     backgroundColor: 'secondary.main',
                     color: '#fff',
+                    '&:hover': { backgroundColor: 'secondary.main' },
                     '& .MuiSvgIcon-root': {
                       color: '#fff',
                     },
@@ -69,7 +70,7 @@ export default function Menubar() {
 
               {menu.submenus.map((submenu) => (
                 <Collapse in={menu.isOpen} timeout="auto" unmountOnExit key={submenu.title}>
-                  <List component="div" disablePadding>
+                  <List component="div">
                     <LinkListItemButton
                       href={submenu.href}
                       sx={{
@@ -78,6 +79,7 @@ export default function Menubar() {
                         ...(pathname === submenu.href && {
                           backgroundColor: 'secondary.main',
                           color: '#fff',
+                          '&:hover': { backgroundColor: 'secondary.main' },
                           '& .MuiSvgIcon-root': {
                             color: '#fff',
                           },
