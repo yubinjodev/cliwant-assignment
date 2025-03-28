@@ -13,7 +13,8 @@ export default function Header() {
         justifyContent="space-between"
         sx={{
           px: 5,
-          py: 1,
+          pt: 1,
+          pb: 2,
           borderBottom: `1px solid  ${grey[200]}`,
         }}
       >
@@ -53,7 +54,7 @@ export default function Header() {
               </Box>
             </Typography>
           </Stack>
-          <AccountCircleIcon fontSize="large" />
+          <AccountCircleIcon sx={{ fontSize: 60 }} />
         </Stack>
       </Stack>
     </AppBar>
