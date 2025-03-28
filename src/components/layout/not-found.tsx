@@ -5,7 +5,7 @@ import LinkButton from '../button/link-button'
 
 export default function NotFound() {
   return (
-    <Stack alignItems="center" justifyContent="center" spacing={2} sx={{ height: '100%' }}>
+    <Stack alignItems="center" justifyContent="center" spacing={2} sx={{ height: '60dvh' }}>
       <Typography variant="h1">404</Typography>
       <Typography variant="body1">페이지를 찾을 수 없습니다</Typography>
       <LinkButton href="/" variant="contained">

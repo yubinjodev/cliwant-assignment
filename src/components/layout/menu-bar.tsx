@@ -99,12 +99,12 @@ export default function Menubar() {
 
       <Stack>
         <List>
-          <ListItemButton>
+          <LinkListItemButton href="/settings">
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="설정" />
-          </ListItemButton>
+          </LinkListItemButton>
         </List>
         <SupportNotice />
       </Stack>
