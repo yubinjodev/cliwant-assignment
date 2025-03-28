@@ -3,6 +3,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import SearchIcon from '@mui/icons-material/Search'
+import SettingsIcon from '@mui/icons-material/Settings'
 import {
   Button,
   Checkbox,
@@ -73,7 +74,9 @@ export default function RfpFilters() {
           <Button variant="contained" onClick={handleClickSaveCurrentCondition}>
             현재 조건 저장
           </Button>
-          <Button>설정</Button>
+          <IconButton>
+            <SettingsIcon />
+          </IconButton>
         </Stack>
 
         {keywords
@@ -126,6 +129,7 @@ export default function RfpFilters() {
           <Button
             onClick={() => handleChangeIsAdvancedSearchOpen(!isAdvancedSearchOpen)}
             endIcon={isAdvancedSearchOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            color="secondary"
           >
             상세 필터 {isAdvancedSearchOpen ? '접기' : '열기'}
           </Button>

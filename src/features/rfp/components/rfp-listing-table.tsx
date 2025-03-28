@@ -1,16 +1,5 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from '@mui/material'
-import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useRouter } from 'next/navigation'
 
 export default function RfpListingTable() {
@@ -70,27 +59,6 @@ export default function RfpListingTable() {
             <TableCell align="center">공고서 참조</TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={15}
-              rowsPerPage={1}
-              page={1}
-              slotProps={{
-                select: {
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                },
-              }}
-              onPageChange={() => {}}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
       </Table>
     </TableContainer>
   )

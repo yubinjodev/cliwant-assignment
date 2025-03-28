@@ -1,16 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
 import { useRouter } from 'next/navigation'
 
 export default function SavedRfpTable() {
@@ -50,27 +40,6 @@ export default function SavedRfpTable() {
             </TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={15}
-              rowsPerPage={1}
-              page={1}
-              slotProps={{
-                select: {
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                },
-              }}
-              onPageChange={() => {}}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
       </Table>
     </TableContainer>
   )

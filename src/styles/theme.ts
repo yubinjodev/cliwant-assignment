@@ -13,7 +13,7 @@ let theme = createTheme({
   spacing: 8,
   typography: {
     fontFamily: 'Montserrat, sans-serif',
-    fontSize: 14,
+    fontSize: 12,
     h1: {
       fontWeight: 700,
     },

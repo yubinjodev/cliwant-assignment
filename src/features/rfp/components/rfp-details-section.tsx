@@ -16,9 +16,9 @@ export default function RfpDetailsSection(props: RfpDetailsSectionProps) {
           height: 60,
         }}
       >
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={1} sx={{ '& .MuiSvgIcon-root': { color: 'primary.main' } }}>
           {icon}
-          <Typography>{title}</Typography>
+          <Typography fontWeight={700}>{title}</Typography>
         </Stack>
         {action}
       </Stack>

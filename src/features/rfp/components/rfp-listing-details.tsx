@@ -1,20 +1,22 @@
 'use client'
 
-import SearchIcon from '@mui/icons-material/Search'
-import SquareFootIcon from '@mui/icons-material/SquareFoot'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import FindInPageIcon from '@mui/icons-material/FindInPage'
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
-import AttachFileIcon from '@mui/icons-material/AttachFile'
-import SavedSearchIcon from '@mui/icons-material/SavedSearch'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import InfoIcon from '@mui/icons-material/Info'
+import SavedSearchIcon from '@mui/icons-material/SavedSearch'
+import SearchIcon from '@mui/icons-material/Search'
 import ShareIcon from '@mui/icons-material/Share'
-import StarIcon from '@mui/icons-material/Star'
-import { Box, Button, Grid2, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
+import SquareFootIcon from '@mui/icons-material/SquareFoot'
+import StarOutlineIcon from '@mui/icons-material/StarOutline'
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
+import { Box, Button, Grid2, IconButton, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
+import { grey } from '@mui/material/colors'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import RfpDetailsSection from './rfp-details-section'
 import RfpDetailsViewTabs from './rfp-details-view-tabs'
@@ -23,6 +25,8 @@ export default function RfpListingDetails() {
   const [industryRestrictionsFilter, setIndustryRestrictionsFilter] = useState('current-listing')
   const [productionAnalysisFilter, setProductionAnalysisFilter] = useState('current-listing')
   const [askAiInput, setAskAiInput] = useState('')
+
+  const router = useRouter()
 
   const handleChangeFilter = (key: 'industryRestrictionsFilter' | 'productionAnalysisFilter', value: string) => {
     if (key === 'industryRestrictionsFilter') {
@@ -37,20 +41,29 @@ export default function RfpListingDetails() {
   }
 
   return (
-    <Stack
-      spacing={2}
-      alignItems="flex-start"
-      sx={{
-        '& .MuiSvgIcon-root': { color: 'primary.main' },
-      }}
-    >
-      <Button variant="outlined" startIcon={<ArrowBackIcon />}>
+    <Stack spacing={2} alignItems="flex-start">
+      <Button
+        variant="outlined"
+        startIcon={<ArrowBackIcon />}
+        sx={{ background: '#fff' }}
+        onClick={() => router.back()}
+      >
         뒤로가기
       </Button>
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <Typography>[서울] 2025년 도시제조업 작업환경개선 지원사업 공고</Typography>
-        <Button startIcon={<StarIcon />}>관심 공고 추가</Button>
-        <Button startIcon={<ShareIcon />}>공유하기</Button>
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <Typography fontWeight={700}>[서울] 2025년 도시제조업 작업환경개선 지원사업 공고</Typography>
+        <Button startIcon={<StarOutlineIcon />}>관심 공고 추가</Button>
+        {/* <Button startIcon={<StarIcon />}>관심 공고 추가</Button> */}
+        <Button
+          startIcon={<ShareIcon />}
+          sx={{
+            color: grey[800],
+            '& .MuiSvgIcon-root': { color: grey[800] },
+            '&:hover': { background: 'unset' },
+          }}
+        >
+          공유하기
+        </Button>
       </Stack>
 
       <RfpDetailsViewTabs />
@@ -148,6 +161,7 @@ export default function RfpListingDetails() {
           title="업종제한"
           action={
             <Select
+              sx={{ width: 110 }}
               size="small"
               value={industryRestrictionsFilter}
               onChange={(e) => handleChangeFilter('industryRestrictionsFilter', e.target.value)}
@@ -174,6 +188,7 @@ export default function RfpListingDetails() {
           title="직접생산 분석 [제한 기준: 제조물품]"
           action={
             <Select
+              sx={{ width: 110 }}
               size="small"
               value={productionAnalysisFilter}
               onChange={(e) => handleChangeFilter('productionAnalysisFilter', e.target.value)}
@@ -234,16 +249,16 @@ export default function RfpListingDetails() {
 
       <RfpDetailsSection icon={<AutoAwesomeIcon />} title="AI에 공고 관련 질문하기">
         <Box sx={{ p: 2, overflowY: 'auto' }}>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={2} alignItems="center">
             <TextField
               value={askAiInput}
               fullWidth
               onChange={handleChangeAskAiInput}
               placeholder="공고에 대한 무엇이든 물어보세요! ex)사업 개요를 요약해줘"
             />
-            <Button>
+            <IconButton>
               <SearchIcon />
-            </Button>
+            </IconButton>
           </Stack>
         </Box>
       </RfpDetailsSection>
@@ -261,8 +276,10 @@ export default function RfpListingDetails() {
           </Button>
         }
       >
-        <Stack sx={{ p: 2, overflowY: 'auto' }} justifyContent="center" alignItems="center">
-          <Typography>AI 서치를 클릭해보세요</Typography>
+        <Stack sx={{ p: 3, overflowY: 'auto' }} justifyContent="center" alignItems="center">
+          <Typography fontWeight={700} fontStyle={{ color: grey[500] }}>
+            AI 서치를 클릭해보세요
+          </Typography>
         </Stack>
       </RfpDetailsSection>
 

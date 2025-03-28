@@ -18,7 +18,7 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
         <Stack direction="row" spacing={0} sx={{ height: '100%', overflow: 'hidden' }}>
           <Sidebar />
           <Box sx={{ background: grey[100], height: '100%', width: '100%', overflowY: 'auto' }}>
-            <Container component="main" maxWidth="lg" sx={{ pt: 3, height: '100%', width: '100%' }}>
+            <Container component="main" maxWidth="lg" sx={{ pt: 3, pb: 6, width: '100%' }}>
               {children}
             </Container>
           </Box>
@@ -33,7 +33,7 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
  *
  * * basic layout
  * * state management (sidebar, rfp listing filter, saved rfp filter)
- * styling
+ * styling (css*, responsive, semantics)
  * refactoring
  *
  * (optional) additional optimization
