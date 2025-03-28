@@ -1,23 +1,31 @@
 import { create } from 'zustand'
 import { SavedRfpFilterStore, SavedRfpFilterStoreActions } from '../types/saved-rfp'
 
-export const savedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilterStoreActions>((set) => ({
-  listingCategory: '',
-  handleChangeListingCategory: () => set({}),
+export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilterStoreActions>((set) => ({
+  listingCategory: 'none',
+  handleChangeListingCategory: (category) => set({ listingCategory: category }),
+
   listingSearchInput: '',
-  handleChangeListingSearchInput: () => set({}),
+  handleChangeListingSearchInput: (value) => set({ listingSearchInput: value }),
+
   agencySearchInput: '',
-  handleChangeAgencySearchInput: () => set({}),
-  businessCategory: '',
-  handleChangeBusinessCategory: () => set({}),
-  amountRange: '',
-  handleChangeAmountRange: () => set({}),
-  proposalStatus: '',
-  handleChangeProposalStatus: () => set({}),
-  admin: '',
-  handleChangeAdmin: () => set({}),
+  handleChangeAgencySearchInput: (value) => set({ agencySearchInput: value }),
+
+  businessCategory: 'none',
+  handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
+
+  amountRange: 'none',
+  handleChangeAmountRange: (range) => set({ amountRange: range }),
+
+  proposalStatus: 'none',
+  handleChangeProposalStatus: (status) => set({ proposalStatus: status }),
+
+  admin: 'none',
+  handleChangeAdmin: (admin) => set({ admin }),
+
   isTagFilterOpen: false,
-  handleChangeIsTagFilterOpen: () => set({}),
+  handleChangeIsTagFilterOpen: (isOpen) => set({ isTagFilterOpen: isOpen }),
+
   isMemoDisplayed: false,
-  handleChangeIsMemoDisplayed: () => set({}),
+  handleChangeIsMemoDisplayed: () => set((state) => ({ isMemoDisplayed: !state.isMemoDisplayed })),
 }))
