@@ -32,7 +32,7 @@ export const SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY = [
     label: '결과 - 실주',
   },
   {
-    value: 'result-failure-todo',
+    value: 'result-failure',
     label: '결과 - 유찰',
   },
 ]

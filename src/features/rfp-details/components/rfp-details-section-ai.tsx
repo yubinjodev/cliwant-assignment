@@ -12,6 +12,7 @@ export default function RfpDetailsSectionAi() {
   }
 
   return (
+    // todo create chat ui
     <RfpDetailsSection icon={<AutoAwesomeIcon />} title="AI에 공고 관련 질문하기">
       <Box sx={{ p: 2, overflowY: 'auto' }}>
         <Stack direction="row" spacing={2} alignItems="center">

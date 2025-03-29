@@ -28,3 +28,12 @@ export type SavedRfpListingFilterProps = SelectProps & {
   category: { value: string; label: string }[]
   handleChangeCategory?: (value: string) => void
 }
+
+export type SavedRfpStore = {
+  isSaved: boolean
+}
+
+export type SavedRfpStoreActions = {
+  handleChangeSave: VoidFunction
+  handleChangeRemove: VoidFunction
+}

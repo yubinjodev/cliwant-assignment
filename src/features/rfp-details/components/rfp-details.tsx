@@ -16,9 +16,11 @@ export default function RfpDetails() {
     <>
       <RfpDetailsViewTabs />
 
+      {/* todo 자격 분석 노트 feature (for saved rfp) */}
       <RfpDetailsSectionProjectInfo />
       <Stack direction="row" spacing={2} sx={{ width: '100%' }}>
         <RfpDetailsSectionContractRules />
+        {/* todo  우리회사 for the next 2 components */}
         <RfpDetailsSectionIndustryRules />
         <RfpDetailsSectionProdAnalysis />
       </Stack>

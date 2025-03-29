@@ -30,6 +30,7 @@ export default function RfpListingTableActions() {
 
       <Stack direction="row" justifyContent="space-between">
         <Stack direction="row" spacing={1}>
+          {/* todo change to  dropdown? */}
           {columns.map((col) => (
             <Chip key={col.value} label={col.label} onDelete={() => handleChangeActiveColumns(col.value)} />
           ))}

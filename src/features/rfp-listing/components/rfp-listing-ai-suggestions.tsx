@@ -10,6 +10,7 @@ export default function RfpListingAiSuggestions() {
   }
 
   return (
+    // todo show results on search
     <Paper component="section" sx={{ background: '#fff', px: 2, py: 3, width: '100%' }}>
       <Stack direction="row" alignItems="center" spacing={1}>
         <TextField

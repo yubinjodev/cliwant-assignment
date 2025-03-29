@@ -27,6 +27,7 @@ export default function RfpListing() {
       </Stack>
 
       <Stack alignItems="flex-end">
+        {/* todo show description when active */}
         <FormControlLabel control={<Checkbox defaultChecked />} label="설명 보기" />
       </Stack>
 
