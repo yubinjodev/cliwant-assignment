@@ -1,9 +1,10 @@
-import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useRouter } from 'next/navigation'
+import { useRfpListingTableColumnStore } from '../stores/rfp-listing-table-column-store'
 
 export default function RfpListingTable() {
   const router = useRouter()
+  const { columns } = useRfpListingTableColumnStore()
 
   const handleClickListing = () => {
     router.push('/rfp/listing/12')
@@ -21,14 +22,11 @@ export default function RfpListingTable() {
             <TableCell align="center">공고기관</TableCell>
             <TableCell align="center">계시일</TableCell>
             <TableCell align="center">마감일</TableCell>
-            <TableCell align="center">업종 조건</TableCell>
-            <TableCell align="center">제조 물품</TableCell>
-            <TableCell align="center">공급 물품</TableCell>
-            <TableCell align="center">지역 제한</TableCell>
-            <TableCell align="center">공동 수급</TableCell>
-            <TableCell align="center">낙찰자 신청 방식</TableCell>
-            <TableCell align="center">기업 제한</TableCell>
-            <TableCell align="center">가격 신청 방식</TableCell>
+            {columns.map((col) => (
+              <TableCell align="center" key={col.value}>
+                {col.label}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,22 +38,11 @@ export default function RfpListingTable() {
             <TableCell align="center">기업마당</TableCell>
             <TableCell align="center">2025-04-30</TableCell>
             <TableCell align="center">공고서 참조</TableCell>
-            <TableCell align="center">
-              <CheckBoxIcon color="success" />
-            </TableCell>
-            <TableCell align="center">
-              <CheckBoxIcon color="success" />
-            </TableCell>
-            <TableCell align="center">
-              <CheckBoxIcon color="success" />
-            </TableCell>
-            <TableCell align="center">
-              <CheckBoxIcon color="success" />
-            </TableCell>
-            <TableCell align="center">문서 참조</TableCell>
-            <TableCell align="center">공고서 참조</TableCell>
-            <TableCell align="center">대기업 참여 불가</TableCell>
-            <TableCell align="center">공고서 참조</TableCell>
+            {columns.map((col) => (
+              <TableCell align="center" key={col.value}>
+                {col.data}
+              </TableCell>
+            ))}
           </TableRow>
         </TableBody>
       </Table>

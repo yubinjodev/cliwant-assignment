@@ -22,7 +22,6 @@ export default function NavHeader() {
           <Image src="/logo.png" alt="Cliwant Dark Logo" width={150} height={84} />
         </Link>
 
-        {/* todo separate component */}
         <Stack direction="row" alignItems="center" spacing={3}>
           <Stack alignItems="flex-end" spacing={0}>
             <Button color="inherit" endIcon={<LogoutIcon />}>

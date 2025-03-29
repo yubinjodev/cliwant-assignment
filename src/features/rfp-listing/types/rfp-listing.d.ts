@@ -1,3 +1,5 @@
+import { ReactElement } from 'react'
+
 export type RfpSearchTabsCategories = 'simple' | 'ai' | 'advanced'
 
 export type RfpFilterKeywordSearchType = {
@@ -87,4 +89,14 @@ export type RfpFilterKeywordSearchProps = {
   condition: 'or' | 'and'
   keywordInput: string
   selectedKeywords: string[]
+}
+
+export type RfpListingTableColumnStore = {
+  columns: { value: string; label: string; data: string | ReactElement }[]
+  isColumnsAltered: boolean
+}
+
+export type RfpListingTableColumnStoreActions = {
+  handleChangeActiveColumns: (id: string) => void
+  reset: VoidFunction
 }
