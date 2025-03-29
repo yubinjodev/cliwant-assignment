@@ -1,10 +1,6 @@
-import { Button, ButtonProps } from '@mui/material'
+import { LinkButtonProps } from '@/types/button'
+import { Button } from '@mui/material'
 import Link from 'next/link'
-import { Url } from '../../types/index'
-
-type LinkButtonProps = ButtonProps & {
-  href: Url
-}
 
 export default function LinkButton(props: LinkButtonProps) {
   const { children, href, ...rest } = props
