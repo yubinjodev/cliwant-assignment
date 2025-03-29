@@ -20,13 +20,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import RfpDetailsViewTabs from './rfp-details-view-tabs'
+import RfpDetailsSectionInfoGrid from './rfp-details-section-info-grid'
 
 export default function RfpDetails() {
+  const router = useRouter()
+
   const [industryRestrictionsFilter, setIndustryRestrictionsFilter] = useState('current-listing')
   const [productionAnalysisFilter, setProductionAnalysisFilter] = useState('current-listing')
   const [askAiInput, setAskAiInput] = useState('')
-
-  const router = useRouter()
 
   const handleChangeFilter = (key: 'industryRestrictionsFilter' | 'productionAnalysisFilter', value: string) => {
     if (key === 'industryRestrictionsFilter') {
@@ -50,10 +51,10 @@ export default function RfpDetails() {
       >
         뒤로가기
       </Button>
+
       <Stack direction="row" alignItems="center" spacing={1}>
         <Typography fontWeight={700}>[서울] 2025년 도시제조업 작업환경개선 지원사업 공고</Typography>
         <Button startIcon={<StarOutlineIcon />}>관심 공고 추가</Button>
-        {/* <Button startIcon={<StarIcon />}>관심 공고 추가</Button> */}
         <Button
           startIcon={<ShareIcon />}
           sx={{
@@ -68,40 +69,14 @@ export default function RfpDetails() {
 
       <RfpDetailsViewTabs />
 
-      {/* todo separate component */}
       <RfpDetailsSection icon={<InfoIcon />} title="프로젝트 정보">
         <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}>
           <Grid2 container rowSpacing={1}>
-            <Grid2 size={1}>
-              <Typography>공고 유형</Typography>
-            </Grid2>
-            <Grid2 size={11}>
-              <Typography>용역</Typography>
-            </Grid2>
-            <Grid2 size={1}>
-              <Typography>수요 기관</Typography>
-            </Grid2>
-            <Grid2 size={11}>
-              <Typography>기업 마당</Typography>
-            </Grid2>
-            <Grid2 size={1}>
-              <Typography>수요 기관</Typography>
-            </Grid2>
-            <Grid2 size={11}>
-              <Typography>-</Typography>
-            </Grid2>
-            <Grid2 size={1}>
-              <Typography>시작일</Typography>
-            </Grid2>
-            <Grid2 size={11}>
-              <Typography>2025년 03월 24일</Typography>
-            </Grid2>
-            <Grid2 size={1}>
-              <Typography>마감일</Typography>
-            </Grid2>
-            <Grid2 size={11}>
-              <Typography>2025년 03월 24일</Typography>
-            </Grid2>
+            <RfpDetailsSectionInfoGrid title="공고 유형" details="용역" />
+            <RfpDetailsSectionInfoGrid title="수요 기관" details="기업 마당" />
+            <RfpDetailsSectionInfoGrid title="금액" details="-" />
+            <RfpDetailsSectionInfoGrid title="시작일" details="2025년 03월 24일" />
+            <RfpDetailsSectionInfoGrid title="마감일" details="2025년 03월 24일" />
           </Grid2>
         </Box>
       </RfpDetailsSection>
@@ -110,48 +85,33 @@ export default function RfpDetails() {
         <RfpDetailsSection icon={<SquareFootIcon />} title="공동수급 ・ 지역제한 ・ 선정방식">
           <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}>
             <Grid2 container rowSpacing={1}>
-              <Grid2 size={3}>
-                <Typography>공동수급</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>공고서 참조</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>지역제한</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>없음</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>제출 방법</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>공고 문서 참조</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>제출 확약서</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>없음</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>기업 제한</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>중소기업(소상공인) 확인서를 요구하므로 대기업은 참여할 수 없습니다.</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>실적 제한</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>해당 입찰 공고에는 실적 제한 조건이 없습니다.</Typography>
-              </Grid2>
-              <Grid2 size={3}>
-                <Typography>인적 제한</Typography>
-              </Grid2>
-              <Grid2 size={9}>
-                <Typography>해당 입찰 공고에는 전문적 인력 조건이 없습니다.</Typography>
-              </Grid2>
+              <RfpDetailsSectionInfoGrid title="공동수급" details="공고서 참조" titleGridSize={3} detailsGridSize={9} />
+              <RfpDetailsSectionInfoGrid title="지역제한" details="없음" titleGridSize={3} detailsGridSize={9} />
+              <RfpDetailsSectionInfoGrid
+                title="제출 방법"
+                details="공고 문서 참조"
+                titleGridSize={3}
+                detailsGridSize={9}
+              />
+              <RfpDetailsSectionInfoGrid title="제출 확약서" details="없음" titleGridSize={3} detailsGridSize={9} />
+              <RfpDetailsSectionInfoGrid
+                title="기업 제한"
+                details="중소기업(소상공인) 확인서를 요구하므로 대기업은 참여할 수 없습니다."
+                titleGridSize={3}
+                detailsGridSize={9}
+              />
+              <RfpDetailsSectionInfoGrid
+                title="실적 제한"
+                details="해당 입찰 공고에는 실적 제한 조건이 없습니다."
+                titleGridSize={3}
+                detailsGridSize={9}
+              />
+              <RfpDetailsSectionInfoGrid
+                title="인적 제한"
+                details="해당 입찰 공고에는 전문적 인력 조건이 없습니다."
+                titleGridSize={3}
+                detailsGridSize={9}
+              />
             </Grid2>
           </Box>
         </RfpDetailsSection>
@@ -213,6 +173,7 @@ export default function RfpDetails() {
           </Box>
         </RfpDetailsSection>
       </Stack>
+
       <RfpDetailsSection icon={<WorkspacePremiumIcon />} title="입찰참가자격">
         <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}>
           <Typography>
