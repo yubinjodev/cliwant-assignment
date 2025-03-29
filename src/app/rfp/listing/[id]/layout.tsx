@@ -1,4 +1,4 @@
-import RfpDetailsLayout from '@/features/rfp-listing/components/rfp-details-layout'
+import RfpDetailsLayout from '@/features/rfp-details/components/rfp-details-layout'
 import { ReactNode } from 'react'
 
 export default function Home({ children }: { children: ReactNode }) {

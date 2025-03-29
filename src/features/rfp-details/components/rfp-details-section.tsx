@@ -22,11 +22,7 @@ export default function RfpDetailsSection(props: RfpDetailsSectionProps) {
         </Stack>
         {action}
       </Stack>
-      {/* <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}> */}
       {children}
-
-      {/* </Box> */}
-      {/* <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}>{children}</Box> */}
     </Box>
   )
 }
