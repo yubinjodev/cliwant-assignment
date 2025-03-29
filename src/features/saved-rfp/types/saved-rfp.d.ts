@@ -1,3 +1,5 @@
+import { SelectProps } from '@mui/material'
+
 export type SavedRfpFilterStore = {
   listingCategory: string
   listingSearchInput: string
@@ -5,7 +7,6 @@ export type SavedRfpFilterStore = {
   businessCategory: string
   amountRange: string
   proposalStatus: string
-  admin: string
   isTagFilterOpen: boolean
   isMemoDisplayed: boolean
 }
@@ -17,8 +18,13 @@ export type SavedRfpFilterStoreActions = {
   handleChangeBusinessCategory: (category: string) => void
   handleChangeAmountRange: (range: string) => void
   handleChangeProposalStatus: (status: string) => void
-  handleChangeAdmin: (admin: string) => void
   handleChangeIsTagFilterOpen: (isOpen: boolean) => void
   handleChangeIsMemoDisplayed: VoidFunction
   reset: VoidFunction
+}
+
+export type SavedRfpListingFilterProps = SelectProps & {
+  state: string
+  category: { value: string; label: string }[]
+  handleChangeCategory?: (value: string) => void
 }

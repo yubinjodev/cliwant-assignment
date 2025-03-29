@@ -1,10 +1,11 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { Button, Checkbox, FormControlLabel, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { Button, Checkbox, FormControlLabel, IconButton, Stack, TextField } from '@mui/material'
 import { useSavedRfpFilterStore } from '../stores/saved-rfp-filter-store'
 import { SAVED_RFP_FILTER_AMOUNT_CATEGORY } from '../utils/constants/saved-rfp-filter-amount-category'
 import { SAVED_RFP_FILTER_BUSINESS_CATEGORY } from '../utils/constants/saved-rfp-filter-business-category'
 import { SAVED_RFP_FILTER_LISTING_CATEGORY } from '../utils/constants/saved-rfp-filter-listing-category'
 import { SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY } from '../utils/constants/saved-rfp-filter-proposal-status-category'
+import SavedRfpDropdown from './saved-rfp-dropdown'
 
 export default function SavedRfpFilters() {
   const {
@@ -14,7 +15,6 @@ export default function SavedRfpFilters() {
     businessCategory,
     amountRange,
     proposalStatus,
-    admin,
     isMemoDisplayed,
     handleChangeListingCategory,
     handleChangeListingSearchInput,
@@ -22,7 +22,6 @@ export default function SavedRfpFilters() {
     handleChangeBusinessCategory,
     handleChangeAmountRange,
     handleChangeProposalStatus,
-    handleChangeAdmin,
     handleChangeIsTagFilterOpen,
     handleChangeIsMemoDisplayed,
     reset,
@@ -31,13 +30,11 @@ export default function SavedRfpFilters() {
   return (
     <Stack sx={{ p: 2 }} direction="row" justifyContent="space-between">
       <Stack spacing={2} direction="row" alignItems="center">
-        <Select size="small" value={listingCategory} onChange={(e) => handleChangeListingCategory(e.target.value)}>
-          {SAVED_RFP_FILTER_LISTING_CATEGORY.map((category) => (
-            <MenuItem value={category.value} key={category.value}>
-              {category.label}
-            </MenuItem>
-          ))}
-        </Select>
+        <SavedRfpDropdown
+          state={listingCategory}
+          handleChangeCategory={handleChangeListingCategory}
+          category={SAVED_RFP_FILTER_LISTING_CATEGORY}
+        />
 
         <TextField
           size="small"
@@ -54,44 +51,27 @@ export default function SavedRfpFilters() {
           sx={{ width: 100 }}
         />
 
-        <Select size="small" value={businessCategory} onChange={(e) => handleChangeBusinessCategory(e.target.value)}>
-          {SAVED_RFP_FILTER_BUSINESS_CATEGORY.map((category) => (
-            <MenuItem value={category.value} key={category.value}>
-              {category.label}
-            </MenuItem>
-          ))}
-        </Select>
+        <SavedRfpDropdown
+          state={businessCategory}
+          handleChangeCategory={handleChangeBusinessCategory}
+          category={SAVED_RFP_FILTER_BUSINESS_CATEGORY}
+        />
 
-        <Select
-          size="small"
-          value={amountRange}
-          onChange={(e) => handleChangeAmountRange(e.target.value)}
+        <SavedRfpDropdown
+          state={amountRange}
+          handleChangeCategory={handleChangeAmountRange}
+          category={SAVED_RFP_FILTER_AMOUNT_CATEGORY}
           sx={{ width: 100 }}
-        >
-          {SAVED_RFP_FILTER_AMOUNT_CATEGORY.map((category) => (
-            <MenuItem value={category.value} key={category.value}>
-              {category.label}
-            </MenuItem>
-          ))}
-        </Select>
+        />
 
-        <Select
-          size="small"
-          value={proposalStatus}
-          onChange={(e) => handleChangeProposalStatus(e.target.value)}
+        <SavedRfpDropdown
+          state={proposalStatus}
+          handleChangeCategory={handleChangeProposalStatus}
+          category={SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY}
           sx={{ width: 120 }}
-        >
-          {SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY.map((category) => (
-            <MenuItem value={category.value} key={category.value}>
-              {category.label}
-            </MenuItem>
-          ))}
-        </Select>
+        />
 
-        <Select size="small" value={admin} onChange={(e) => handleChangeAdmin(e.target.value)} sx={{ width: 100 }}>
-          <MenuItem value="none">담당자</MenuItem>
-          <MenuItem value="current-user">과제 클라이원트 (test@cliwant.io)</MenuItem>
-        </Select>
+        <SavedRfpDropdown state="none" category={[{ value: 'none', label: '담당자' }]} sx={{ width: 100 }} />
 
         <Button variant="contained" onClick={() => handleChangeIsTagFilterOpen(true)}>
           태그 필터

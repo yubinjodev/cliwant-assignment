@@ -10,7 +10,6 @@ export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilte
   handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
   handleChangeAmountRange: (range) => set({ amountRange: range }),
   handleChangeProposalStatus: (status) => set({ proposalStatus: status }),
-  handleChangeAdmin: (admin) => set({ admin }),
   handleChangeIsTagFilterOpen: (isOpen) => set({ isTagFilterOpen: isOpen }),
   handleChangeIsMemoDisplayed: () => set((state) => ({ isMemoDisplayed: !state.isMemoDisplayed })),
   reset: () => set(SAVED_RFP_FILTER_INITIAL_STATE),

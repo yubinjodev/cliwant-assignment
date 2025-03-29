@@ -7,7 +7,6 @@ export const SAVED_RFP_FILTER_INITIAL_STATE: SavedRfpFilterStore = {
   businessCategory: 'none',
   amountRange: 'none',
   proposalStatus: 'none',
-  admin: 'none',
   isTagFilterOpen: false,
   isMemoDisplayed: false,
 }
