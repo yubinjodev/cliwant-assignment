@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
 import DatePicker from 'react-datepicker'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
-export default function RfpDateFilter() {
+export default function RfpListingDateFilter() {
   const { date, handleChangeDateCategory, handleChangeDate, handleChangeIsExpiredListingIncluded } =
     useRfpListingFilterStore()
 

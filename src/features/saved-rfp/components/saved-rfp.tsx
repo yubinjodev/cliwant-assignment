@@ -1,7 +1,7 @@
 'use client'
 
 import { Paper, Stack, Tab, Tabs } from '@mui/material'
-import SavedRfpFilter from './saved-rfp-filter'
+import SavedRfpFilters from './saved-rfp-filters'
 import SavedRfpTable from './saved-rfp-table'
 
 export default function SavedRfp() {
@@ -12,7 +12,7 @@ export default function SavedRfp() {
       </Tabs>
 
       <Stack sx={{ background: '#fff' }} component={Paper}>
-        <SavedRfpFilter />
+        <SavedRfpFilters />
         <SavedRfpTable />
       </Stack>
     </Stack>

@@ -1,47 +1,13 @@
-import { create } from 'zustand'
-import { RfpListingFilterStore, RfpListingFilterStoreActions } from '../types/rfp-listing'
+import { RfpListingFilterStore, RfpListingFilterStoreActions } from '@/features/rfp-listing/types/rfp-listing'
 import moment from 'moment'
+import { create } from 'zustand'
+import { RFP_LISTING_FILTER_INITIAL_STATE } from '../utils/constants/rfp-listing-filter-initial-state'
 
 export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListingFilterStoreActions>((set) => ({
-  listingCategory: 'public' as 'public' | 'private',
+  ...RFP_LISTING_FILTER_INITIAL_STATE,
   handleChangeListingCategory: (category) => set({ listingCategory: category }),
-  selectedSavedOption: null,
   handleChangeSelectedSavedOption: (option) => set({ selectedSavedOption: option }),
-  isReceiveSuggestionsOn: false,
   handleChangeIsReceiveSuggestions: (value) => set({ isReceiveSuggestionsOn: value }),
-
-  keywords: [
-    {
-      category: 'title',
-      condition: 'and',
-      keywordInput: '',
-      selectedKeywords: [],
-    },
-    {
-      category: 'title',
-      condition: 'and',
-      keywordInput: '',
-      selectedKeywords: [],
-    },
-    {
-      category: 'title',
-      condition: 'and',
-      keywordInput: '',
-      selectedKeywords: [],
-    },
-    {
-      category: 'title',
-      condition: 'and',
-      keywordInput: '',
-      selectedKeywords: [],
-    },
-    {
-      category: 'title',
-      condition: 'and',
-      keywordInput: '',
-      selectedKeywords: [],
-    },
-  ],
   handleChangeKeywordCategory: (itemIndex, category) =>
     set((state) => ({
       keywords: state.keywords.map((item, idx) => (idx === itemIndex ? { ...item, category } : item)),
@@ -71,15 +37,6 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
           : item,
       ),
     })),
-
-  excludeKeywordTitle: {
-    input: '',
-    selectedKeywords: [],
-  },
-  excludeKeywordBody: {
-    input: '',
-    selectedKeywords: [],
-  },
   handleChangeExcludeKeywordInput: (key, value) => {
     set((state) => ({
       [key === 'title' ? 'excludeKeywordTitle' : 'excludeKeywordBody']: {
@@ -109,12 +66,6 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
       },
     }))
   },
-
-  projectBudget: {
-    startBudgetAmount: '',
-    endBudgetAmount: '',
-    isAmountLimited: false,
-  },
   handleChangeProjectBudgetAmount: (key, amount) =>
     set((state) => ({
       projectBudget: {
@@ -129,13 +80,6 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
         isAmountLimited,
       },
     })),
-
-  date: {
-    category: 'week',
-    startDate: new Date(moment().subtract(1, 'week').format()),
-    endDate: new Date(),
-    isExpiredListingIncluded: false,
-  },
   handleChangeDateCategory: (category) => {
     const calculateStartDate = () => {
       switch (category) {
@@ -176,18 +120,10 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
         isExpiredListingIncluded: value,
       },
     })),
-
-  businessCategory: 'service',
   handleChangeBusinessCategory: (category) => set({ businessCategory: category }),
-  corporateRestriction: 'all',
   handleChangeCorporateRestriction: (restriction) => set({ corporateRestriction: restriction }),
-  sorting: 'ends-at-asc',
   handleChangeSorting: (sorting) => set({ sorting }),
-
-  condition: null,
   handleChangeCondition: (condition) =>
     set((state) => (state.condition === condition ? { condition: null } : { condition })),
-
-  isAdvancedSearchOpen: false,
   handleChangeIsAdvancedSearchOpen: (isOpen) => set({ isAdvancedSearchOpen: isOpen }),
 }))

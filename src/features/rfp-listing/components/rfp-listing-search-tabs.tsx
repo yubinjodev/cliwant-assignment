@@ -2,7 +2,7 @@ import { Chip, Stack } from '@mui/material'
 import { useState } from 'react'
 import { RfpSearchTabsCategories } from '../types/rfp-listing'
 
-export default function RfpSearchTabs() {
+export default function RfpListingSearchTabs() {
   const [currentSearchTab, setCurrentSearchTab] = useState<RfpSearchTabsCategories>('advanced')
 
   const handleChangeSearchTabs = (tab: RfpSearchTabsCategories) => {

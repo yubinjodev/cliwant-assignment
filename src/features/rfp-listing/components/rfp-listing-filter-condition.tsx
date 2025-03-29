@@ -1,8 +1,8 @@
 import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
-import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import { RFP_LISTING_FILTER_CONDITION_CATEGORY } from '../utils/constants/rfp-listing-filter-condition-category'
+import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
-export default function RfpFilterCondition() {
+export default function RfpListingFilterCondition() {
   const { condition, handleChangeCondition } = useRfpListingFilterStore()
 
   return (

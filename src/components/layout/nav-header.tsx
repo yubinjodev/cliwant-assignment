@@ -5,7 +5,7 @@ import { grey } from '@mui/material/colors'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Header() {
+export default function NavHeader() {
   return (
     <AppBar sx={{ background: '#fff', color: grey[500], boxShadow: 'none', position: 'relative' }}>
       <Stack

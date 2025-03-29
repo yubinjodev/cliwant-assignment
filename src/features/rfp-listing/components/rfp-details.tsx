@@ -1,5 +1,6 @@
 'use client'
 
+import RfpDetailsSection from '@/features/rfp-listing/components/rfp-details-section'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
@@ -18,10 +19,9 @@ import { grey } from '@mui/material/colors'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
-import RfpDetailsSection from './rfp-details-section'
 import RfpDetailsViewTabs from './rfp-details-view-tabs'
 
-export default function RfpListingDetails() {
+export default function RfpDetails() {
   const [industryRestrictionsFilter, setIndustryRestrictionsFilter] = useState('current-listing')
   const [productionAnalysisFilter, setProductionAnalysisFilter] = useState('current-listing')
   const [askAiInput, setAskAiInput] = useState('')

@@ -1,22 +1,12 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  IconButton,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
-  TextField,
-} from '@mui/material'
+import { Button, Checkbox, FormControlLabel, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
 import { useSavedRfpFilterStore } from '../stores/saved-rfp-filter-store'
 import { SAVED_RFP_FILTER_AMOUNT_CATEGORY } from '../utils/constants/saved-rfp-filter-amount-category'
 import { SAVED_RFP_FILTER_BUSINESS_CATEGORY } from '../utils/constants/saved-rfp-filter-business-category'
 import { SAVED_RFP_FILTER_LISTING_CATEGORY } from '../utils/constants/saved-rfp-filter-listing-category'
 import { SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY } from '../utils/constants/saved-rfp-filter-proposal-status-category'
 
-export default function SavedRfpFilter() {
+export default function SavedRfpFilters() {
   const {
     listingCategory,
     listingSearchInput,
@@ -25,7 +15,6 @@ export default function SavedRfpFilter() {
     amountRange,
     proposalStatus,
     admin,
-    isTagFilterOpen,
     isMemoDisplayed,
     handleChangeListingCategory,
     handleChangeListingSearchInput,

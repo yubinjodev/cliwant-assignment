@@ -1,9 +1,9 @@
 import AddIcon from '@mui/icons-material/Add'
 import { Chip, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
-import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import { RfpFilterKeywordSearchProps } from '../types/rfp-listing'
+import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
-export default function RfpFilterKeywordSearch(props: RfpFilterKeywordSearchProps & { idx: number }) {
+export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSearchProps & { idx: number }) {
   const { category, condition, keywordInput, selectedKeywords, idx } = props
 
   const {

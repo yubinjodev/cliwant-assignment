@@ -1,17 +1,17 @@
 'use client'
 
 import { Stack } from '@mui/material'
-import RfpFilters from './rfp-filters'
+import RfpListingFilters from './rfp-listing-filters'
 import RfpListingTable from './rfp-listing-table'
 import RfpListingViewTabs from './rfp-listing-view-tabs'
-import RfpSearchTabs from './rfp-search-tabs'
+import RfpListingSearchTabs from './rfp-listing-search-tabs'
 
 export default function RfpListing() {
   return (
     <Stack spacing={2}>
       <RfpListingViewTabs />
-      <RfpSearchTabs />
-      <RfpFilters />
+      <RfpListingSearchTabs />
+      <RfpListingFilters />
       <RfpListingTable />
     </Stack>
   )

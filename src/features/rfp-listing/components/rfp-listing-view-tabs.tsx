@@ -1,6 +1,6 @@
+import { RFP_LISTING_VIEW_TABS_CATEGORY } from '@/features/rfp-listing/utils/constants/rfp-listing-view-tabs-category'
 import { Tab, Tabs } from '@mui/material'
 import { SyntheticEvent, useState } from 'react'
-import { RFP_LISTING_VIEW_TABS_CATEGORY } from '../utils/constants/rfp-listing-view-tabs-category'
 
 export default function RfpListingViewTabs() {
   const [value, setValue] = useState('bidding-listing')

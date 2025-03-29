@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add'
 import { Chip, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
-export default function RfpFilterExcludeKeyword() {
+export default function RfpListingFilterExcludeKeyword() {
   const {
     excludeKeywordTitle,
     excludeKeywordBody,

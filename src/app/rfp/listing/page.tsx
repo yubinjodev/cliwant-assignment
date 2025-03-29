@@ -1,4 +1,4 @@
-import RfpListing from '@/features/rfp/components/rfp-listing'
+import RfpListing from '@/features/rfp-listing/components/rfp-listing'
 
 export default function Home() {
   return <RfpListing />

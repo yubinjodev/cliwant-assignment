@@ -1,20 +1,9 @@
 import { create } from 'zustand'
 import { SavedRfpFilterStore, SavedRfpFilterStoreActions } from '../types/saved-rfp'
-
-const initialState: SavedRfpFilterStore = {
-  listingCategory: 'none',
-  listingSearchInput: '',
-  agencySearchInput: '',
-  businessCategory: 'none',
-  amountRange: 'none',
-  proposalStatus: 'none',
-  admin: 'none',
-  isTagFilterOpen: false,
-  isMemoDisplayed: false,
-}
+import { SAVED_RFP_FILTER_INITIAL_STATE } from '../utils/constants/saved-rfp-filter-initial-state'
 
 export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilterStoreActions>((set) => ({
-  ...initialState,
+  ...SAVED_RFP_FILTER_INITIAL_STATE,
   handleChangeListingCategory: (category) => set({ listingCategory: category }),
   handleChangeListingSearchInput: (value) => set({ listingSearchInput: value }),
   handleChangeAgencySearchInput: (value) => set({ agencySearchInput: value }),
@@ -24,5 +13,5 @@ export const useSavedRfpFilterStore = create<SavedRfpFilterStore & SavedRfpFilte
   handleChangeAdmin: (admin) => set({ admin }),
   handleChangeIsTagFilterOpen: (isOpen) => set({ isTagFilterOpen: isOpen }),
   handleChangeIsMemoDisplayed: () => set((state) => ({ isMemoDisplayed: !state.isMemoDisplayed })),
-  reset: () => set(initialState),
+  reset: () => set(SAVED_RFP_FILTER_INITIAL_STATE),
 }))

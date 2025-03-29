@@ -17,7 +17,7 @@ export default function SupportNotice() {
         },
       }}
     >
-      <Typography>도움이 필요하신가요?</Typography>
+      <Typography fontWeight={700}>도움이 필요하신가요?</Typography>
       <Typography variant="caption">클라이원트 가이드를 확인해보세요!</Typography>
       <Button
         variant="contained"

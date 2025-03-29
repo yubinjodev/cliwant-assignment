@@ -19,13 +19,13 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
-import RfpDateFilter from './rfp-date-filter'
-import RfpFilterCondition from './rfp-filter-condition'
-import RfpFilterExcludeKeyword from './rfp-filter-exclude-keyword'
-import RfpFilterKeywordSearch from './rfp-filter-keyword-search'
+import RfpListingDateFilter from './rfp-listing-date-filter'
+import RfpListingFilterCondition from './rfp-listing-filter-condition'
 import RfpListingFilterDropdown from './rfp-listing-filter-dropdown'
+import RfpListingFilterExcludeKeyword from './rfp-listing-filter-exclude-keyword'
+import RfpListingFilterKeywordSearch from './rfp-listing-filter-keyword-search'
 
-export default function RfpFilters() {
+export default function RfpListingFilters() {
   const {
     listingCategory,
     keywords,
@@ -80,7 +80,7 @@ export default function RfpFilters() {
         {keywords
           .filter((_, idx) => (isAdvancedSearchOpen ? true : idx < 3))
           .map((keyword, idx) => (
-            <RfpFilterKeywordSearch
+            <RfpListingFilterKeywordSearch
               key={idx}
               idx={idx}
               category={keyword.category}
@@ -92,7 +92,7 @@ export default function RfpFilters() {
 
         {isAdvancedSearchOpen ? (
           <>
-            <RfpFilterExcludeKeyword />
+            <RfpListingFilterExcludeKeyword />
 
             <Stack direction="row" spacing={2} alignItems="center">
               <Typography>사업 금액</Typography>
@@ -115,11 +115,11 @@ export default function RfpFilters() {
               />
             </Stack>
 
-            <RfpDateFilter />
+            <RfpListingDateFilter />
 
             <RfpListingFilterDropdown />
 
-            <RfpFilterCondition />
+            <RfpListingFilterCondition />
           </>
         ) : null}
         <Stack direction="row" justifyContent="space-between">

@@ -1,8 +1,8 @@
+import { RFP_LISTING_FILTER_BUSINESS_CATEGORY } from '@/features/rfp-listing/utils/constants/rfp-listing-filter-business-category'
+import { RFP_LISTING_FILTER_CORPORATE_RESTRICTIONS_CATEGORY } from '@/features/rfp-listing/utils/constants/rfp-listing-filter-corporate-restrictions-category'
+import { RFP_LISTING_FILTER_SORTING_CATEGORY } from '@/features/rfp-listing/utils/constants/rfp-listing-filter-sorting-category'
 import { MenuItem, Select, Stack, Typography } from '@mui/material'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
-import { RFP_LISTING_FILTER_BUSINESS_CATEGORY } from '../utils/constants/rfp-listing-filter-business-category'
-import { RFP_LISTING_FILTER_CORPORATE_RESTRICTIONS_CATEGORY } from '../utils/constants/rfp-listing-filter-corporate-restrictions-category'
-import { RFP_LISTING_FILTER_SORTING_CATEGORY } from '../utils/constants/rfp-listing-filter-sorting-category'
 
 export default function RfpListingFilterDropdown() {
   const {

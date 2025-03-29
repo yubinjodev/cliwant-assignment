@@ -6,6 +6,4 @@ export function middleware(request: NextRequest) {
   if (pathname === '/') {
     return NextResponse.redirect(new URL('/rfp/listing', request.url))
   }
-
-  //   return NextResponse.next();
 }
