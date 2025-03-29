@@ -45,7 +45,7 @@ export default function RfpFilterKeywordSearch(props: RfpFilterKeywordSearchProp
         value={keywordInput}
         onChange={(e) => handleChangeKeywordInput(idx, e.target.value)}
       />
-      <IconButton onClick={handleClickAddNewKeyword}>
+      <IconButton onClick={handleClickAddNewKeyword} disabled={!keywordInput}>
         <AddIcon />
       </IconButton>
       {selectedKeywords.map((keyword, keywordIdx) => (

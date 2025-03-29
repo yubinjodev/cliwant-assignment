@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: '관심 공고 | CLIWANT',
 }
 
-export default function Page({ children }: { children: ReactNode }) {
+export default function Home({ children }: { children: ReactNode }) {
   return children
 }

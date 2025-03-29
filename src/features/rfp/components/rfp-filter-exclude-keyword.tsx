@@ -30,7 +30,7 @@ export default function RfpFilterExcludeKeyword() {
           value={excludeKeywordTitle.input}
           onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
         />
-        <IconButton onClick={() => handleClickAddNewKeyword('title')}>
+        <IconButton disabled={!excludeKeywordTitle.input} onClick={() => handleClickAddNewKeyword('title')}>
           <AddIcon />
         </IconButton>
         {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
@@ -50,7 +50,7 @@ export default function RfpFilterExcludeKeyword() {
           value={excludeKeywordBody.input}
           onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
         />
-        <IconButton onClick={() => handleClickAddNewKeyword('body')}>
+        <IconButton disabled={!excludeKeywordBody.input} onClick={() => handleClickAddNewKeyword('body')}>
           <AddIcon />
         </IconButton>
         {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (

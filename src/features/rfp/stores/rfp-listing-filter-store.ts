@@ -42,13 +42,10 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
       selectedKeywords: [],
     },
   ],
-  handleChangeKeywordCategory: (itemIndex, category) => {
-    console.log(itemIndex)
-    console.log(category)
+  handleChangeKeywordCategory: (itemIndex, category) =>
     set((state) => ({
       keywords: state.keywords.map((item, idx) => (idx === itemIndex ? { ...item, category } : item)),
-    }))
-  },
+    })),
   handleChangeKeywordCondition: (itemIndex, condition) =>
     set((state) => ({
       keywords: state.keywords.map((item, idx) => (idx === itemIndex ? { ...item, condition } : item)),

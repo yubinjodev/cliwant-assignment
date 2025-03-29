@@ -39,9 +39,7 @@ export default function RfpFilters() {
 
   const [isCurrentGroupSaved, setIsCurrentGroupSaved] = useState(false)
 
-  const handleClickSaveCurrentCondition = () => {
-    console.log('')
-  }
+  const handleClickSaveCurrentCondition = () => {}
 
   const handleClickPushPin = () => {
     setIsCurrentGroupSaved((prev) => !prev)
@@ -80,7 +78,7 @@ export default function RfpFilters() {
         </Stack>
 
         {keywords
-          .filter((item, idx) => (isAdvancedSearchOpen ? true : idx < 3))
+          .filter((_, idx) => (isAdvancedSearchOpen ? true : idx < 3))
           .map((keyword, idx) => (
             <RfpFilterKeywordSearch
               key={idx}
