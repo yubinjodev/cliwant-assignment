@@ -43,7 +43,21 @@ export default function Menubar() {
       <List>
         {menuBarItems.map((menu) =>
           menu.category === 'singleton' ? (
-            <LinkListItemButton href={menu.href} key={menu.href}>
+            <LinkListItemButton
+              href={menu.href}
+              key={menu.href}
+              sx={{
+                borderRadius: 2,
+                ...(pathname === menu.href && {
+                  backgroundColor: 'secondary.main',
+                  color: '#fff',
+                  '&:hover': { backgroundColor: 'secondary.main' },
+                  '& .MuiSvgIcon-root': {
+                    color: '#fff',
+                  },
+                }),
+              }}
+            >
               <ListItemIcon>{menu.icon}</ListItemIcon>
               <ListItemText primary={menu.title} />
             </LinkListItemButton>
@@ -99,7 +113,20 @@ export default function Menubar() {
 
       <Stack>
         <List>
-          <LinkListItemButton href="/settings">
+          <LinkListItemButton
+            href="/settings"
+            sx={{
+              borderRadius: 2,
+              ...(pathname === '/settings' && {
+                backgroundColor: 'secondary.main',
+                color: '#fff',
+                '&:hover': { backgroundColor: 'secondary.main' },
+                '& .MuiSvgIcon-root': {
+                  color: '#fff',
+                },
+              }),
+            }}
+          >
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
