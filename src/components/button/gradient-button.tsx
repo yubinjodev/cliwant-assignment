@@ -1,8 +1,8 @@
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
-import { Button } from '@mui/material'
+import { Button, ButtonProps } from '@mui/material'
 import { ReactNode } from 'react'
 
-export default function GradientButton({ children }: { children: ReactNode }) {
+export default function GradientButton({ children, ...rest }: { children: ReactNode } & ButtonProps) {
   return (
     <Button
       variant="contained"
@@ -11,6 +11,7 @@ export default function GradientButton({ children }: { children: ReactNode }) {
         whiteSpace: 'nowrap',
       }}
       startIcon={<AutoFixHighIcon />}
+      {...rest}
     >
       {children}
     </Button>

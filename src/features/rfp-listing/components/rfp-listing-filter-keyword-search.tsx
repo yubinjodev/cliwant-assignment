@@ -20,6 +20,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
   }
 
   return (
+    // todo add new keyword when enter is pressed
     <Stack direction="row" spacing={1} alignItems="center">
       <Select
         size="small"
@@ -48,13 +49,15 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
       <IconButton onClick={handleClickAddNewKeyword} disabled={!keywordInput}>
         <AddIcon />
       </IconButton>
-      {selectedKeywords.map((keyword, keywordIdx) => (
-        <Chip
-          key={`selectedKeywords${keywordIdx}`}
-          label={keyword}
-          onDelete={() => handleChangeRemoveKeyword(idx, keywordIdx)}
-        />
-      ))}
+      <Stack direction="row" spacing={1} alignItems="center" sx={{ width: '100%', overflowX: 'auto' }}>
+        {selectedKeywords.map((keyword, keywordIdx) => (
+          <Chip
+            key={`selectedKeywords${keywordIdx}`}
+            label={keyword}
+            onDelete={() => handleChangeRemoveKeyword(idx, keywordIdx)}
+          />
+        ))}
+      </Stack>
     </Stack>
   )
 }
