@@ -27,7 +27,6 @@ export default function RfpDetails() {
 
       <Stack direction="row" spacing={2} sx={{ width: '100%' }}>
         <RfpDetailsSectionContractRules />
-        {/* todo  우리회사 for the next 2 components */}
         <RfpDetailsSectionIndustryRules />
         <RfpDetailsSectionProdAnalysis />
       </Stack>

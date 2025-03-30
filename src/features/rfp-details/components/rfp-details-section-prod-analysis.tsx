@@ -29,8 +29,10 @@ export default function RfpDetailsSectionProdAnalysis() {
       <Box sx={{ p: 2, height: 240, overflowY: 'auto' }}>
         <Stack justifyContent="space-between" alignItems="center" sx={{ height: '100%' }}>
           <Stack direction="row" justifyContent="space-between" sx={{ width: '100%' }}>
-            <Typography>입찰 요구 직접생산 (0)</Typography>
-            <Typography>충족여부</Typography>
+            <Typography>
+              {productionAnalysisFilter === 'current-listing' ? '입찰 요구 인증서' : '개인 회원 보유 인증서'}&nbsp; (0)
+            </Typography>
+            {productionAnalysisFilter === 'current-listing' ? <Typography>충족여부</Typography> : null}
           </Stack>
           <Typography color="success">참여 제한 없음</Typography>
           <Stack direction="row" spacing={2}>
