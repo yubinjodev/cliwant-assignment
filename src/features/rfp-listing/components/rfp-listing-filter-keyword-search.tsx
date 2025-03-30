@@ -1,7 +1,8 @@
 import AddIcon from '@mui/icons-material/Add'
 import { Chip, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
-import { RfpFilterKeywordSearchProps } from '../types/rfp-listing'
+import { FormEvent } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
+import { RfpFilterKeywordSearchProps } from '../types/rfp-listing'
 
 export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSearchProps & { idx: number }) {
   const { category, condition, keywordInput, selectedKeywords, idx } = props
@@ -14,14 +15,14 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
     handleChangeRemoveKeyword,
   } = useRfpListingFilterStore()
 
-  const handleClickAddNewKeyword = () => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     handleChangeAddKeyword(idx, keywordInput)
     handleChangeKeywordInput(idx, '')
   }
 
   return (
-    // todo add new keyword when enter is pressed
-    <Stack direction="row" spacing={1} alignItems="center">
+    <Stack direction="row" spacing={1} alignItems="center" component="form" onSubmit={handleFormSubmit}>
       <Select
         size="small"
         value={category}
@@ -46,7 +47,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
         value={keywordInput}
         onChange={(e) => handleChangeKeywordInput(idx, e.target.value)}
       />
-      <IconButton onClick={handleClickAddNewKeyword} disabled={!keywordInput}>
+      <IconButton type="submit" disabled={!keywordInput}>
         <AddIcon />
       </IconButton>
       <Stack direction="row" spacing={1} alignItems="center" sx={{ width: '100%', overflowX: 'auto' }}>
