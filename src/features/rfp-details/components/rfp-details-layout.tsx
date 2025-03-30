@@ -1,6 +1,7 @@
 'use client'
 
 import { useSavedRfpStore } from '@/features/saved-rfp/stores/saved-rfp-store'
+import { COPY_TEXT_TO_CLIPBOARD } from '@/utils/copy-text-to-clipboard'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ShareIcon from '@mui/icons-material/Share'
 import StarIcon from '@mui/icons-material/Star'
@@ -9,11 +10,17 @@ import { Button, Stack, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
+import { toast } from 'react-toastify'
 
 export default function RfpDetailsLayout({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   const { isSaved, handleChangeSave, handleChangeRemove } = useSavedRfpStore()
+
+  const handleClickShareListing = () => {
+    COPY_TEXT_TO_CLIPBOARD(window.location.href)
+    toast.success('링크가 클립보드에 복사되었습니다')
+  }
 
   return (
     <Stack spacing={2} alignItems="flex-start">
@@ -38,6 +45,7 @@ export default function RfpDetailsLayout({ children }: { children: ReactNode }) 
           </Button>
         )}
         <Button
+          onClick={handleClickShareListing}
           startIcon={<ShareIcon />}
           sx={{
             color: grey[800],
@@ -45,7 +53,6 @@ export default function RfpDetailsLayout({ children }: { children: ReactNode }) 
             '&:hover': { background: 'unset' },
           }}
         >
-          {/* todo copy link */}
           공유하기
         </Button>
       </Stack>

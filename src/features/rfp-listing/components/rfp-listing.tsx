@@ -1,6 +1,7 @@
 'use client'
 
-import { Checkbox, FormControlLabel, Stack } from '@mui/material'
+import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import RfpListingAiSuggestions from './rfp-listing-ai-suggestions'
 import RfpListingFilters from './rfp-listing-filters'
@@ -12,6 +13,12 @@ import RfpListingViewTabs from './rfp-listing-view-tabs'
 
 export default function RfpListing() {
   const { isReceiveSuggestionsOn } = useRfpListingFilterStore()
+
+  const [isDescDisplayed, setIsDescDisplayed] = useState(false)
+
+  const handleChangeCheckbox = (value: boolean) => {
+    setIsDescDisplayed(value)
+  }
 
   return (
     <Stack spacing={2}>
@@ -28,8 +35,17 @@ export default function RfpListing() {
 
       <Stack alignItems="flex-end">
         {/* todo show description when active */}
-        <FormControlLabel control={<Checkbox defaultChecked />} label="설명 보기" />
+        <FormControlLabel
+          control={<Checkbox checked={isDescDisplayed} onChange={(e) => handleChangeCheckbox(e.target.checked)} />}
+          label="설명 보기"
+        />
       </Stack>
+
+      {isDescDisplayed ? (
+        <Typography align="center" fontWeight={700}>
+          공고 제목에서 인공지능 을 포함하고, 사업 구분은 전체 에 해당하는 공고를 찾습니다.
+        </Typography>
+      ) : null}
 
       <RfpListingTableActions />
       <RfpListingTable />
