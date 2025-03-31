@@ -1,9 +1,10 @@
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
 import SearchIcon from '@mui/icons-material/Search'
-import { Box, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import RfpDetailsSection from './rfp-details-section'
+import { toast } from 'react-toastify'
 
 export default function RfpDetailsSectionAi() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -28,7 +29,22 @@ export default function RfpDetailsSectionAi() {
   }, [chatLog])
 
   return (
-    <RfpDetailsSection icon={<AutoAwesomeIcon />} title="AI에 공고 관련 질문하기">
+    <RfpDetailsSection
+      icon={<AutoAwesomeIcon />}
+      title="AI에 공고 관련 질문하기"
+      action={
+        chatLog && chatLog.length ? (
+          <Stack direction="row" spacing={1}>
+            <Button variant="contained" onClick={() => toast.success('프로젝트 히스토리 페이지에 저장되었습니다')}>
+              전체 답변 저장
+            </Button>
+            <Button variant="contained" onClick={() => toast.success('프로젝트 히스토리 페이지에 저장되었습니다')}>
+              이번 답변 저장
+            </Button>
+          </Stack>
+        ) : undefined
+      }
+    >
       <Stack sx={{ p: 2 }} spacing={2}>
         <Box sx={{ maxHeight: 300, overflowY: 'auto' }} ref={containerRef}>
           {chatLog && chatLog.length
