@@ -3,14 +3,15 @@
 import { Box, Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
+import { RFP_LISTING_FILTER_BUSINESS_CATEGORY } from '../utils/constants/rfp-listing-filter-business-category'
 import RfpListingAiSuggestions from './rfp-listing-ai-suggestions'
+import RfpListingChannelFilters from './rfp-listing-channel-filters'
 import RfpListingFilters from './rfp-listing-filters'
 import RfpListingResultsPerPage from './rfp-listing-results-per-page'
 import RfpListingSearchTabs from './rfp-listing-search-tabs'
 import RfpListingTable from './rfp-listing-table'
 import RfpListingTableActions from './rfp-listing-table-actions'
 import RfpListingViewTabs from './rfp-listing-view-tabs'
-import { RFP_LISTING_FILTER_BUSINESS_CATEGORY } from '../utils/constants/rfp-listing-filter-business-category'
 
 export default function RfpListing() {
   const { isReceiveSuggestionsOn, keywords, businessCategory } = useRfpListingFilterStore()
@@ -40,6 +41,8 @@ export default function RfpListing() {
           label="설명 보기"
         />
       </Stack>
+
+      <RfpListingChannelFilters />
 
       <Typography fontWeight={700} align="center" fontSize={16}>
         {isDescDisplayed
@@ -71,7 +74,6 @@ export default function RfpListing() {
         ) : null}
       </Typography>
 
-      {/* todo channel */}
       {/* 
       {isDescDisplayed ? (
         <Typography align="center" fontWeight={700}>

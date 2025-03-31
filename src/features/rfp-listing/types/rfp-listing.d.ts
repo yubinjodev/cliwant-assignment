@@ -100,3 +100,25 @@ export type RfpListingTableColumnStoreActions = {
   handleChangeActiveColumns: (id: string) => void
   reset: VoidFunction
 }
+
+export type RfpListingFilterChannelStore = {
+  selectedAgencies: string[]
+  selectedUnis: string[]
+
+  showAllChannels: boolean
+  showAllAgencies: boolean
+  showAllUnis: boolean
+}
+
+export type RfpListingFilterChannelStoreActions = {
+  handleClickAgency: (agency: string) => void
+  handleClickUni: (uni: string) => void
+
+  removeAllChannels: VoidFunction
+  removeAllAgencies: VoidFunction
+  removeAllUnis: VoidFunction
+
+  selectAllChannels: VoidFunction
+  selectAllAgencies: VoidFunction
+  selectAllUnis: VoidFunction
+}
