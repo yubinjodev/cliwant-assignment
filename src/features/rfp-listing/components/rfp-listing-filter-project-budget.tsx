@@ -12,7 +12,7 @@ export default function RfpListingFilterProjectBudget() {
       alignItems={{ xs: undefined, md: 'center' }}
       spacing={{ xs: 0, md: 1 }}
     >
-      <Typography>사업 금액</Typography>
+      <Typography sx={{ width: 120 }}>사업 금액</Typography>
       <Stack direction="row" spacing={2} alignItems="center">
         <TextField
           onKeyDown={BLOCK_NON_NUMERICAL_INPUT}

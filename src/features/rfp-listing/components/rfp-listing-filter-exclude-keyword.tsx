@@ -49,7 +49,7 @@ export default function RfpListingFilterExcludeKeyword() {
         alignItems={{ xs: undefined, md: 'center' }}
         spacing={{ xs: 0, md: 1 }}
       >
-        <Typography>제목 제외 키워드</Typography>
+        <Typography sx={{ width: 120 }}>제목 제외 키워드</Typography>
         <Stack direction="row" spacing={1} alignItems="center" component="form" onSubmit={handleSubmitTitleForm}>
           <TextField
             size="small"
@@ -75,7 +75,7 @@ export default function RfpListingFilterExcludeKeyword() {
         alignItems={{ xs: undefined, md: 'center' }}
         spacing={{ xs: 0, md: 1 }}
       >
-        <Typography>본문 제외 키워드</Typography>
+        <Typography sx={{ width: 120 }}>본문 제외 키워드</Typography>
         <Stack direction="row" spacing={1} alignItems="center" component="form" onSubmit={handleSubmitBodyForm}>
           <TextField
             size="small"

@@ -14,7 +14,7 @@ export default function RfpListingFilterCondition() {
       spacing={{ xs: 0, sm: 2 }}
       alignItems={{ xs: undefined, sm: 'center' }}
     >
-      <Typography>조건</Typography>
+      <Typography sx={{ width: 120 }}>조건</Typography>
       <Grid2 container>
         {RFP_LISTING_FILTER_CONDITION_CATEGORY.map((item) => (
           <Grid2 key={item.value}>

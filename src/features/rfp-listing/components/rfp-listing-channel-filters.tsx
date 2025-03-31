@@ -67,7 +67,7 @@ export default function RfpListingChannelFilters() {
       <Stack spacing={3}>
         <Stack justifyContent="space-between" direction={{ xs: 'column', md: 'row' }}>
           <Stack direction={{ xs: 'column', md: 'row' }} spacing={1} alignItems={{ xs: 'flex-start', md: 'center' }}>
-            <Typography>채널</Typography>
+            <Typography sx={{ width: 120 }}>채널</Typography>
             <TextField
               value={input}
               onChange={handleChangeInput}

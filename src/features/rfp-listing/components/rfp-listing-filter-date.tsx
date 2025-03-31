@@ -12,7 +12,7 @@ export default function RfpListingFilterDate() {
       alignItems={{ xs: undefined, md: 'flex-start' }}
       spacing={{ xs: 0, md: 1 }}
     >
-      <Typography>공고일</Typography>
+      <Typography sx={{ width: 120 }}>공고일</Typography>
       <Stack direction="row" spacing={2}>
         <Stack spacing={2}>
           <Stack

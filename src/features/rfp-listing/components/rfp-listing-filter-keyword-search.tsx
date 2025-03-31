@@ -33,7 +33,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
         size="small"
         value={category}
         onChange={(e) => handleChangeKeywordCategory(idx, e.target.value)}
-        sx={{ width: 160 }}
+        sx={{ width: 320 }}
       >
         <MenuItem value="title">공고 제목</MenuItem>
         <MenuItem value="body">첨부파일 본문</MenuItem>
@@ -42,7 +42,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
         size="small"
         value={condition}
         onChange={(e) => handleChangeKeywordCondition(idx, e.target.value)}
-        sx={{ width: 84 }}
+        sx={{ width: 200 }}
       >
         <MenuItem value="and">AND</MenuItem>
         <MenuItem value="or">OR</MenuItem>
