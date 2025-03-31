@@ -30,7 +30,11 @@ export default function SavedRfpFilters() {
   } = useSavedRfpFilterStore()
 
   return (
-    <Stack sx={{ p: 2 }} direction="row" justifyContent="space-between">
+    <Stack
+      sx={{ p: 2, width: '100%', overflowX: 'auto', whiteSpace: 'nowrap' }}
+      direction="row"
+      justifyContent="space-between"
+    >
       <SavedRfpTableTagFilterDialog open={isTagFilterOpen} onClose={() => handleChangeIsTagFilterOpen(false)} />
 
       <Stack spacing={2} direction="row" alignItems="center">
