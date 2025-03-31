@@ -1,6 +1,6 @@
 'use client'
 
-import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
+import { Box, Checkbox, FormControlLabel, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import RfpListingAiSuggestions from './rfp-listing-ai-suggestions'
@@ -10,9 +10,10 @@ import RfpListingSearchTabs from './rfp-listing-search-tabs'
 import RfpListingTable from './rfp-listing-table'
 import RfpListingTableActions from './rfp-listing-table-actions'
 import RfpListingViewTabs from './rfp-listing-view-tabs'
+import { RFP_LISTING_FILTER_BUSINESS_CATEGORY } from '../utils/constants/rfp-listing-filter-business-category'
 
 export default function RfpListing() {
-  const { isReceiveSuggestionsOn } = useRfpListingFilterStore()
+  const { isReceiveSuggestionsOn, keywords, businessCategory } = useRfpListingFilterStore()
 
   const [isDescDisplayed, setIsDescDisplayed] = useState(false)
 
@@ -34,18 +35,49 @@ export default function RfpListing() {
       </Stack>
 
       <Stack alignItems="flex-end">
-        {/* todo !!! show description when active */}
         <FormControlLabel
           control={<Checkbox checked={isDescDisplayed} onChange={(e) => handleChangeCheckbox(e.target.checked)} />}
           label="설명 보기"
         />
       </Stack>
 
+      <Typography fontWeight={700} align="center" fontSize={16}>
+        {isDescDisplayed
+          ? keywords.map((word, idx) =>
+              word.selectedKeywords.length ? (
+                <span key={idx}>
+                  공고 제목에서 &nbsp;
+                  {word.selectedKeywords.map((item, idx) => (
+                    <span key={`${item}${idx}`}>
+                      <Box component="span" sx={{ color: 'primary.main' }}>
+                        {item}&nbsp;
+                      </Box>
+                      {word.selectedKeywords.length !== idx + 1 ? word.condition.toUpperCase() : null}&nbsp;
+                    </span>
+                  ))}
+                  을 포함하고,
+                </span>
+              ) : null,
+            )
+          : null}
+        {isDescDisplayed && keywords.some((word) => word.selectedKeywords.length) ? (
+          <span>
+            사업 구분은&nbsp;
+            <Box component="span" sx={{ color: 'success.main' }}>
+              {RFP_LISTING_FILTER_BUSINESS_CATEGORY.find((category) => category.value === businessCategory)?.label}
+            </Box>
+            &nbsp;에 해당하는 공고를 찾습니다.
+          </span>
+        ) : null}
+      </Typography>
+
+      {/* todo channel */}
+      {/* 
       {isDescDisplayed ? (
         <Typography align="center" fontWeight={700}>
           공고 제목에서 인공지능 을 포함하고, 사업 구분은 전체 에 해당하는 공고를 찾습니다.
         </Typography>
-      ) : null}
+      ) : null} */}
 
       <RfpListingTableActions />
       <RfpListingTable />
