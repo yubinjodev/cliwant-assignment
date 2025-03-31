@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import {
+  Box,
   Button,
   Chip,
   Dialog,
@@ -14,13 +15,16 @@ import {
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ColorResult } from 'react-color'
 import { toast } from 'react-toastify'
 import { useSavedRfpTagFilterStore } from '../stores/saved-rfp-tag-filter-store'
+import SavedRfpColorPickerDialog from './saved-rfp-color-picker-dialog'
 
 export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: boolean; onClose: VoidFunction }) {
   const [newTagInput, setNewTagInput] = useState('')
   const [editTagLabel, setEditTagLabel] = useState('')
   const [editTagColor, setEditTagColor] = useState<string>('#eeeeee')
+  const [isColorDialogOpen, setIsColorDialogOpen] = useState(false)
 
   const {
     tags,
@@ -59,10 +63,10 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
     toast.success('태그 이름이 수정되었습니다')
   }
 
-  const handleChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeColor = (color: ColorResult) => {
     if (selectedTagId === null) return
-    setEditTagColor(e.target.value)
-    handleEditTagColor(selectedTagId, e.target.value)
+    setEditTagColor(color.hex)
+    handleEditTagColor(selectedTagId, color.hex)
   }
 
   const handleClickDeleteTag = () => {
@@ -122,9 +126,20 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
                 alignItems="center"
                 sx={{ border: `1px solid ${grey[200]}`, p: 2 }}
               >
+                {/* todo  confirm tag deletion */}
+                {/* todo remove tag from ind */}
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
-                  <input type="color" value={editTagColor} onChange={handleChangeColor} />
+                  <Box
+                    sx={{ width: 50, height: 35, bgcolor: editTagColor, borderRadius: 1, cursor: 'pointer' }}
+                    onClick={() => setIsColorDialogOpen(true)}
+                  />
+                  <SavedRfpColorPickerDialog
+                    open={isColorDialogOpen}
+                    onClose={() => setIsColorDialogOpen(false)}
+                    color={editTagColor}
+                    onColorChange={handleChangeColor}
+                  />
                 </Stack>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Button variant="contained" color="success" onClick={handleClickEditTagLabel}>
