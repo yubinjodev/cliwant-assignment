@@ -25,27 +25,13 @@ export const useRfpListingFilterChannel = create<RfpListingFilterChannelStore & 
           : [...state.selectedUnis, uni],
       })),
 
-    removeAllChannels: () =>
-      set({
-        showAllChannels: false,
-        showAllAgencies: false,
-        showAllUnis: false,
-        selectedAgencies: [],
-        selectedUnis: [],
-      }),
-    removeAllAgencies: () => set({ showAllChannels: false, showAllAgencies: false, selectedAgencies: [] }),
-    removeAllUnis: () => set({ showAllChannels: false, showAllUnis: false, selectedUnis: [] }),
+    removeAllChannels: () => set({ showAllChannels: false }),
+    removeAllAgencies: () => set({ selectedAgencies: [], showAllAgencies: false }),
+    removeAllUnis: () => set({ selectedUnis: [], showAllUnis: false }),
 
-    selectAllChannels: () =>
-      set({
-        showAllChannels: true,
-        showAllAgencies: true,
-        showAllUnis: true,
-        selectedAgencies: RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY,
-        selectedUnis: RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY,
-      }),
+    selectAllChannels: () => set({ showAllChannels: true, showAllAgencies: true, showAllUnis: true }),
     selectAllAgencies: () =>
-      set({ showAllAgencies: true, selectedAgencies: RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY }),
-    selectAllUnis: () => set({ showAllAgencies: true, selectedUnis: RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY }),
+      set({ selectedAgencies: RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY, showAllAgencies: true }),
+    selectAllUnis: () => set({ selectedUnis: RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY, showAllUnis: true }),
   }),
 )

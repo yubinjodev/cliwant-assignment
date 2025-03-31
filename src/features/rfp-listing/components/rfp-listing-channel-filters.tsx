@@ -1,8 +1,7 @@
-// todo fix
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import { Button, Checkbox, Chip, FormControlLabel, Grid2, Paper, Stack, TextField, Typography } from '@mui/material'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRfpListingFilterChannel } from '../stores/rfp-listing-filter-channel'
 import { RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-agency-channel-category'
 import { RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-uni-channel-category'
@@ -10,10 +9,52 @@ import { RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY } from '../utils/constants/rfp-
 export default function RfpListingChannelFilters() {
   const [isChannelOpen, setIsChannelOpen] = useState(false)
 
-  const { selectedAgencies, selectedUnis, showAllChannels } = useRfpListingFilterChannel()
+  const {
+    selectedAgencies,
+    selectedUnis,
+    showAllChannels,
+    showAllAgencies,
+    showAllUnis,
+    removeAllChannels,
+    removeAllAgencies,
+    removeAllUnis,
+    selectAllChannels,
+    selectAllAgencies,
+    selectAllUnis,
+  } = useRfpListingFilterChannel()
 
   const handleClickChannelButton = () => {
     setIsChannelOpen((prev) => !prev)
+  }
+
+  const handleChangeAllChannels = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      selectAllChannels()
+      selectAllAgencies()
+      selectAllUnis()
+    } else {
+      removeAllChannels()
+      removeAllAgencies()
+      removeAllUnis()
+    }
+  }
+
+  const handleChangeAllAgencies = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      selectAllAgencies()
+    } else {
+      removeAllAgencies()
+      removeAllChannels()
+    }
+  }
+
+  const handleChangeAllUni = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      selectAllUnis()
+    } else {
+      removeAllUnis()
+      removeAllChannels()
+    }
   }
 
   return (
@@ -24,7 +65,7 @@ export default function RfpListingChannelFilters() {
             <Typography>채널</Typography>
             <TextField placeholder="채널을 검색해서 추가해보세요" />
             <FormControlLabel
-              control={<Checkbox checked={showAllChannels} onChange={() => {}} />}
+              control={<Checkbox checked={showAllChannels} onChange={handleChangeAllChannels} />}
               label="채널 전부 보기"
             />
           </Stack>
@@ -38,33 +79,43 @@ export default function RfpListingChannelFilters() {
           </Button>
         </Stack>
 
-        <Stack spacing={1}>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography>입찰 기관</Typography>
-            <FormControlLabel control={<Checkbox checked onChange={() => {}} />} label="입찰기관 전부 보기" />
-          </Stack>
-          <Grid2 container spacing={1}>
-            {RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.map((category) => (
-              <Grid2 key={category}>
-                <Chip label={category} color={selectedAgencies.includes(category) ? 'primary' : undefined} />
+        {isChannelOpen ? (
+          <>
+            <Stack spacing={1}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>입찰 기관</Typography>
+                <FormControlLabel
+                  control={<Checkbox checked={showAllAgencies} onChange={handleChangeAllAgencies} />}
+                  label="입찰기관 전부 보기"
+                />
+              </Stack>
+              <Grid2 container spacing={1}>
+                {RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.map((category) => (
+                  <Grid2 key={category}>
+                    <Chip label={category} color={selectedAgencies.includes(category) ? 'primary' : undefined} />
+                  </Grid2>
+                ))}
               </Grid2>
-            ))}
-          </Grid2>
-        </Stack>
+            </Stack>
 
-        <Stack spacing={1}>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography>대학교</Typography>
-            <FormControlLabel control={<Checkbox checked onChange={() => {}} />} label="대학교 전부 보기" />
-          </Stack>
-          <Grid2 container spacing={1}>
-            {RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.map((category) => (
-              <Grid2 key={category}>
-                <Chip label={category} color={selectedUnis.includes(category) ? 'warning' : undefined} />
+            <Stack spacing={1}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Typography>대학교</Typography>
+                <FormControlLabel
+                  control={<Checkbox checked={showAllUnis} onChange={handleChangeAllUni} />}
+                  label="대학교 전부 보기"
+                />
+              </Stack>
+              <Grid2 container spacing={1}>
+                {RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.map((category) => (
+                  <Grid2 key={category}>
+                    <Chip label={category} color={selectedUnis.includes(category) ? 'warning' : undefined} />
+                  </Grid2>
+                ))}
               </Grid2>
-            ))}
-          </Grid2>
-        </Stack>
+            </Stack>
+          </>
+        ) : null}
       </Stack>
     </Paper>
   )
