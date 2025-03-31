@@ -14,7 +14,8 @@ import {
   Typography,
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useSavedRfpFilterStore } from '../stores/saved-rfp-filter-store'
 import { useSavedRfpTagFilterIndStore } from '../stores/saved-rfp-tag-filter-ind-store'
 import { SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY } from '../utils/constants/saved-rfp-filter-proposal-status-category'
@@ -22,7 +23,7 @@ import SavedRfpTableTagFilterDialogInd from './saved-rfp-table-tag-filter-dialog
 
 export default function SavedRfpTableRowMemo() {
   const { isMemoDisplayed } = useSavedRfpFilterStore()
-  const { appliedTags } = useSavedRfpTagFilterIndStore()
+  const { appliedTags, notes, saveNotes } = useSavedRfpTagFilterIndStore()
 
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -52,6 +53,15 @@ export default function SavedRfpTableRowMemo() {
   const handleOpenDialog = () => {
     setIsDialogOpen(true)
   }
+
+  const editNotes = () => {
+    saveNotes(memo.notes)
+    toast.success('메모가 수정되었습니다')
+  }
+
+  useEffect(() => {
+    if (notes) setMemo((prev) => ({ ...prev, notes }))
+  }, [notes])
 
   if (!isMemoDisplayed) return null
 
@@ -111,7 +121,7 @@ export default function SavedRfpTableRowMemo() {
                   onChange={handleChangeInput}
                   sx={{ width: 160 }}
                 />
-                <Button color="success" variant="contained">
+                <Button color="success" variant="contained" onClick={editNotes}>
                   수정
                 </Button>
               </Stack>

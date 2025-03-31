@@ -53,7 +53,7 @@ export type SavedRfpTagFilterStore = {
 export type SavedRfpTagFilterStoreActions = {
   createNewTag: (tag: string) => void
   editTagName: (id: number, newName: string) => void
-  editTagColor: (id: number, newColor: string) => void
+  editTagColor: (id: number, newColor: string) => voidss
   deleteTag: (id: number) => void
   selectTag: (id: number) => void
   removeSelectedTag: VoidFunction
@@ -66,10 +66,12 @@ export type SavedRfpTagFilterStoreActions = {
 
 export type SavedRfpTagFilterIndStore = {
   appliedTags: SavedRfpFilterTag[]
+  notes: string
 }
 
 export type SavedRfpTagFilterIndStoreActions = {
   applyTag: (tag: SavedRfpFilterTag) => void
   removeAppliedTag: (id: number) => void
   resetAppliedTag: VoidFunction
+  saveNotes: (notes) => void
 }

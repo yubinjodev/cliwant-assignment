@@ -1,12 +1,14 @@
+import { useSavedRfpTagFilterIndStore } from '@/features/saved-rfp/stores/saved-rfp-tag-filter-ind-store'
 import FeedIcon from '@mui/icons-material/Feed'
 import { Button, Stack, TextField } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import RfpDetailsSection from './rfp-details-section'
 
 export default function RfpDetailsSectionNote() {
   const [input, setInput] = useState('')
+  const { notes, saveNotes } = useSavedRfpTagFilterIndStore()
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
@@ -14,7 +16,12 @@ export default function RfpDetailsSectionNote() {
 
   const handleClickSaveMemo = () => {
     toast.success('메모가 저장되었습니다')
+    saveNotes(input)
   }
+
+  useEffect(() => {
+    if (notes) setInput(notes)
+  }, [notes])
 
   return (
     <RfpDetailsSection icon={<FeedIcon />} title="자격 분석 노트">
