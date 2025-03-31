@@ -35,7 +35,7 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
  * * state management (sidebar, rfp listing filter, saved rfp filter)
  * * refactoring (project structure, separate components)
  * ! other interactions
- * styling (css*, responsive, semantics)
+ * styling (css*, todo !! responsive, todo ! semantics)
  *
  * (optional) additional optimization
  */

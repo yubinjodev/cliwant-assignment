@@ -34,7 +34,7 @@ export default function RfpListing() {
       </Stack>
 
       <Stack alignItems="flex-end">
-        {/* todo show description when active */}
+        {/* todo !!! show description when active */}
         <FormControlLabel
           control={<Checkbox checked={isDescDisplayed} onChange={(e) => handleChangeCheckbox(e.target.checked)} />}
           label="설명 보기"

@@ -10,7 +10,7 @@ export default function RfpListingFilters() {
   const { keywords, isAdvancedSearchOpen } = useRfpListingFilterStore()
 
   return (
-    // todo create grid for filter (when doing responsive)
+    // todo !!! create grid for filter (when doing responsive)
     <Paper component="section" sx={{ background: '#fff', px: 2, py: 3, width: '100%', overflow: 'hidden' }}>
       <Stack spacing={2}>
         <Stack direction="row" justifyContent="space-between">

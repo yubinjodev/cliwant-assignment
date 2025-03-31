@@ -27,7 +27,7 @@ export default function SavedRfpTable() {
         handleClickConfirm={handleChangeRemove}
       />
 
-      {/* todo 메모 표시 feature */}
+      {/* todo !!! 메모 표시 feature */}
       <TableContainer sx={{ whiteSpace: 'nowrap' }}>
         <Table stickyHeader>
           <TableHead>
