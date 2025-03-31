@@ -60,6 +60,16 @@ export type SavedRfpTagFilterStoreActions = {
 
   applyTag: (id: number) => void
   removeAppliedTag: (id: number) => void
-  resetAppliedTags: (id: number) => void
+  resetAppliedTags: VoidFunction
   getAppliedTags: () => { color: string | undefined; label: string }[]
+}
+
+export type SavedRfpTagFilterIndStore = {
+  appliedTags: SavedRfpFilterTag[]
+}
+
+export type SavedRfpTagFilterIndStoreActions = {
+  applyTag: (tag: SavedRfpFilterTag) => void
+  removeAppliedTag: (id: number) => void
+  resetAppliedTag: VoidFunction
 }

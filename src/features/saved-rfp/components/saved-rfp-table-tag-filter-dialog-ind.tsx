@@ -15,28 +15,26 @@ import {
 import { grey } from '@mui/material/colors'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useSavedRfpTagFilterIndStore } from '../stores/saved-rfp-tag-filter-ind-store'
 import { useSavedRfpTagFilterStore } from '../stores/saved-rfp-tag-filter-store'
 
-export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: boolean; onClose: VoidFunction }) {
+export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { open: boolean; onClose: VoidFunction }) {
   const [newTagInput, setNewTagInput] = useState('')
   const [editTagLabel, setEditTagLabel] = useState('')
   const [editTagColor, setEditTagColor] = useState<string>('#eeeeee')
+
+  const { appliedTags, applyTag, removeAppliedTag, resetAppliedTag } = useSavedRfpTagFilterIndStore()
 
   const {
     tags,
     selectedTag,
     selectedTagId,
-    appliedTagsId,
     createNewTag,
     removeSelectedTag,
     selectTag,
     editTagName,
     editTagColor: handleEditTagColor,
     deleteTag,
-    applyTag,
-    getAppliedTags,
-    removeAppliedTag,
-    resetAppliedTags,
   } = useSavedRfpTagFilterStore()
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -86,16 +84,16 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
           <Stack sx={{ height: 240 }} spacing={2}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
               <Typography>적용 태그</Typography>
-              <Button variant="contained" onClick={() => resetAppliedTags()}>
+              <Button variant="contained" onClick={resetAppliedTag}>
                 태그 초기화
               </Button>
             </Stack>
             <Grid2 container spacing={1}>
-              {getAppliedTags().map((tag, idx) => (
+              {appliedTags.map((tag, idx) => (
                 <Grid2 key={idx}>
                   <Chip
                     label={tag.label}
-                    onDelete={() => removeAppliedTag(appliedTagsId[idx])}
+                    onDelete={() => removeAppliedTag(idx)}
                     size="small"
                     sx={{ bgcolor: tag.color }}
                   />
@@ -149,7 +147,7 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
                     size="small"
                     deleteIcon={<EditIcon />}
                     sx={{ bgcolor: tag.color }}
-                    onClick={() => applyTag(idx)}
+                    onClick={() => applyTag(tag)}
                   />
                 </Grid2>
               ))}

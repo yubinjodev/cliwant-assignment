@@ -73,7 +73,7 @@ export default function SavedRfpTable() {
                 </TableCell>
               </TableRow>
             )}
-            <SavedRfpTableRowMemo />
+            {isSaved ? <SavedRfpTableRowMemo /> : null}
           </TableBody>
         </Table>
       </TableContainer>
