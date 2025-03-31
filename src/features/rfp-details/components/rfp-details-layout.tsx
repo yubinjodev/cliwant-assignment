@@ -33,7 +33,11 @@ export default function RfpDetailsLayout({ children }: { children: ReactNode }) 
         뒤로가기
       </Button>
 
-      <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'flex-start', sm: 'center' }}
+        spacing={{ sm: 1 }}
+      >
         <Typography fontWeight={700}>[서울] 2025년 도시제조업 작업환경개선 지원사업 공고</Typography>
         {isSaved ? (
           <Button color="warning" startIcon={<StarIcon />} onClick={handleChangeRemove}>

@@ -19,6 +19,8 @@ export default function RfpDetailsViewTabs() {
       direction="row"
       spacing={1}
       sx={{
+        width: '100%',
+        overflowX: 'auto',
         '& .MuiChip-root': {
           px: 0.75,
         },

@@ -1,7 +1,7 @@
 'use client'
 
 import { useSavedRfpStore } from '@/features/saved-rfp/stores/saved-rfp-store'
-import { Stack } from '@mui/material'
+import { Grid2 } from '@mui/material'
 import RfpDetailsSectionAi from './rfp-details-section-ai'
 import RfpDetailsSectionAttachedFiles from './rfp-details-section-attached-files'
 import RfpDetailsSectionBidQualifications from './rfp-details-section-bid-qualifications'
@@ -17,25 +17,47 @@ export default function RfpDetails() {
   const { isSaved } = useSavedRfpStore()
 
   return (
-    <>
-      <RfpDetailsViewTabs />
+    <Grid2 container sx={{ width: '100%' }} spacing={2}>
+      <Grid2 size={12}>
+        <RfpDetailsViewTabs />
+      </Grid2>
 
-      <Stack direction="row" spacing={2} sx={{ width: '100%' }}>
-        {isSaved ? <RfpDetailsSectionNote /> : null}
-        <RfpDetailsSectionProjectInfo />
-      </Stack>
+      <Grid2 container sx={{ width: '100%' }}>
+        {isSaved ? (
+          <Grid2 size={{ xs: 12, md: isSaved ? 6 : 12 }}>
+            <RfpDetailsSectionNote />
+          </Grid2>
+        ) : null}
+        <Grid2 size={{ xs: 12, md: isSaved ? 6 : 12 }}>
+          <RfpDetailsSectionProjectInfo />
+        </Grid2>
+      </Grid2>
 
-      <Stack direction="row" spacing={2} sx={{ width: '100%' }}>
-        <RfpDetailsSectionContractRules />
-        <RfpDetailsSectionIndustryRules />
-        <RfpDetailsSectionProdAnalysis />
-      </Stack>
+      <Grid2 container>
+        <Grid2 size={{ xs: 12, lg: 4 }}>
+          <RfpDetailsSectionContractRules />
+        </Grid2>
+        <Grid2 size={{ xs: 12, lg: 4 }}>
+          <RfpDetailsSectionIndustryRules />
+        </Grid2>
+        <Grid2 size={{ xs: 12, lg: 4 }}>
+          <RfpDetailsSectionProdAnalysis />
+        </Grid2>
+      </Grid2>
 
-      <RfpDetailsSectionBidQualifications />
-      <RfpDetailsSectionAi />
-      <RfpDetailsSectionMarketSearch />
+      <Grid2 size={12}>
+        <RfpDetailsSectionBidQualifications />
+      </Grid2>
+      <Grid2 size={12}>
+        <RfpDetailsSectionAi />
+      </Grid2>
+      <Grid2 size={12}>
+        <RfpDetailsSectionMarketSearch />
+      </Grid2>
 
-      <RfpDetailsSectionAttachedFiles />
-    </>
+      <Grid2 size={12}>
+        <RfpDetailsSectionAttachedFiles />
+      </Grid2>
+    </Grid2>
   )
 }
