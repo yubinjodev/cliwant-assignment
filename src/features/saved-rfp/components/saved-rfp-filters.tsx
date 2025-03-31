@@ -6,6 +6,7 @@ import { SAVED_RFP_FILTER_BUSINESS_CATEGORY } from '../utils/constants/saved-rfp
 import { SAVED_RFP_FILTER_LISTING_CATEGORY } from '../utils/constants/saved-rfp-filter-listing-category'
 import { SAVED_RFP_FILTER_PROPOSAL_STATUS_CATEGORY } from '../utils/constants/saved-rfp-filter-proposal-status-category'
 import SavedRfpDropdown from './saved-rfp-dropdown'
+import SavedRfpTableTagFilterDialog from './saved-rfp-table-tag-filter-dialog'
 
 export default function SavedRfpFilters() {
   const {
@@ -16,6 +17,7 @@ export default function SavedRfpFilters() {
     amountRange,
     proposalStatus,
     isMemoDisplayed,
+    isTagFilterOpen,
     handleChangeListingCategory,
     handleChangeListingSearchInput,
     handleChangeAgencySearchInput,
@@ -29,6 +31,8 @@ export default function SavedRfpFilters() {
 
   return (
     <Stack sx={{ p: 2 }} direction="row" justifyContent="space-between">
+      <SavedRfpTableTagFilterDialog open={isTagFilterOpen} onClose={() => handleChangeIsTagFilterOpen(false)} />
+
       <Stack spacing={2} direction="row" alignItems="center">
         <SavedRfpDropdown
           state={listingCategory}

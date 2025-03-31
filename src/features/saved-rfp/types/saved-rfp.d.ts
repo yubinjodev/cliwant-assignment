@@ -37,3 +37,29 @@ export type SavedRfpStoreActions = {
   handleChangeSave: VoidFunction
   handleChangeRemove: VoidFunction
 }
+
+export type SavedRfpFilterTag = {
+  color: string
+  label: string
+}
+
+export type SavedRfpTagFilterStore = {
+  tags: SavedRfpFilterTag[]
+  appliedTagsId: number[]
+  selectedTag: SavedRfpFilterTag | null
+  selectedTagId: number | null
+}
+
+export type SavedRfpTagFilterStoreActions = {
+  createNewTag: (tag: string) => void
+  editTagName: (id: number, newName: string) => void
+  editTagColor: (id: number, newColor: string) => void
+  deleteTag: (id: number) => void
+  selectTag: (id: number) => void
+  removeSelectedTag: VoidFunction
+
+  applyTag: (id: number) => void
+  removeAppliedTag: (id: number) => void
+  resetAppliedTags: (id: number) => void
+  getAppliedTags: () => { color: string | undefined; label: string }[]
+}
