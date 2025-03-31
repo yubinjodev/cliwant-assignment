@@ -21,6 +21,8 @@ export default function RfpListingChannelFilters() {
     selectAllChannels,
     selectAllAgencies,
     selectAllUnis,
+    handleClickAgency,
+    handleClickUni,
   } = useRfpListingFilterChannel()
 
   const { isChannelOpen, handleClickIsChannelOpen } = useRfpListingFilterStore()
@@ -90,7 +92,11 @@ export default function RfpListingChannelFilters() {
               <Grid2 container spacing={1}>
                 {RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.map((category) => (
                   <Grid2 key={category}>
-                    <Chip label={category} color={selectedAgencies.includes(category) ? 'primary' : undefined} />
+                    <Chip
+                      label={category}
+                      onClick={() => handleClickAgency(category)}
+                      color={selectedAgencies.includes(category) ? 'primary' : undefined}
+                    />
                   </Grid2>
                 ))}
               </Grid2>
@@ -107,7 +113,11 @@ export default function RfpListingChannelFilters() {
               <Grid2 container spacing={1}>
                 {RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.map((category) => (
                   <Grid2 key={category}>
-                    <Chip label={category} color={selectedUnis.includes(category) ? 'warning' : undefined} />
+                    <Chip
+                      onClick={() => handleClickUni(category)}
+                      label={category}
+                      color={selectedUnis.includes(category) ? 'warning' : undefined}
+                    />
                   </Grid2>
                 ))}
               </Grid2>

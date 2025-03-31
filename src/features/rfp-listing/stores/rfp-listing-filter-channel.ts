@@ -13,17 +13,40 @@ export const useRfpListingFilterChannel = create<RfpListingFilterChannelStore & 
     showAllUnis: true,
 
     handleClickAgency: (agency) =>
-      set((state) => ({
-        selectedAgencies: state.selectedAgencies.includes(agency)
+      set((state) => {
+        const isAgencySelected = state.selectedAgencies.includes(agency)
+        const updatedSelectedAgencies = isAgencySelected
           ? state.selectedAgencies.filter((a) => a !== agency)
-          : [...state.selectedAgencies, agency],
-      })),
+          : [...state.selectedAgencies, agency]
+
+        const isAllAgenciesSelected =
+          updatedSelectedAgencies.length === RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.length
+        const isAllUnisSelected = state.selectedUnis.length === RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.length
+
+        return {
+          selectedAgencies: updatedSelectedAgencies,
+          showAllChannels: isAllAgenciesSelected && isAllUnisSelected,
+          showAllAgencies: isAllAgenciesSelected,
+        }
+      }),
+
     handleClickUni: (uni) =>
-      set((state) => ({
-        selectedUnis: state.selectedUnis.includes(uni)
+      set((state) => {
+        const isUniSelected = state.selectedUnis.includes(uni)
+        const updatedSelectedUnis = isUniSelected
           ? state.selectedUnis.filter((u) => u !== uni)
-          : [...state.selectedUnis, uni],
-      })),
+          : [...state.selectedUnis, uni]
+
+        const isAllUnisSelected = updatedSelectedUnis.length === RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.length
+        const isAllAgenciesSelected =
+          state.selectedAgencies.length === RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.length
+
+        return {
+          selectedUnis: updatedSelectedUnis,
+          showAllChannels: isAllUnisSelected && isAllAgenciesSelected,
+          showAllUnis: isAllUnisSelected,
+        }
+      }),
 
     removeAllChannels: () => set({ showAllChannels: false }),
     removeAllAgencies: () => set({ selectedAgencies: [], showAllAgencies: false }),
@@ -31,7 +54,16 @@ export const useRfpListingFilterChannel = create<RfpListingFilterChannelStore & 
 
     selectAllChannels: () => set({ showAllChannels: true, showAllAgencies: true, showAllUnis: true }),
     selectAllAgencies: () =>
-      set({ selectedAgencies: RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY, showAllAgencies: true }),
-    selectAllUnis: () => set({ selectedUnis: RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY, showAllUnis: true }),
+      set((state) => ({
+        selectedAgencies: RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY,
+        showAllAgencies: true,
+        showAllChannels: state.showAllUnis,
+      })),
+    selectAllUnis: () =>
+      set((state) => ({
+        selectedUnis: RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY,
+        showAllUnis: true,
+        showAllChannels: state.showAllAgencies,
+      })),
   }),
 )
