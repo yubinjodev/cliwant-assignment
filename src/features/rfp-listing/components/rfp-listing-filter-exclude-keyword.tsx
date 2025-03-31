@@ -23,12 +23,23 @@ export default function RfpListingFilterExcludeKeyword() {
 
   const handleSubmitTitleForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    handleClickAddNewKeyword('title')
+
+    const titleKeyword = excludeKeywordTitle.selectedKeywords.some((word) => word === excludeKeywordTitle.input)
+    const bodyKeyword = excludeKeywordBody.selectedKeywords.some((word) => word === excludeKeywordTitle.input)
+    if (!titleKeyword && !bodyKeyword) {
+      handleClickAddNewKeyword('title')
+    }
+    handleChangeExcludeKeywordInput('title', '')
   }
 
   const handleSubmitBodyForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    handleClickAddNewKeyword('body')
+    const titleKeyword = excludeKeywordBody.selectedKeywords.some((word) => word === excludeKeywordBody.input)
+    const bodyKeyword = excludeKeywordTitle.selectedKeywords.some((word) => word === excludeKeywordBody.input)
+    if (!titleKeyword && !bodyKeyword) {
+      handleClickAddNewKeyword('body')
+    }
+    handleChangeExcludeKeywordInput('body', '')
   }
 
   return (

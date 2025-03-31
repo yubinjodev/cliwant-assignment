@@ -3,16 +3,17 @@ import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Button, Chip, IconButton, MenuItem, Select, Stack } from '@mui/material'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
+import { toast } from 'react-toastify'
 
 export default function RfpListingFilterKeywordToolbar() {
   const { listingCategory, handleChangeListingCategory } = useRfpListingFilterStore()
   const { isMobile } = useResponsive('md')
+  const router = useRouter()
 
   const [isCurrentGroupSaved, setIsCurrentGroupSaved] = useState(false)
-
-  const handleClickSaveCurrentCondition = () => {}
 
   const handleClickPushPin = () => {
     setIsCurrentGroupSaved((prev) => !prev)
@@ -43,10 +44,10 @@ export default function RfpListingFilterKeywordToolbar() {
       </Select>
       {isMobile ? null : (
         <>
-          <Button variant="contained" onClick={handleClickSaveCurrentCondition}>
+          <Button variant="contained" onClick={() => toast.success('그룹 설정이 저장되었습니다')}>
             현재 조건 저장
           </Button>
-          <IconButton>
+          <IconButton onClick={() => router.push('/settings')}>
             <SettingsIcon />
           </IconButton>
         </>
