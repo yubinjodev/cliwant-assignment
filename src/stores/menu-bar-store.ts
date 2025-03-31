@@ -4,10 +4,13 @@ import { create } from 'zustand'
 
 export const useMenuBarStore = create<MenuBarStore & MenuBarStoreActions>((set) => ({
   menuBarItems: MENU_BAR_ITEMS,
+  isMobileMenuOpen: false,
   toggleDropdownMenu: (title) =>
     set((state) => ({
       menuBarItems: state.menuBarItems.map((item) =>
         item.category === 'dropdown' && item.title === title ? { ...item, isOpen: !item.isOpen } : item,
       ),
     })),
+  handleOpenMobileMenu: () => set({ isMobileMenuOpen: true }),
+  handleCloseMobileMenu: () => set({ isMobileMenuOpen: false }),
 }))

@@ -32,7 +32,7 @@ export default function Menubar() {
         height: '100%',
         px: 3,
         py: 2,
-        width: 280,
+        width: { xs: 'unset', lg: 280 },
         borderRight: `1px solid ${grey[200]}`,
         overflowY: 'auto',
         '& .MuiSvgIcon-root': {

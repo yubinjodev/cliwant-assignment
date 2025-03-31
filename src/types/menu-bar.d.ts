@@ -26,8 +26,11 @@ export type MenuBarItem = SingletonMenu | DropdownMenu
 
 export type MenuBarStore = {
   menuBarItems: MenuBarItem[]
+  isMobileMenuOpen: boolean
 }
 
 export type MenuBarStoreActions = {
   toggleDropdownMenu: (title: string) => void
+  handleCloseMobileMenu: () => void
+  handleOpenMobileMenu: () => void
 }

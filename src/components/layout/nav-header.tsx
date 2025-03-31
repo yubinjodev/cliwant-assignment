@@ -1,5 +1,7 @@
 import { useResponsive } from '@/hooks/useResponsive'
+import { useMenuBarStore } from '@/stores/menu-bar-store'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import CloseIcon from '@mui/icons-material/Close'
 import LogoutIcon from '@mui/icons-material/Logout'
 import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, Box, Button, IconButton, Stack, Typography } from '@mui/material'
@@ -9,6 +11,15 @@ import Link from 'next/link'
 
 export default function NavHeader() {
   const { isMobile } = useResponsive('lg')
+  const { isMobileMenuOpen, handleOpenMobileMenu, handleCloseMobileMenu } = useMenuBarStore()
+
+  const handleClickMenuButton = () => {
+    if (isMobileMenuOpen) {
+      handleCloseMobileMenu()
+    } else {
+      handleOpenMobileMenu()
+    }
+  }
 
   return (
     <AppBar sx={{ background: '#fff', color: grey[500], boxShadow: 'none', position: 'relative' }}>
@@ -28,9 +39,7 @@ export default function NavHeader() {
         </Link>
 
         {isMobile ? (
-          <IconButton>
-            <MenuIcon />
-          </IconButton>
+          <IconButton onClick={handleClickMenuButton}>{isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}</IconButton>
         ) : (
           <Stack direction="row" alignItems="center" spacing={3}>
             <Stack alignItems="flex-end" spacing={0}>
