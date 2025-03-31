@@ -25,6 +25,7 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
   const [editTagLabel, setEditTagLabel] = useState('')
   const [editTagColor, setEditTagColor] = useState<string>('#eeeeee')
   const [isColorDialogOpen, setIsColorDialogOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
 
   const {
     tags,
@@ -75,6 +76,11 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
     removeSelectedTag()
   }
 
+  const handleClickFinishEdit = () => {
+    removeSelectedTag()
+    setIsDeleteOpen(false)
+  }
+
   useEffect(() => {
     if (selectedTag) {
       setEditTagColor(selectedTag.color)
@@ -120,38 +126,48 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
             </Stack>
 
             {selectedTag ? (
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                sx={{ border: `1px solid ${grey[200]}`, p: 2 }}
-              >
-                {/* todo  confirm tag deletion */}
-                {/* todo remove tag from ind */}
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
-                  <Box
-                    sx={{ width: 50, height: 35, bgcolor: editTagColor, borderRadius: 1, cursor: 'pointer' }}
-                    onClick={() => setIsColorDialogOpen(true)}
-                  />
-                  <SavedRfpColorPickerDialog
-                    open={isColorDialogOpen}
-                    onClose={() => setIsColorDialogOpen(false)}
-                    color={editTagColor}
-                    onColorChange={handleChangeColor}
-                  />
+              <Stack spacing={4} alignItems="center" sx={{ border: `1px solid ${grey[200]}`, p: 2 }}>
+                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
+                  {/* todo remove tag from ind */}
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
+                    <Box
+                      sx={{ width: 50, height: 35, bgcolor: editTagColor, borderRadius: 1, cursor: 'pointer' }}
+                      onClick={() => setIsColorDialogOpen(true)}
+                    />
+                    <SavedRfpColorPickerDialog
+                      open={isColorDialogOpen}
+                      onClose={() => setIsColorDialogOpen(false)}
+                      color={editTagColor}
+                      onColorChange={handleChangeColor}
+                    />
+                  </Stack>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Button variant="contained" color="success" onClick={handleClickEditTagLabel}>
+                      태그 수정
+                    </Button>
+                    <Button variant="contained" color="error" onClick={() => setIsDeleteOpen(true)}>
+                      태그 삭제
+                    </Button>
+                    <Button variant="contained" onClick={handleClickFinishEdit}>
+                      수정 완료
+                    </Button>
+                  </Stack>
                 </Stack>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <Button variant="contained" color="success" onClick={handleClickEditTagLabel}>
-                    태그 수정
-                  </Button>
-                  <Button variant="contained" color="error" onClick={handleClickDeleteTag}>
-                    태그 삭제
-                  </Button>
-                  <Button variant="contained" onClick={removeSelectedTag}>
-                    수정 완료
-                  </Button>
-                </Stack>
+
+                {isDeleteOpen ? (
+                  <Stack alignItems="center" sx={{ p: 3, border: `1px solid ${grey[200]}` }}>
+                    <Typography>삭제된 태그는 복구할 수 없어요! 정말 삭제하시겠어요?</Typography>
+                    <Stack direction="row" spacing={1}>
+                      <Button color="inherit" onClick={() => setIsDeleteOpen(false)}>
+                        아니오
+                      </Button>
+                      <Button variant="contained" color="error" onClick={handleClickDeleteTag}>
+                        예
+                      </Button>
+                    </Stack>
+                  </Stack>
+                ) : null}
               </Stack>
             ) : null}
 
