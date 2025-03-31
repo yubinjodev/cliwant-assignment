@@ -50,7 +50,7 @@ export type RfpListingFilterStore = {
   corporateRestriction: string
   sorting: string
 
-  condition: string | null
+  condition: string[]
 
   isAdvancedSearchOpen: boolean
 }
@@ -83,7 +83,7 @@ export type RfpListingFilterStoreActions = {
   handleChangeCorporateRestriction: (restriction: string) => void
   handleChangeSorting: (sorting: string) => void
 
-  handleChangeCondition: (condition: string | null) => void
+  handleChangeCondition: (condition: string) => void
 
   handleChangeIsAdvancedSearchOpen: (isOpen: boolean) => void
 }

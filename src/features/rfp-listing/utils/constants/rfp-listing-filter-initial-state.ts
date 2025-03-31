@@ -2,6 +2,7 @@ import moment from 'moment'
 import { RfpListingFilterStore } from '../../types/rfp-listing'
 
 export const RFP_LISTING_FILTER_INITIAL_STATE: RfpListingFilterStore = {
+  isChannelOpen: false,
   listingCategory: 'public' as 'public' | 'private',
   selectedSavedOption: null,
   isReceiveSuggestionsOn: false,
@@ -61,6 +62,6 @@ export const RFP_LISTING_FILTER_INITIAL_STATE: RfpListingFilterStore = {
   businessCategory: 'service',
   corporateRestriction: 'all',
   sorting: 'ends-at-asc',
-  condition: null,
+  condition: [],
   isAdvancedSearchOpen: false,
 }

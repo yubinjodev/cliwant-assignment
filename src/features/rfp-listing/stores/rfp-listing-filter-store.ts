@@ -125,6 +125,10 @@ export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListin
   handleChangeCorporateRestriction: (restriction) => set({ corporateRestriction: restriction }),
   handleChangeSorting: (sorting) => set({ sorting }),
   handleChangeCondition: (condition) =>
-    set((state) => (state.condition === condition ? { condition: null } : { condition })),
+    set((state) => ({
+      condition: state.condition.includes(condition)
+        ? state.condition.filter((item) => item !== condition)
+        : [...state.condition, condition],
+    })),
   handleChangeIsAdvancedSearchOpen: (isOpen) => set({ isAdvancedSearchOpen: isOpen }),
 }))

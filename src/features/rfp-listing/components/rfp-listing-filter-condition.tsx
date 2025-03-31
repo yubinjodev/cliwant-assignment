@@ -20,7 +20,7 @@ export default function RfpListingFilterCondition() {
           <Grid2 key={item.value}>
             <FormControlLabel
               control={
-                <Checkbox checked={item.label === condition} onChange={() => handleChangeCondition(item.label)} />
+                <Checkbox checked={condition.includes(item.label)} onChange={() => handleChangeCondition(item.label)} />
               }
               label={item.label}
             />
