@@ -10,7 +10,12 @@ export default function RfpListingTableActions() {
 
   return (
     <Stack spacing={2}>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        justifyContent={{ xs: 'flex-start', sm: 'space-between' }}
+        alignItems={{ sm: 'center' }}
+        spacing={{ xs: 0 }}
+      >
         <Typography>검색 결과 1개</Typography>
 
         <Stack
@@ -29,24 +34,26 @@ export default function RfpListingTableActions() {
         </Button>
       </Stack>
 
-      <Stack direction="row" justifyContent="space-between">
-        <Stack direction="row" spacing={1}>
-          <Autocomplete
-            sx={{ minWidth: 320 }}
-            multiple
-            options={RFP_LISTING_TABLE_COLUMN_INITIAL_STATE}
-            getOptionLabel={(option) => option.label}
-            onChange={(_, value) => handleChangeActiveColumns(value)}
-            value={columns}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                placeholder={columns && columns.length ? undefined : '추가로 표시할 공고 목록 내용을 선택해주세요'}
-              />
-            )}
-          />
-        </Stack>
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        justifyContent={{ md: 'space-between' }}
+        spacing={{ xs: 1, md: 0 }}
+      >
+        <Autocomplete
+          sx={{ minWidth: 320 }}
+          multiple
+          options={RFP_LISTING_TABLE_COLUMN_INITIAL_STATE}
+          getOptionLabel={(option) => option.label}
+          onChange={(_, value) => handleChangeActiveColumns(value)}
+          value={columns}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              placeholder={columns && columns.length ? undefined : '추가로 표시할 공고 목록 내용을 선택해주세요'}
+            />
+          )}
+        />
         {columns && columns.length !== RFP_LISTING_TABLE_COLUMN_INITIAL_STATE.length ? (
           <Button variant="contained" onClick={reset}>
             전체 표시

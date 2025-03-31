@@ -6,21 +6,27 @@ export default function RfpListingFilterProjectBudget() {
     useRfpListingFilterStore()
 
   return (
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack
+      direction={{ xs: 'column', md: 'row' }}
+      alignItems={{ xs: undefined, md: 'center' }}
+      spacing={{ xs: 0, md: 1 }}
+    >
       <Typography>사업 금액</Typography>
-      <TextField
-        size="small"
-        placeholder="0"
-        value={projectBudget.startBudgetAmount}
-        onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
-      />
-      <Typography>~</Typography>
-      <TextField
-        size="small"
-        placeholder="0"
-        value={projectBudget.endBudgetAmount}
-        onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}
-      />
+      <Stack direction="row" spacing={2} alignItems="center">
+        <TextField
+          size="small"
+          placeholder="0"
+          value={projectBudget.startBudgetAmount}
+          onChange={(e) => handleChangeProjectBudgetAmount('startBudgetAmount', e.target.value)}
+        />
+        <Typography>~</Typography>
+        <TextField
+          size="small"
+          placeholder="0"
+          value={projectBudget.endBudgetAmount}
+          onChange={(e) => handleChangeProjectBudgetAmount('endBudgetAmount', e.target.value)}
+        />
+      </Stack>
       <FormControlLabel
         control={<Checkbox onChange={(e) => handleChangeProjectIsAmountLimited(e.target.checked)} />}
         label="금액 제한 없음"

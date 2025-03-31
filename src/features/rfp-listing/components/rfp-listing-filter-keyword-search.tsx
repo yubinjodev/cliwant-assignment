@@ -46,6 +46,11 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
         placeholder="키워드를 입력해보세요"
         value={keywordInput}
         onChange={(e) => handleChangeKeywordInput(idx, e.target.value)}
+        sx={{
+          width: {
+            sm: '100%',
+          },
+        }}
       />
       <IconButton type="submit" disabled={!keywordInput}>
         <AddIcon />

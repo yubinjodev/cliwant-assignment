@@ -58,10 +58,10 @@ export default function RfpListingChannelFilters() {
   return (
     <Paper component="section" sx={{ background: '#fff', px: 2, py: 3, width: '100%' }}>
       <Stack spacing={3}>
-        <Stack justifyContent="space-between" direction="row">
-          <Stack direction="row" spacing={1} alignItems="center">
+        <Stack justifyContent="space-between" direction={{ xs: 'column', md: 'row' }}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={1} alignItems={{ xs: 'flex-start', md: 'center' }}>
             <Typography>채널</Typography>
-            <TextField placeholder="채널을 검색해서 추가해보세요" />
+            <TextField placeholder="채널을 검색해서 추가해보세요" sx={{ width: { xs: '100%', md: 'unset' } }} />
             <FormControlLabel
               control={<Checkbox checked={showAllChannels} onChange={handleChangeAllChannels} />}
               label="채널 전부 보기"

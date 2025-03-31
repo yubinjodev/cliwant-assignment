@@ -24,13 +24,18 @@ export default function RfpListing() {
 
   return (
     <Stack spacing={2}>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        justifyContent={{ xs: undefined, md: 'space-between' }}
+        alignItems={{ xs: 'flex-start', md: undefined }}
+        spacing={{ xs: 1, md: 0 }}
+      >
         <RfpListingViewTabs />
         <RfpListingResultsPerPage />
       </Stack>
       <RfpListingSearchTabs />
 
-      <Stack direction="row" spacing={2}>
+      <Stack direction={{ xs: 'column', xl: 'row' }} spacing={2}>
         <RfpListingFilters />
         {isReceiveSuggestionsOn ? <RfpListingAiSuggestions /> : null}
       </Stack>
@@ -65,7 +70,7 @@ export default function RfpListing() {
           : null}
         {isDescDisplayed && keywords.some((word) => word.selectedKeywords.length) ? (
           <span>
-            사업 구분은&nbsp;
+            &nbsp;사업 구분은&nbsp;
             <Box component="span" sx={{ color: 'success.main' }}>
               {RFP_LISTING_FILTER_BUSINESS_CATEGORY.find((category) => category.value === businessCategory)?.label}
             </Box>

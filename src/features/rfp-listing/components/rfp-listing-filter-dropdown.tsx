@@ -15,7 +15,7 @@ export default function RfpListingFilterDropdown() {
   } = useRfpListingFilterStore()
 
   return (
-    <Stack direction="row" spacing={4}>
+    <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 2, md: 4 }}>
       <Stack direction="row" spacing={2} alignItems="center">
         <Typography>사업 구분</Typography>
         <Select size="small" value={businessCategory} onChange={(e) => handleChangeBusinessCategory(e.target.value)}>

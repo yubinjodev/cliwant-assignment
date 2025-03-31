@@ -22,44 +22,56 @@ export default function RfpListingFilterExcludeKeyword() {
 
   return (
     <>
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        alignItems={{ xs: undefined, md: 'center' }}
+        spacing={{ xs: 0, md: 1 }}
+      >
         <Typography>제목 제외 키워드</Typography>
-        <TextField
-          size="small"
-          placeholder="제목에서 제외할 키워드 입력"
-          value={excludeKeywordTitle.input}
-          onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
-        />
-        <IconButton disabled={!excludeKeywordTitle.input} onClick={() => handleClickAddNewKeyword('title')}>
-          <AddIcon />
-        </IconButton>
-        {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
-          <Chip
-            key={`selectedKeywordsTitle${keywordIdx}`}
-            label={keyword}
-            onDelete={() => handleChangeRemoveExcludeKeyword('title', keywordIdx)}
+        <Stack direction="row" spacing={1} alignItems="center">
+          <TextField
+            size="small"
+            placeholder="제목에서 제외할 키워드 입력"
+            value={excludeKeywordTitle.input}
+            onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
           />
-        ))}
+          <IconButton disabled={!excludeKeywordTitle.input} onClick={() => handleClickAddNewKeyword('title')}>
+            <AddIcon />
+          </IconButton>
+          {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
+            <Chip
+              key={`selectedKeywordsTitle${keywordIdx}`}
+              label={keyword}
+              onDelete={() => handleChangeRemoveExcludeKeyword('title', keywordIdx)}
+            />
+          ))}
+        </Stack>
       </Stack>
 
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        alignItems={{ xs: undefined, md: 'center' }}
+        spacing={{ xs: 0, md: 1 }}
+      >
         <Typography>본문 제외 키워드</Typography>
-        <TextField
-          size="small"
-          placeholder="본문에서 제외할 키워드 입력"
-          value={excludeKeywordBody.input}
-          onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
-        />
-        <IconButton disabled={!excludeKeywordBody.input} onClick={() => handleClickAddNewKeyword('body')}>
-          <AddIcon />
-        </IconButton>
-        {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (
-          <Chip
-            key={`selectedKeywordsBody${keywordIdx}`}
-            label={keyword}
-            onDelete={() => handleChangeRemoveExcludeKeyword('body', keywordIdx)}
+        <Stack direction="row" spacing={1} alignItems="center">
+          <TextField
+            size="small"
+            placeholder="본문에서 제외할 키워드 입력"
+            value={excludeKeywordBody.input}
+            onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
           />
-        ))}
+          <IconButton disabled={!excludeKeywordBody.input} onClick={() => handleClickAddNewKeyword('body')}>
+            <AddIcon />
+          </IconButton>
+          {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (
+            <Chip
+              key={`selectedKeywordsBody${keywordIdx}`}
+              label={keyword}
+              onDelete={() => handleChangeRemoveExcludeKeyword('body', keywordIdx)}
+            />
+          ))}
+        </Stack>
       </Stack>
     </>
   )

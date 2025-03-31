@@ -1,5 +1,6 @@
 'use client'
 
+import { useResponsive } from '@/hooks/useResponsive'
 import { theme } from '@/styles/theme'
 import { ThemeProvider } from '@emotion/react'
 import { Box, Container, Stack } from '@mui/material'
@@ -12,12 +13,14 @@ import Sidebar from './menu-bar'
 import NavHeader from './nav-header'
 
 export default function LayoutClientWrapper({ children }: { children: ReactNode }) {
+  const { isMobile } = useResponsive('lg')
+
   return (
     <ThemeProvider theme={theme}>
       <Stack sx={{ height: '100dvh', overflow: 'hidden' }}>
         <NavHeader />
         <Stack direction="row" spacing={0} sx={{ height: '100%', overflow: 'hidden' }}>
-          <Sidebar />
+          {isMobile ? null : <Sidebar />}
           <Box sx={{ background: grey[100], height: '100%', width: '100%', overflowY: 'auto' }}>
             <ToastContainer autoClose={2000} closeButton={false} position="top-center" />
             <Container component="main" maxWidth="lg" sx={{ pt: 3, pb: 10, width: '100%' }}>
@@ -34,8 +37,8 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
  * * basic layout
  * * state management (sidebar, rfp listing filter, saved rfp filter)
  * * refactoring (project structure, separate components)
- * ! other interactions
- * styling (css*, todo ! responsive, semantics)
+ * * other interactions
+ * styling (css*, responsive, semantics)
  *
  * (optional) additional optimization
  */
