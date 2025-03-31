@@ -14,7 +14,7 @@ import RfpListingTableActions from './rfp-listing-table-actions'
 import RfpListingViewTabs from './rfp-listing-view-tabs'
 
 export default function RfpListing() {
-  const { isReceiveSuggestionsOn, keywords, businessCategory } = useRfpListingFilterStore()
+  const { isReceiveSuggestionsOn, keywords, businessCategory, isAdvancedSearchOpen } = useRfpListingFilterStore()
 
   const [isDescDisplayed, setIsDescDisplayed] = useState(false)
 
@@ -42,7 +42,7 @@ export default function RfpListing() {
         />
       </Stack>
 
-      <RfpListingChannelFilters />
+      {isAdvancedSearchOpen ? <RfpListingChannelFilters /> : null}
 
       <Typography fontWeight={700} align="center" fontSize={16}>
         {isDescDisplayed
@@ -73,13 +73,6 @@ export default function RfpListing() {
           </span>
         ) : null}
       </Typography>
-
-      {/* 
-      {isDescDisplayed ? (
-        <Typography align="center" fontWeight={700}>
-          공고 제목에서 인공지능 을 포함하고, 사업 구분은 전체 에 해당하는 공고를 찾습니다.
-        </Typography>
-      ) : null} */}
 
       <RfpListingTableActions />
       <RfpListingTable />

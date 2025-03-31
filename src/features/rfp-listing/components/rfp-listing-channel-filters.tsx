@@ -1,14 +1,14 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import SearchIcon from '@mui/icons-material/Search'
 import { Button, Checkbox, Chip, FormControlLabel, Grid2, Paper, Stack, TextField, Typography } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import { useRfpListingFilterChannel } from '../stores/rfp-listing-filter-channel'
+import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import { RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-agency-channel-category'
 import { RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-uni-channel-category'
 
 export default function RfpListingChannelFilters() {
-  const [isChannelOpen, setIsChannelOpen] = useState(false)
-
   const {
     selectedAgencies,
     selectedUnis,
@@ -23,9 +23,7 @@ export default function RfpListingChannelFilters() {
     selectAllUnis,
   } = useRfpListingFilterChannel()
 
-  const handleClickChannelButton = () => {
-    setIsChannelOpen((prev) => !prev)
-  }
+  const { isChannelOpen, handleClickIsChannelOpen } = useRfpListingFilterStore()
 
   const handleChangeAllChannels = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -71,7 +69,7 @@ export default function RfpListingChannelFilters() {
           </Stack>
 
           <Button
-            onClick={handleClickChannelButton}
+            onClick={() => handleClickIsChannelOpen(!isChannelOpen)}
             endIcon={isChannelOpen ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
             color="secondary"
           >
@@ -115,6 +113,11 @@ export default function RfpListingChannelFilters() {
               </Grid2>
             </Stack>
           </>
+        ) : null}
+        {isChannelOpen ? (
+          <Button variant="contained" color="secondary" startIcon={<SearchIcon />} sx={{ alignSelf: 'flex-end' }}>
+            검색하기
+          </Button>
         ) : null}
       </Stack>
     </Paper>

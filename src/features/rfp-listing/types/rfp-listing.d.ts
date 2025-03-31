@@ -16,6 +16,8 @@ export type RfpDateFilterType = {
 }
 
 export type RfpListingFilterStore = {
+  isChannelOpen: boolean
+
   listingCategory: 'public' | 'private'
   selectedSavedOption: number | null
   isReceiveSuggestionsOn: boolean
@@ -54,6 +56,8 @@ export type RfpListingFilterStore = {
 }
 
 export type RfpListingFilterStoreActions = {
+  handleClickIsChannelOpen: (isOpen: boolean) => void
+
   handleChangeListingCategory: (category: 'public' | 'private') => void
   handleChangeSelectedSavedOption: (option: number | null) => void
   handleChangeIsReceiveSuggestions: (value: boolean) => void

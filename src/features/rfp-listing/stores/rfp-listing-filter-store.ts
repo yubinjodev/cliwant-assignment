@@ -5,6 +5,7 @@ import { RFP_LISTING_FILTER_INITIAL_STATE } from '../utils/constants/rfp-listing
 
 export const useRfpListingFilterStore = create<RfpListingFilterStore & RfpListingFilterStoreActions>((set) => ({
   ...RFP_LISTING_FILTER_INITIAL_STATE,
+  handleClickIsChannelOpen: (isOpen) => set({ isChannelOpen: isOpen }),
   handleChangeListingCategory: (category) => set({ listingCategory: category }),
   handleChangeSelectedSavedOption: (option) => set({ selectedSavedOption: option }),
   handleChangeIsReceiveSuggestions: (value) => set({ isReceiveSuggestionsOn: value }),
