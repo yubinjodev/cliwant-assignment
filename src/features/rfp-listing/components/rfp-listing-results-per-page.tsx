@@ -1,11 +1,11 @@
-import { Button, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Button, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 
 export default function RfpListingResultsPerPage() {
   const [resultsPerPage, setResultsPerPage] = useState('20')
 
-  const handleChangeResultsPerPage = (value: string) => {
-    setResultsPerPage(value)
+  const handleChangeResultsPerPage = (e: SelectChangeEvent) => {
+    setResultsPerPage(e.target.value)
   }
 
   return (
@@ -13,7 +13,7 @@ export default function RfpListingResultsPerPage() {
       <Typography>검과 결과 개수</Typography>
       <Select
         value={resultsPerPage}
-        onChange={(e) => handleChangeResultsPerPage(e.target.value)}
+        onChange={handleChangeResultsPerPage}
         size="small"
         sx={{ background: '#fff', width: 80 }}
       >

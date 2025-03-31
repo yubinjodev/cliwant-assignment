@@ -1,13 +1,13 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import { Box, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Box, Button, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import RfpDetailsSection from './rfp-details-section'
 
 export default function RfpDetailsSectionIndustryRules() {
   const [industryRestrictionsFilter, setIndustryRestrictionsFilter] = useState('current-listing')
 
-  const handleChangeFilter = (value: string) => {
-    setIndustryRestrictionsFilter(value)
+  const handleChangeFilter = (e: SelectChangeEvent) => {
+    setIndustryRestrictionsFilter(e.target.value)
   }
 
   return (
@@ -15,12 +15,7 @@ export default function RfpDetailsSectionIndustryRules() {
       icon={<CheckBoxIcon />}
       title="업종제한"
       action={
-        <Select
-          sx={{ width: 110 }}
-          size="small"
-          value={industryRestrictionsFilter}
-          onChange={(e) => handleChangeFilter(e.target.value)}
-        >
+        <Select sx={{ width: 110 }} size="small" value={industryRestrictionsFilter} onChange={handleChangeFilter}>
           <MenuItem value="current-listing">본 공고</MenuItem>
           <MenuItem value="our-company">우리 회사</MenuItem>
         </Select>

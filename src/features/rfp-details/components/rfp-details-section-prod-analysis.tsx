@@ -1,13 +1,13 @@
 import FindInPageIcon from '@mui/icons-material/FindInPage'
-import { Box, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Box, Button, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import RfpDetailsSection from './rfp-details-section'
 
 export default function RfpDetailsSectionProdAnalysis() {
   const [productionAnalysisFilter, setProductionAnalysisFilter] = useState('current-listing')
 
-  const handleChangeFilter = (value: string) => {
-    setProductionAnalysisFilter(value)
+  const handleChangeFilter = (e: SelectChangeEvent) => {
+    setProductionAnalysisFilter(e.target.value)
   }
 
   return (
@@ -15,12 +15,7 @@ export default function RfpDetailsSectionProdAnalysis() {
       icon={<FindInPageIcon />}
       title="직접생산 분석 [제한 기준: 제조물품]"
       action={
-        <Select
-          sx={{ width: 110 }}
-          size="small"
-          value={productionAnalysisFilter}
-          onChange={(e) => handleChangeFilter(e.target.value)}
-        >
+        <Select sx={{ width: 110 }} size="small" value={productionAnalysisFilter} onChange={handleChangeFilter}>
           <MenuItem value="current-listing">본 공고</MenuItem>
           <MenuItem value="our-company">우리 회사</MenuItem>
         </Select>

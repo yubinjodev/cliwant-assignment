@@ -8,11 +8,9 @@ import RfpDetailsSection from './rfp-details-section'
 export default function RfpDetailsSectionAi() {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
-  // todo name input as input
   const [input, setInput] = useState('')
   const [chatLog, setChatLog] = useState<string[]>([])
 
-  // todo receive parameter as event
   const handleChangeAskAiInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
   }

@@ -2,7 +2,7 @@ import GradientButton from '@/components/button/gradient-button'
 import SavedSearchIcon from '@mui/icons-material/SavedSearch'
 import { Button, Stack, TextField, Typography } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import RfpDetailsSection from './rfp-details-section'
 
@@ -13,8 +13,8 @@ export default function RfpDetailsSectionMarketSearch() {
     toast.success('프로젝트 히스토리 페이지에 저장되었습니다')
   }
 
-  const handleChangeResult = (value: string) => {
-    setMarketSearchResult(value)
+  const handleChangeResult = (e: ChangeEvent<HTMLInputElement>) => {
+    setMarketSearchResult(e.target.value)
   }
 
   const handleClickSearch = () => {
@@ -63,13 +63,7 @@ export default function RfpDetailsSectionMarketSearch() {
     >
       <Stack sx={{ p: 3, overflowY: 'auto' }} justifyContent="center" alignItems="center" spacing={1}>
         {marketSearchResult ? (
-          <TextField
-            value={marketSearchResult}
-            onChange={(e) => handleChangeResult(e.target.value)}
-            multiline
-            fullWidth
-            maxRows={10}
-          />
+          <TextField value={marketSearchResult} onChange={handleChangeResult} multiline fullWidth maxRows={10} />
         ) : (
           <Typography fontWeight={700} fontStyle={{ color: grey[500] }}>
             AI 서치를 클릭해보세요

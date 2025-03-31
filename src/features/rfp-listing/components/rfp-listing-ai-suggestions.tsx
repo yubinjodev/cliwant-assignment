@@ -1,6 +1,6 @@
 import GradientButton from '@/components/button/gradient-button'
 import { List, ListItem, ListItemButton, ListItemText, Paper, Stack, TextField } from '@mui/material'
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
 export default function RfpListingAiSuggestions() {
@@ -10,8 +10,8 @@ export default function RfpListingAiSuggestions() {
 
   const { handleChangeAddKeyword, handleChangeKeywordCondition } = useRfpListingFilterStore()
 
-  const handleChangeInput = (value: string) => {
-    setInput(value)
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value)
   }
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -39,7 +39,7 @@ export default function RfpListingAiSuggestions() {
           placeholder="찾으시는 사업을 자세하게 설명해주세요"
           size="small"
           value={input}
-          onChange={(e) => handleChangeInput(e.target.value)}
+          onChange={handleChangeInput}
           fullWidth
         />
         <GradientButton type="submit">AI 추천</GradientButton>
