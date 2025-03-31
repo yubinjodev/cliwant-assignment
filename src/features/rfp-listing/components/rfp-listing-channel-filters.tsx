@@ -2,13 +2,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, Checkbox, Chip, FormControlLabel, Grid2, Paper, Stack, TextField, Typography } from '@mui/material'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRfpListingFilterChannel } from '../stores/rfp-listing-filter-channel'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 import { RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-agency-channel-category'
 import { RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY } from '../utils/constants/rfp-listing-filter-uni-channel-category'
 
 export default function RfpListingChannelFilters() {
+  const [input, setInput] = useState('')
   const {
     selectedAgencies,
     selectedUnis,
@@ -57,13 +58,22 @@ export default function RfpListingChannelFilters() {
     }
   }
 
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value)
+  }
+
   return (
     <Paper component="section" sx={{ background: '#fff', px: 2, py: 3, width: '100%' }}>
       <Stack spacing={3}>
         <Stack justifyContent="space-between" direction={{ xs: 'column', md: 'row' }}>
           <Stack direction={{ xs: 'column', md: 'row' }} spacing={1} alignItems={{ xs: 'flex-start', md: 'center' }}>
             <Typography>채널</Typography>
-            <TextField placeholder="채널을 검색해서 추가해보세요" sx={{ width: { xs: '100%', md: 'unset' } }} />
+            <TextField
+              value={input}
+              onChange={handleChangeInput}
+              placeholder="채널을 검색해서 추가해보세요"
+              sx={{ width: { xs: '100%', md: 'unset' } }}
+            />
             <FormControlLabel
               control={<Checkbox checked={showAllChannels} onChange={handleChangeAllChannels} />}
               label="채널 전부 보기"
@@ -90,7 +100,9 @@ export default function RfpListingChannelFilters() {
                 />
               </Stack>
               <Grid2 container spacing={1}>
-                {RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.map((category) => (
+                {RFP_LISTING_FILTER_AGENCY_CHANNEL_CATEGORY.filter((category) =>
+                  input ? category.toLowerCase().includes(input.toLowerCase()) : true,
+                ).map((category) => (
                   <Grid2 key={category}>
                     <Chip
                       label={category}
@@ -111,7 +123,9 @@ export default function RfpListingChannelFilters() {
                 />
               </Stack>
               <Grid2 container spacing={1}>
-                {RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.map((category) => (
+                {RFP_LISTING_FILTER_UNI_CHANNEL_CATEGORY.filter((category) =>
+                  input ? category.toLowerCase().includes(input.toLowerCase()) : true,
+                ).map((category) => (
                   <Grid2 key={category}>
                     <Chip
                       onClick={() => handleClickUni(category)}
