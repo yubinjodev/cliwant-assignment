@@ -8,6 +8,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
   const { category, condition, keywordInput, selectedKeywords, idx } = props
 
   const {
+    keywords,
     handleChangeKeywordCategory,
     handleChangeKeywordCondition,
     handleChangeKeywordInput,
@@ -17,7 +18,12 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    handleChangeAddKeyword(idx, keywordInput)
+
+    const keywordExists = keywords.some((word) => word.selectedKeywords.some((item) => item === keywordInput))
+
+    if (!keywordExists) {
+      handleChangeAddKeyword(idx, keywordInput)
+    }
     handleChangeKeywordInput(idx, '')
   }
 
