@@ -26,7 +26,7 @@ export default function LayoutClientWrapper({ children }: { children: ReactNode 
           {isMobile ? <FullScreenMenuBar open={isMobileMenuOpen} handleClose={handleCloseMobileMenu} /> : <Sidebar />}
           <Box sx={{ background: grey[100], height: '100%', width: '100%', overflowY: 'auto' }}>
             <ToastContainer autoClose={2000} closeButton={false} position="top-center" />
-            <Container component="main" maxWidth="lg" sx={{ pt: 3, pb: 10, width: '100%' }}>
+            <Container component="main" maxWidth="xl" sx={{ pt: 3, pb: 10, width: '100%' }}>
               {children}
             </Container>
           </Box>

@@ -1,5 +1,6 @@
 import AddIcon from '@mui/icons-material/Add'
 import { Chip, IconButton, Stack, TextField, Typography } from '@mui/material'
+import { FormEvent } from 'react'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
 export default function RfpListingFilterExcludeKeyword() {
@@ -20,6 +21,16 @@ export default function RfpListingFilterExcludeKeyword() {
     handleChangeExcludeKeywordInput(key, '')
   }
 
+  const handleSubmitTitleForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    handleClickAddNewKeyword('title')
+  }
+
+  const handleSubmitBodyForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    handleClickAddNewKeyword('body')
+  }
+
   return (
     <>
       <Stack
@@ -28,14 +39,14 @@ export default function RfpListingFilterExcludeKeyword() {
         spacing={{ xs: 0, md: 1 }}
       >
         <Typography>제목 제외 키워드</Typography>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack direction="row" spacing={1} alignItems="center" component="form" onSubmit={handleSubmitTitleForm}>
           <TextField
             size="small"
             placeholder="제목에서 제외할 키워드 입력"
             value={excludeKeywordTitle.input}
             onChange={(e) => handleChangeExcludeKeywordInput('title', e.target.value)}
           />
-          <IconButton disabled={!excludeKeywordTitle.input} onClick={() => handleClickAddNewKeyword('title')}>
+          <IconButton disabled={!excludeKeywordTitle.input} type="submit">
             <AddIcon />
           </IconButton>
           {excludeKeywordTitle.selectedKeywords.map((keyword, keywordIdx) => (
@@ -54,14 +65,14 @@ export default function RfpListingFilterExcludeKeyword() {
         spacing={{ xs: 0, md: 1 }}
       >
         <Typography>본문 제외 키워드</Typography>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack direction="row" spacing={1} alignItems="center" component="form" onSubmit={handleSubmitBodyForm}>
           <TextField
             size="small"
             placeholder="본문에서 제외할 키워드 입력"
             value={excludeKeywordBody.input}
             onChange={(e) => handleChangeExcludeKeywordInput('body', e.target.value)}
           />
-          <IconButton disabled={!excludeKeywordBody.input} onClick={() => handleClickAddNewKeyword('body')}>
+          <IconButton disabled={!excludeKeywordBody.input} type="submit">
             <AddIcon />
           </IconButton>
           {excludeKeywordBody.selectedKeywords.map((keyword, keywordIdx) => (
