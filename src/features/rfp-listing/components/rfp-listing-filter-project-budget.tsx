@@ -1,3 +1,4 @@
+import { BLOCK_NON_NUMERICAL_INPUT } from '@/utils/block-non-numerical-input'
 import { Checkbox, FormControlLabel, Stack, TextField, Typography } from '@mui/material'
 import { useRfpListingFilterStore } from '../stores/rfp-listing-filter-store'
 
@@ -14,6 +15,7 @@ export default function RfpListingFilterProjectBudget() {
       <Typography>사업 금액</Typography>
       <Stack direction="row" spacing={2} alignItems="center">
         <TextField
+          onKeyDown={BLOCK_NON_NUMERICAL_INPUT}
           size="small"
           placeholder="0"
           value={projectBudget.startBudgetAmount}
@@ -21,6 +23,7 @@ export default function RfpListingFilterProjectBudget() {
         />
         <Typography>~</Typography>
         <TextField
+          onKeyDown={BLOCK_NON_NUMERICAL_INPUT}
           size="small"
           placeholder="0"
           value={projectBudget.endBudgetAmount}
