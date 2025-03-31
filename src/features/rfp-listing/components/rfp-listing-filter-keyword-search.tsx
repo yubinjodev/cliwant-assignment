@@ -21,7 +21,7 @@ export default function RfpListingFilterKeywordSearch(props: RfpFilterKeywordSea
 
     const keywordExists = keywords.some((word) => word.selectedKeywords.some((item) => item === keywordInput))
 
-    if (!keywordExists) {
+    if (!keywordExists && keywordInput.trim()) {
       handleChangeAddKeyword(idx, keywordInput)
     }
     handleChangeKeywordInput(idx, '')

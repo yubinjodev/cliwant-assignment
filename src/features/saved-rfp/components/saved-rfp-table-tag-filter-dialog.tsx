@@ -52,7 +52,7 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
     e.preventDefault()
 
     const tagExists = tags.some((tag) => tag.label === newTagInput)
-    if (!tagExists) {
+    if (!tagExists && newTagInput.trim()) {
       createNewTag(newTagInput)
     }
     setNewTagInput('')
@@ -119,7 +119,6 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
               ))}
             </Grid2>
           </Stack>
-          {/* todo prevent all blanks */}
 
           <Stack sx={{ height: 240 }} spacing={2}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">

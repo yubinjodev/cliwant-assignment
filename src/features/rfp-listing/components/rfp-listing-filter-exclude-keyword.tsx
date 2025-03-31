@@ -26,7 +26,7 @@ export default function RfpListingFilterExcludeKeyword() {
 
     const titleKeyword = excludeKeywordTitle.selectedKeywords.some((word) => word === excludeKeywordTitle.input)
     const bodyKeyword = excludeKeywordBody.selectedKeywords.some((word) => word === excludeKeywordTitle.input)
-    if (!titleKeyword && !bodyKeyword) {
+    if (!titleKeyword && !bodyKeyword && excludeKeywordTitle.input.trim()) {
       handleClickAddNewKeyword('title')
     }
     handleChangeExcludeKeywordInput('title', '')
@@ -36,7 +36,7 @@ export default function RfpListingFilterExcludeKeyword() {
     e.preventDefault()
     const titleKeyword = excludeKeywordBody.selectedKeywords.some((word) => word === excludeKeywordBody.input)
     const bodyKeyword = excludeKeywordTitle.selectedKeywords.some((word) => word === excludeKeywordBody.input)
-    if (!titleKeyword && !bodyKeyword) {
+    if (!titleKeyword && !bodyKeyword && excludeKeywordBody.input.trim()) {
       handleClickAddNewKeyword('body')
     }
     handleChangeExcludeKeywordInput('body', '')

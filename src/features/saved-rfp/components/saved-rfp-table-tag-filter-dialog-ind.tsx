@@ -49,7 +49,11 @@ export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { ope
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    createNewTag(newTagInput)
+
+    const tagExists = tags.some((tag) => tag.label === newTagInput)
+    if (!tagExists && newTagInput.trim()) {
+      createNewTag(newTagInput)
+    }
     setNewTagInput('')
   }
 
