@@ -1,6 +1,7 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import { ReactElement } from 'react'
 
-export const RFP_LISTING_TABLE_COLUMN_INITIAL_STATE = [
+export const RFP_LISTING_TABLE_COLUMN_INITIAL_STATE: { value: string; label: string; data: string | ReactElement }[] = [
   {
     value: 'industry-conditions',
     label: '업종 조건',

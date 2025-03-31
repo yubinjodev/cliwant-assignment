@@ -93,11 +93,10 @@ export type RfpFilterKeywordSearchProps = {
 
 export type RfpListingTableColumnStore = {
   columns: { value: string; label: string; data: string | ReactElement }[]
-  isColumnsAltered: boolean
 }
 
 export type RfpListingTableColumnStoreActions = {
-  handleChangeActiveColumns: (id: string) => void
+  handleChangeActiveColumns: (newArr: { value: string; label: string; data: string | ReactElement }[]) => void
   reset: VoidFunction
 }
 

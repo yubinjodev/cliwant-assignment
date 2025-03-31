@@ -3,15 +3,9 @@ import { RfpListingTableColumnStore, RfpListingTableColumnStoreActions } from '.
 import { RFP_LISTING_TABLE_COLUMN_INITIAL_STATE } from '../utils/constants/rfp-listing-table-column-initial-state'
 
 export const useRfpListingTableColumnStore = create<RfpListingTableColumnStore & RfpListingTableColumnStoreActions>(
-  (set, get) => ({
+  (set) => ({
     columns: RFP_LISTING_TABLE_COLUMN_INITIAL_STATE,
-    isColumnsAltered: false,
-    handleChangeActiveColumns: (id: string) => {
-      set((state) => ({ columns: state.columns.filter((item) => item.value !== id) }))
-
-      const { isColumnsAltered } = get()
-      if (!isColumnsAltered) set({ isColumnsAltered: true })
-    },
-    reset: () => set({ columns: RFP_LISTING_TABLE_COLUMN_INITIAL_STATE, isColumnsAltered: false }),
+    handleChangeActiveColumns: (newArr) => set({ columns: newArr }),
+    reset: () => set({ columns: RFP_LISTING_TABLE_COLUMN_INITIAL_STATE }),
   }),
 )
