@@ -72,6 +72,7 @@ export type SavedRfpTagFilterIndStore = {
 export type SavedRfpTagFilterIndStoreActions = {
   applyTag: (tag: SavedRfpFilterTag) => void
   removeAppliedTag: (id: number) => void
+  removeAppliedTagByName: (name: string) => void
   resetAppliedTag: VoidFunction
   saveNotes: (notes) => void
 }

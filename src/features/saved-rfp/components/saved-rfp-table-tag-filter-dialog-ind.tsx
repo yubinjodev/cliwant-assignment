@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import {
+  Box,
   Button,
   Chip,
   Dialog,
@@ -14,16 +15,21 @@ import {
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ColorResult } from 'react-color'
 import { toast } from 'react-toastify'
 import { useSavedRfpTagFilterIndStore } from '../stores/saved-rfp-tag-filter-ind-store'
 import { useSavedRfpTagFilterStore } from '../stores/saved-rfp-tag-filter-store'
+import SavedRfpColorPickerDialog from './saved-rfp-color-picker-dialog'
 
 export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { open: boolean; onClose: VoidFunction }) {
   const [newTagInput, setNewTagInput] = useState('')
   const [editTagLabel, setEditTagLabel] = useState('')
   const [editTagColor, setEditTagColor] = useState<string>('#eeeeee')
+  const [isColorDialogOpen, setIsColorDialogOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
 
-  const { appliedTags, applyTag, removeAppliedTag, resetAppliedTag } = useSavedRfpTagFilterIndStore()
+  const { appliedTags, applyTag, removeAppliedTag, resetAppliedTag, removeAppliedTagByName } =
+    useSavedRfpTagFilterIndStore()
 
   const {
     tags,
@@ -57,16 +63,23 @@ export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { ope
     toast.success('태그 이름이 수정되었습니다')
   }
 
-  const handleChangeColor = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeColor = (color: ColorResult) => {
     if (selectedTagId === null) return
-    setEditTagColor(e.target.value)
-    handleEditTagColor(selectedTagId, e.target.value)
+    setEditTagColor(color.hex)
+    handleEditTagColor(selectedTagId, color.hex)
   }
 
   const handleClickDeleteTag = () => {
     if (selectedTagId === null) return
     deleteTag(selectedTagId)
     removeSelectedTag()
+    setIsDeleteOpen(false)
+    toast.success('태그가 삭제되었습니다')
+  }
+
+  const handleClickFinishEdit = () => {
+    removeSelectedTag()
+    setIsDeleteOpen(false)
   }
 
   useEffect(() => {
@@ -75,6 +88,18 @@ export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { ope
       setEditTagLabel(selectedTag.label)
     }
   }, [selectedTag])
+
+  useEffect(() => {
+    removeSelectedTag()
+  }, [])
+
+  useEffect(() => {
+    if (appliedTags && appliedTags.length) {
+      appliedTags.forEach((appliedTag) => {
+        if (!tags.includes(appliedTag)) removeAppliedTagByName(appliedTag.label)
+      })
+    }
+  }, [tags])
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
@@ -114,27 +139,47 @@ export default function SavedRfpTableTagFilterDialogInd({ open, onClose }: { ope
             </Stack>
 
             {selectedTag ? (
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                sx={{ border: `1px solid ${grey[200]}`, p: 2 }}
-              >
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
-                  <input type="color" value={editTagColor} onChange={handleChangeColor} />
+              <Stack spacing={4} alignItems="center" sx={{ border: `1px solid ${grey[200]}`, p: 2 }}>
+                <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
+                    <Box
+                      sx={{ width: 50, height: 35, bgcolor: editTagColor, borderRadius: 1, cursor: 'pointer' }}
+                      onClick={() => setIsColorDialogOpen(true)}
+                    />
+                    <SavedRfpColorPickerDialog
+                      open={isColorDialogOpen}
+                      onClose={() => setIsColorDialogOpen(false)}
+                      color={editTagColor}
+                      onColorChange={handleChangeColor}
+                    />
+                  </Stack>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Button variant="contained" color="success" onClick={handleClickEditTagLabel}>
+                      태그 수정
+                    </Button>
+                    <Button variant="contained" color="error" onClick={() => setIsDeleteOpen(true)}>
+                      태그 삭제
+                    </Button>
+                    <Button variant="contained" onClick={handleClickFinishEdit}>
+                      수정 완료
+                    </Button>
+                  </Stack>
                 </Stack>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <Button variant="contained" color="success" onClick={handleClickEditTagLabel}>
-                    태그 수정
-                  </Button>
-                  <Button variant="contained" color="error" onClick={handleClickDeleteTag}>
-                    태그 삭제
-                  </Button>
-                  <Button variant="contained" onClick={removeSelectedTag}>
-                    수정 완료
-                  </Button>
-                </Stack>
+
+                {isDeleteOpen ? (
+                  <Stack alignItems="center" sx={{ p: 3, border: `1px solid ${grey[200]}` }}>
+                    <Typography>삭제된 태그는 복구할 수 없어요! 정말 삭제하시겠어요?</Typography>
+                    <Stack direction="row" spacing={1}>
+                      <Button color="inherit" onClick={() => setIsDeleteOpen(false)}>
+                        아니오
+                      </Button>
+                      <Button variant="contained" color="error" onClick={handleClickDeleteTag}>
+                        예
+                      </Button>
+                    </Stack>
+                  </Stack>
+                ) : null}
               </Stack>
             ) : null}
 

@@ -50,7 +50,11 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    createNewTag(newTagInput)
+
+    const tagExists = tags.some((tag) => tag.label === newTagInput)
+    if (!tagExists) {
+      createNewTag(newTagInput)
+    }
     setNewTagInput('')
   }
 
@@ -74,6 +78,8 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
     if (selectedTagId === null) return
     deleteTag(selectedTagId)
     removeSelectedTag()
+    setIsDeleteOpen(false)
+    toast.success('태그가 삭제되었습니다')
   }
 
   const handleClickFinishEdit = () => {
@@ -113,6 +119,7 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
               ))}
             </Grid2>
           </Stack>
+          {/* todo prevent all blanks */}
 
           <Stack sx={{ height: 240 }} spacing={2}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -128,7 +135,6 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
             {selectedTag ? (
               <Stack spacing={4} alignItems="center" sx={{ border: `1px solid ${grey[200]}`, p: 2 }}>
                 <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
-                  {/* todo remove tag from ind */}
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <TextField size="small" value={editTagLabel} onChange={handleChangeEditTagLabel} />
                     <Box
