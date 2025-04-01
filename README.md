@@ -1,68 +1,80 @@
-# 🏃 Installation
+# 🏃 앱 실행
 
-To run this project locally:
-
-1. Clone the repository
+1. 레포지토리 클론
 
 ```
 git clone https://github.com/yubinjodev/cliwant-assignment.git
 ```
 
-2. Navigate to the project directory
+2. 프로젝트 경로 접근
 
 ```
 cd cliwant-assignment
 ```
 
-3. Install the dependencies
+3. 패키지 설치
 
 ```
 npm i
 ```
 
-4. Start the development server by running the following command:
+4. 앱 실행
 
 ```
 npm run dev
 ```
 
-This will start the application at http://localhost:3000 in your browser.
+앱은 http://localhost:3000 주소에서 실행 됩니다 (브라우저)
 
-# 🎨 Design Pattern
+# 🎨 디자인 패턴
 
-## Component Organization
+## 컴포넌트 구조
 
-- Structured the application using functional components
-- Focused on keeping components modular and reusable where necessary
+- 함수형 컴포넌트를 사용하여 개발
+- 컴포넌트를 모듈화 시키고 재사용
 
-## State Management
+## 상태 관리
 
-- Used React’s useState for simple local states
-- Utilized Zustand for complex states that needed to be shared across components
+- 단순하고 로컬한 상태는 React useState 활용
+- 복잡하고 여러 컴포넌트 사이에서 상태 공유 필요한 상태는 Zustand 활용
 
-## Data Flow & Props Management
+## 데이터 흐름과 props 관리
 
-- Followed React’s unidirectional data flow principle
-- Used props to pass data between components while avoiding excessive prop drilling
+- React의 unidirectional 데이터 흐름 원칙 따름
+- Prop drilling을 필요시 props를 활용하여 컴포넌트 사이에서 데이터 공유
 
-## Project Structure
+## 프로젝트 구조
 
-Reference: https://github.com/alan2207/bulletproof-react
+참고 문서: https://github.com/alan2207/bulletproof-react
 
 ```
 src
 |
-+-- app               # application routes
++-- app               # 앱 경로
 |
-+-- components        # shared components used across the entire application
++-- components        # 앱 전체에서 사용 가능한 컴포넌트
 |
-+-- features          # feature based modules
++-- features          # 기능 기반 모듈
 |
-+-- hooks             # shared hooks used across the entire application
++-- hooks             # 앱 전체에서 사용 가능한 훅
 |
-+-- stores            # global state stores
++-- stores            # 상태 모음
 |
-+-- types             # shared types used across the application
++-- types             # 타입 선언
 |
-+-- utils             # shared utility functions
++-- utils             # util 파일 모음
+```
+
+```
+src/features/rfp-listing
+|
++-- components       # 특정 기능 컴포넌트
+|
++-- hooks            # 특정 기능 훅
+|
++-- stores           # 특정 기능 상태 모음
+|
++-- types            # 특정 기능 타입 선언
+|
++-- utils            # 특정 기능 util 파일 모음
 ```
