@@ -54,7 +54,7 @@ export default function RfpListing() {
           ? keywords.map((word, idx) =>
               word.selectedKeywords.length ? (
                 <span key={idx}>
-                  공고 제목에서 &nbsp;
+                  {word.category === 'title' ? ' 공고 제목' : ' 첨부파일 본문'}에서 &nbsp;
                   {word.selectedKeywords.map((item, idx) => (
                     <span key={`${item}${idx}`}>
                       <Box component="span" sx={{ color: 'primary.main' }}>
