@@ -1,4 +1,5 @@
 import AddIcon from '@mui/icons-material/Add'
+import CloseIcon from '@mui/icons-material/Close'
 import EditIcon from '@mui/icons-material/Edit'
 import {
   Box,
@@ -97,6 +98,16 @@ export default function SavedRfpTableTagFilterDialog({ open, onClose }: { open: 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle>필터 적용 태그</DialogTitle>
+      <IconButton
+        onClick={onClose}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8,
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
       <DialogContent>
         <Stack spacing={2}>
           <Stack sx={{ height: 240 }} spacing={2}>
