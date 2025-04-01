@@ -78,3 +78,10 @@ src/features/rfp-listing
 |
 +-- utils            # 특정 기능 util 파일 모음
 ```
+
+## 기술 스택
+
+- React
+- Next.js
+- Zustand
+- MUI
