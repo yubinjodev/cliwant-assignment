@@ -41,7 +41,7 @@ npm run dev
 ## 데이터 흐름과 props 관리
 
 - React의 unidirectional 데이터 흐름 원칙 따름
-- Prop drilling을 필요시 props를 활용하여 컴포넌트 사이에서 데이터 공유
+- 과도한 prop drilling을 피하면서 props를 사용하여 자녀 컴포넌트에 데이터 전달
 
 ## 프로젝트 구조
 
